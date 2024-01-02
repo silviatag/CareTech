@@ -1,0 +1,328 @@
+﻿<Window x:Class="CareTech.NewPrescription"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CareTech"
+        mc:Ignorable="d"
+        Title="NewPrescription"  Height="820" Width="700" WindowStartupLocation="CenterScreen">
+	<Grid>
+		<StackPanel Orientation="Vertical">
+			<Grid Height="730" Width="650">
+				<StackPanel Orientation="Vertical">
+					<Grid Height="45">
+						<TextBlock Text="PATIENT NAME, AGE" FontSize="30" FontWeight="Bold" FontFamily="Inter" VerticalAlignment="Bottom" Width="500" HorizontalAlignment="Left"></TextBlock>
+					</Grid>
+					<Grid Height="30">
+						<TextBlock Text="DATE: dd/mm/yyyy" FontSize="20" FontWeight="Medium" FontFamily="Inter" Foreground="Gray" VerticalAlignment="Center"></TextBlock>
+					</Grid>
+					<Grid Height="80">
+						<TextBlock Text="Prescribing doctor" FontSize="12" FontWeight="Bold" FontFamily="Inter" Height="30" VerticalAlignment="Bottom"></TextBlock>
+					</Grid>
+					<Grid Height="30">
+						<TextBlock Text="DR. doc name" FontSize="12" FontWeight="Regular" FontFamily="Inter" Height="30" VerticalAlignment="Bottom"></TextBlock>
+					</Grid>
+					<Grid Height="60">
+						<StackPanel Orientation="Vertical">
+							<StackPanel Height="20" VerticalAlignment="Bottom" Orientation="Horizontal">
+								<Grid Width="200">
+									<TextBlock Text="Weight" FontSize="12" FontWeight="Bold" FontFamily="Inter" ></TextBlock>
+								</Grid>
+								<Grid Width="200">
+									<TextBlock Text="Height" FontSize="12" FontWeight="Bold" FontFamily="Inter" ></TextBlock>
+								</Grid>
+							</StackPanel>
+							<StackPanel Height="40" VerticalAlignment="Bottom" Orientation="Horizontal">
+								<Grid Width="200">
+									<StackPanel Orientation="Horizontal" Width="180">
+										<Border BorderThickness="0" Width="100" Height="25">
+											<TextBox  Text="00"></TextBox>
+										</Border>
+										<Border BorderThickness="0" Width="20" Height="25">
+											<StackPanel Orientation="Vertical">
+												<Border BorderThickness="0" Height="12.5">
+													<Button BorderThickness="0" RenderTransformOrigin="0.5,0.5" Margin="0,-1,0,0" Width="13">
+														<Button.RenderTransform>
+															<TransformGroup>
+																<ScaleTransform/>
+																<SkewTransform/>
+																<RotateTransform Angle="-90.923"/>
+																<TranslateTransform/>
+															</TransformGroup>
+														</Button.RenderTransform>
+														<Button.Background>
+															<ImageBrush ImageSource="/images/arrow.png"></ImageBrush>
+														</Button.Background>
+													</Button>
+												</Border>
+												<Border BorderThickness="0" Height="12.5">
+													<Button BorderThickness="0" RenderTransformOrigin="0.5,0.5" Margin="0,-1,0,0" Width="13">
+														<Button.RenderTransform>
+															<TransformGroup>
+																<ScaleTransform/>
+																<SkewTransform/>
+																<RotateTransform Angle="91.98"/>
+																<TranslateTransform/>
+															</TransformGroup>
+														</Button.RenderTransform>
+														<Button.Background>
+															<ImageBrush ImageSource="/images/arrow.png"></ImageBrush>
+														</Button.Background>
+													</Button>
+												</Border>
+											</StackPanel>
+										</Border>
+										<Grid>
+											<ComboBox SelectedIndex="0" Height="25">
+												<ComboBoxItem Content="kg" IsEnabled="True"/>
+												<ComboBoxItem Content="kg"/>
+												<ComboBoxItem Content="lbs"/>
+												<ComboBoxItem Content="24 hrs"/>
+											</ComboBox>
+										</Grid>
+									</StackPanel>
+								</Grid>
+								<Grid Width="180">
+									<StackPanel Orientation="Horizontal" Width="180">
+										<Border BorderThickness="0" Width="100" Height="25">
+											<TextBox  Text="00"></TextBox>
+										</Border>
+										<Border BorderThickness="0" Width="20" Height="25">
+											<StackPanel Orientation="Vertical">
+												<Border BorderThickness="0" Height="12.5">
+													<Button BorderThickness="0" RenderTransformOrigin="0.5,0.5" Margin="0,-1,0,0" Width="13">
+														<Button.RenderTransform>
+															<TransformGroup>
+																<ScaleTransform/>
+																<SkewTransform/>
+																<RotateTransform Angle="-90.923"/>
+																<TranslateTransform/>
+															</TransformGroup>
+														</Button.RenderTransform>
+														<Button.Background>
+															<ImageBrush ImageSource="/images/arrow.png"></ImageBrush>
+														</Button.Background>
+													</Button>
+												</Border>
+												<Border BorderThickness="0" Height="12.5">
+													<Button BorderThickness="0" RenderTransformOrigin="0.5,0.5" Margin="0,-1,0,0" Width="13">
+														<Button.RenderTransform>
+															<TransformGroup>
+																<ScaleTransform/>
+																<SkewTransform/>
+																<RotateTransform Angle="91.98"/>
+																<TranslateTransform/>
+															</TransformGroup>
+														</Button.RenderTransform>
+														<Button.Background>
+															<ImageBrush ImageSource="/images/arrow.png"></ImageBrush>
+														</Button.Background>
+													</Button>
+												</Border>
+											</StackPanel>
+										</Border>
+										<Grid>
+											<ComboBox SelectedIndex="0" Height="25">
+												<ComboBoxItem Content="cm" IsEnabled="True"/>
+												<ComboBoxItem Content="cm"/>
+												<ComboBoxItem Content="ft"/>
+												<ComboBoxItem Content="24 hrs"/>
+											</ComboBox>
+										</Grid>
+									</StackPanel>
+								</Grid>
+							</StackPanel>
+
+						</StackPanel>
+					</Grid>
+					<Grid Height="40">
+						<TextBlock Text="Symptoms" FontSize="12" FontWeight="Bold" FontFamily="Inter" VerticalAlignment="Bottom"></TextBlock>
+					</Grid>
+					<Grid Height="40">
+						<StackPanel Orientation="Horizontal">
+							<Grid Width="25" Height="20">
+								<CheckBox></CheckBox>
+							</Grid>
+							<Grid Width="80" Height="20">
+								<TextBlock Text="Headache" FontSize="12" FontWeight="Regular" FontFamily="Inter"/>
+							</Grid>
+							<Grid Width="25" Height="20">
+								<CheckBox></CheckBox>
+							</Grid>
+							<Grid Width="80" Height="20">
+								<TextBlock Text="Nausea" FontSize="12" FontWeight="Regular" FontFamily="Inter"/>
+							</Grid>
+							<Grid Width="25" Height="20">
+								<CheckBox></CheckBox>
+							</Grid>
+							<Grid Width="80" Height="20">
+								<TextBlock Text="vomiting" FontSize="12" FontWeight="Regular" FontFamily="Inter"/>
+							</Grid>
+							<Grid Width="25" Height="20">
+								<CheckBox></CheckBox>
+							</Grid>
+							<Grid Width="80" Height="20">
+								<TextBlock Text="Coughing" FontSize="12" FontWeight="Regular" FontFamily="Inter"/>
+							</Grid>
+							<Grid Width="25" Height="20">
+								<CheckBox></CheckBox>
+							</Grid>
+							<Grid Width="80" Height="20">
+								<TextBlock Text="Chest pain" FontSize="12" FontWeight="Regular" FontFamily="Inter"/>
+							</Grid>
+							<Grid Width="30" Height="30">
+								<Button BorderBrush="Gray" Width="15" Height="15">
+									<Button.Background>
+										<ImageBrush ImageSource="/images/add.jpg"></ImageBrush>
+									</Button.Background>
+								</Button>
+							</Grid>
+						</StackPanel>
+					</Grid>
+					<Grid Height="40">
+						<TextBlock Text="Diagnosis" FontSize="12" FontWeight="Bold" FontFamily="Inter" VerticalAlignment="Bottom"></TextBlock>
+					</Grid>
+					<Grid Height="40">
+						<StackPanel Orientation="Horizontal">
+							<Grid Width="80" Height="20">
+								<ComboBox SelectedIndex="0" Height="25">
+									<ComboBoxItem Content="Diabetes" IsEnabled="True"/>
+									<ComboBoxItem Content="Renal failure"/>
+									<ComboBoxItem Content="Heart attack"/>
+								</ComboBox>
+							</Grid>
+							<Grid Width="30" Height="30">
+								<Button BorderBrush="Gray" Width="15" Height="15">
+									<Button.Background>
+										<ImageBrush ImageSource="/images/add.jpg"></ImageBrush>
+									</Button.Background>
+								</Button>
+							</Grid>
+						</StackPanel>
+					</Grid>
+					<StackPanel Height="40" VerticalAlignment="Bottom" Orientation="Horizontal">
+						<Grid Width="200">
+							<TextBlock Text="Choose medication" FontSize="12" FontWeight="Bold" VerticalAlignment="Bottom" FontFamily="Inter" ></TextBlock>
+						</Grid>
+						<Grid Width="200">
+							<TextBlock Text="Dose" FontSize="12" FontWeight="Bold" FontFamily="Inter"  VerticalAlignment="Bottom"></TextBlock>
+						</Grid>
+						<Grid Width="200">
+							<TextBlock Text="Frequency" FontSize="12" FontWeight="Bold" FontFamily="Inter"  VerticalAlignment="Bottom"></TextBlock>
+						</Grid>
+					</StackPanel>
+					<StackPanel Height="40" VerticalAlignment="Bottom" Orientation="Horizontal">
+						<Grid Width="200">
+							<StackPanel Orientation="Horizontal">
+								<Grid>
+									<ComboBox SelectedIndex="0" Height="25" Width="150">
+										<ComboBoxItem Content="Glucophage XR" IsEnabled="False"/>
+										<ComboBoxItem Content="Glucophage XR"/>
+										<ComboBoxItem Content="med 2"/>
+										<ComboBoxItem Content="med 3"/>
+									</ComboBox>
+								</Grid>
+							</StackPanel>
+						</Grid>
+						<Grid Width="180">
+							<StackPanel Orientation="Horizontal" Width="180">
+								<Border BorderThickness="0" Width="100" Height="25">
+									<TextBox  Text="00"></TextBox>
+								</Border>
+								<Border BorderThickness="0" Width="20" Height="25">
+									<StackPanel Orientation="Vertical">
+										<Border BorderThickness="0" Height="12.5">
+											<Button BorderThickness="0" RenderTransformOrigin="0.5,0.5" Margin="0,-1,0,0" Width="13">
+												<Button.RenderTransform>
+													<TransformGroup>
+														<ScaleTransform/>
+														<SkewTransform/>
+														<RotateTransform Angle="-90.923"/>
+														<TranslateTransform/>
+													</TransformGroup>
+												</Button.RenderTransform>
+												<Button.Background>
+													<ImageBrush ImageSource="/images/arrow.png"></ImageBrush>
+												</Button.Background>
+											</Button>
+										</Border>
+										<Border BorderThickness="0" Height="12.5">
+											<Button BorderThickness="0" RenderTransformOrigin="0.5,0.5" Margin="0,-1,0,0" Width="13">
+												<Button.RenderTransform>
+													<TransformGroup>
+														<ScaleTransform/>
+														<SkewTransform/>
+														<RotateTransform Angle="91.98"/>
+														<TranslateTransform/>
+													</TransformGroup>
+												</Button.RenderTransform>
+												<Button.Background>
+													<ImageBrush ImageSource="/images/arrow.png"></ImageBrush>
+												</Button.Background>
+											</Button>
+										</Border>
+									</StackPanel>
+								</Border>
+								<Grid>
+									<ComboBox SelectedIndex="0" Height="25">
+										<ComboBoxItem Content="gm" IsEnabled="True"/>
+										<ComboBoxItem Content="ml"/>
+										<ComboBoxItem Content="spoons"/>
+										<ComboBoxItem Content="drops"/>
+									</ComboBox>
+								</Grid>
+
+							</StackPanel>
+						</Grid>
+						<Grid Width="200">
+							<ComboBox SelectedIndex="0" Height="25" Width="150">
+								<ComboBoxItem Content="Select frequency" IsEnabled="False"/>
+								<ComboBoxItem Content="6 hrs"/>
+								<ComboBoxItem Content="12 hrs"/>
+								<ComboBoxItem Content="24 hrs"/>
+							</ComboBox>
+						</Grid>
+						<Grid >
+							<Button Width="15" Height="15">
+								<Button.Background>
+									<ImageBrush ImageSource="/images/add.jpg"></ImageBrush>
+								</Button.Background>
+							</Button>
+						</Grid>
+					</StackPanel>
+					<Grid Height="130">
+					<ListView  Height="100" Width="600">
+						<ListView.View>
+							<GridView>
+								<GridViewColumn Header="Drug" Width="200" DisplayMemberBinding="{Binding Drug}" />
+								<GridViewColumn Header="Dose" Width="200" DisplayMemberBinding="{Binding Dose}" />
+								<GridViewColumn Header="Frequency" Width="200" DisplayMemberBinding="{Binding Frequency}" />
+							</GridView>
+						</ListView.View>
+					</ListView>
+					</Grid>
+					<Grid Height="30">
+						<TextBlock Text="Additional Notes" FontSize="12" FontWeight="Bold" FontFamily="Inter"></TextBlock>
+					</Grid>
+					<Grid Height="70">
+						<TextBlock Background="#FFD2D5EE" Text="add notes" FontSize="12" FontWeight="Medium" FontFamily="Inter " Foreground="gray"></TextBlock>
+					</Grid>
+				</StackPanel>
+			</Grid>
+			<Grid Height="50">
+				<StackPanel Orientation="Horizontal">
+					<Grid Width="325">
+						<Button x:Name="save" Content="Save" Foreground="White" FontFamily="Inter" FontWeight="SemiBold" Width="80" Height="30" Background="#7163ba" BorderBrush="Gray" ></Button>
+					</Grid>
+					<Grid Width="325">
+						<Button Content="Print" Foreground="White" FontFamily="Inter" FontWeight="SemiBold" Width="80" Height="30" Background="#7163ba" BorderBrush="Gray"></Button>
+					</Grid>
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+		<Grid Width="200" Height="200" VerticalAlignment="Top" HorizontalAlignment="Right">
+			<Image Source="/images/logo.png"></Image>
+			<TextBlock Text="Life Clinic" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="30" Width="120" Margin="25,136,25,34"></TextBlock>
+		</Grid>
+    </Grid>
+</Window>
