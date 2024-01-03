@@ -50,5 +50,13 @@ namespace CareTech.classes
             //PatientID = ++incrementalID;
 
         }
+        public Patient(string nationalid, string name , string phonenumber)
+        {
+            NationalID= nationalid;
+            Name= name;
+            PhoneNumber= phonenumber;
+            PatientID = int.Parse(nationalid.Substring(nationalid.Length - 4));
+
+        }
     }
 }

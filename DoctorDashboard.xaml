@@ -226,7 +226,7 @@
 					</Grid>
 				</StackPanel>
 			</Grid>
-			<Grid x:Name="PatientTable" Width="1182" HorizontalAlignment="Left" Margin="200,526,0,10">
+			<!--<Grid x:Name="PatientTable" Width="1182" HorizontalAlignment="Left" Margin="200,526,0,10">
 				<Rectangle Fill="#F0F0F0" Stroke="Gray" RadiusX="30" RadiusY="30" Margin="0,10,0,10"></Rectangle>
 				<StackPanel Orientation="Vertical">
 					<Grid  Height="70">
@@ -378,8 +378,8 @@
 						</StackPanel>
 					</Grid>
 				</StackPanel>
-			</Grid>
-			<Grid Height="250" Margin="739,90,221,464">
+			</Grid> -->
+			<Grid Height="400" Width="1200" VerticalAlignment="Bottom" >
 				<StackPanel Orientation="Vertical">
 					<Grid Height="83">
 						<Rectangle Fill="#7163ba" Stroke="White" RadiusX="30" RadiusY="30"></Rectangle>
@@ -390,29 +390,29 @@
 					<Grid Height="41">
 						<Rectangle Fill="#7163ba" Stroke="White" RadiusX="30" RadiusY="30" Margin="5,0,5,0"></Rectangle>
 						<StackPanel Orientation="Horizontal">
-							<Grid Width="85">
+							<Grid Width="170">
 								<Button BorderThickness="0" Width="15" >
 									<Button.Background>
 										<ImageBrush ImageSource="/images/arroww.png"></ImageBrush>
 									</Button.Background>
 								</Button>
 							</Grid>
-							<Grid Width="85">
+							<Grid Width="170">
 								<TextBlock Text="Sun" Foreground="White" FontSize="20" FontWeight="Medium" FontFamily="Inter" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
 							</Grid>
-							<Grid Width="85">
+							<Grid Width="170">
 								<TextBlock Text="Mon" Foreground="White" FontSize="20" FontWeight="Medium" FontFamily="Inter" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
 							</Grid>
-							<Grid Width="85">
+							<Grid Width="170">
 								<TextBlock Text="Tues" Foreground="White" FontSize="20" FontWeight="Medium" FontFamily="Inter" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
 							</Grid>
-							<Grid Width="85">
+							<Grid Width="170">
 								<TextBlock Text="Wed" Foreground="White" FontSize="20" FontWeight="Medium" FontFamily="Inter" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
 							</Grid>
-							<Grid Width="85">
+							<Grid Width="170">
 								<TextBlock Text="Thurs" Foreground="White" FontSize="20" FontWeight="Medium" FontFamily="Inter" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
 							</Grid>
-							<Grid Width="85" RenderTransformOrigin="0.5,0.5">
+							<Grid Width="170" RenderTransformOrigin="0.5,0.5">
 								<Grid.RenderTransform>
 									<TransformGroup>
 										<ScaleTransform/>
@@ -429,57 +429,23 @@
 							</Grid>
 						</StackPanel>
 					</Grid>
-					<Grid Height="62.5">
+					<Grid Height="250">
 						<Rectangle Fill="White" Stroke="Gray" RadiusX="30" RadiusY="30"></Rectangle>
-						<StackPanel Orientation="Horizontal">
-							<Grid Width="300">
-								<StackPanel Orientation="Vertical">
-									<Grid Height="31.25">
-										<TextBlock Text="Patient 1" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15" FontWeight="Medium" FontFamily="Inter" Margin="44,13,0,0"></TextBlock>
-									</Grid>
-									<Grid Height="31.25">
-										<TextBlock Text="#12323" Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12" FontWeight="Medium" FontFamily="Inter" Margin="55,1,0,0"></TextBlock>
-									</Grid>
-								</StackPanel>
-							</Grid>
-							<Grid Width="300">
-								<Button x:Name="file" Content="Details" Foreground="White" FontFamily="Inter" FontWeight="Medium" FontSize="15" Width="100" Height="40" Background="#7163ba" Click="file_Click">
-									<Button.Template>
-										<ControlTemplate TargetType="{x:Type Button}">
-											<Border CornerRadius="30" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-												<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-											</Border>
-										</ControlTemplate>
-									</Button.Template>
-								</Button>
-							</Grid>
-						</StackPanel>
-					</Grid>
-					<Grid Height="62.5">
-						<Rectangle Fill="White" Stroke="Gray" RadiusX="30" RadiusY="30" Margin="0,0,0,4"></Rectangle>
-						<StackPanel Orientation="Horizontal">
-							<Grid Width="300">
-								<StackPanel Orientation="Vertical">
-									<Grid Height="31.25">
-										<TextBlock Text="Patient 1" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15" FontWeight="Medium" FontFamily="Inter" Margin="44,13,0,0"></TextBlock>
-									</Grid>
-									<Grid Height="31.25">
-										<TextBlock Text="#12323" Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12" FontWeight="Medium" FontFamily="Inter" Margin="55,1,0,0"></TextBlock>
-									</Grid>
-								</StackPanel>
-							</Grid>
-							<Grid Width="300">
-								<Button x:Name="file2" Content="Details" Foreground="White" FontFamily="Inter" FontWeight="Medium" FontSize="15" Width="100" Height="40" Background="#7163ba" Click="file2_Click">
-									<Button.Template>
-										<ControlTemplate TargetType="{x:Type Button}">
-											<Border CornerRadius="30" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-												<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-											</Border>
-										</ControlTemplate>
-									</Button.Template>
-								</Button>
-							</Grid>
-						</StackPanel>
+						<ListView x:Name="appointmentListView" Margin="10">
+							<ListView.View>
+								<GridView>
+									<GridViewColumn Header="Patient" Width="400" DisplayMemberBinding="{Binding PatientInfo}" />
+									<GridViewColumn Header="Time" Width="400" DisplayMemberBinding="{Binding AppointmentTime}" />
+									<GridViewColumn Header="Details" Width="400">
+										<GridViewColumn.CellTemplate>
+											<DataTemplate>
+												<Button Content="Details" Click="Button_Click"/>
+											</DataTemplate>
+										</GridViewColumn.CellTemplate>
+									</GridViewColumn>
+								</GridView>
+							</ListView.View>
+						</ListView>
 					</Grid>
 				</StackPanel>
 

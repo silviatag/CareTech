@@ -27,7 +27,7 @@
 				</StackPanel>
 			</Grid>
 			<StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Width="600" Height="500">
-				<Grid x:Name="main" Width="600" Height="400" Visibility="Collapsed">
+				<Grid x:Name="main" Width="600" Height="400" Visibility="Visible">
 					<StackPanel Orientation="Vertical" Height="400">
 						<Grid Height="44">
 							<StackPanel Orientation="Horizontal" Height="30" Width="600">
@@ -238,7 +238,7 @@
 						</Grid>
 					</StackPanel>
 				</Grid>
-				<Grid x:Name="History" Width="600" Height="400" Visibility="Visible">
+				<Grid x:Name="History" Width="600" Height="400" Visibility="Collapsed">
 					<ScrollViewer VerticalScrollBarVisibility="Visible">
 						<StackPanel Orientation="Vertical" >
 							<Grid x:Name="PastAndPresent" Height="200">

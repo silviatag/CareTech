@@ -36,7 +36,7 @@ namespace CareTech
         {
             /*Page1 page1 = new Page1();
             this.Content = page1;*/
-            AddAppointment ap= new AddAppointment();
+            DoctorDashboard ap= new DoctorDashboard();
             ap.Show();
             this.Close();
         }

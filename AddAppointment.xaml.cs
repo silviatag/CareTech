@@ -217,24 +217,50 @@ namespace CareTech
 
         private void book_click(object sender, RoutedEventArgs e)
         {
-            AddBusyTimeAppointment(dateTimeEdit.DateTime, "#"+PatientID.Text+" , "+ PatientName.Text+" , "+typeOfVisit.Text);
-            DateTime? selectedDateTime = dateTimeEdit.DateTime;
-            DateTime appdate;
-            TimeSpan apptime;
-            appdate = selectedDateTime.Value.Date; // Extract date
-            apptime= selectedDateTime.Value.TimeOfDay; // Extract time
-            ComboBoxItem typeSelectedComboBoxItem = typeOfVisit.SelectedItem as ComboBoxItem;
-            string apptype= typeSelectedComboBoxItem.Content?.ToString();
-            int patientid = int.Parse(PatientID.Text);
-            ComboBoxItem docSelectedComboBoxItem = pickAdoc.SelectedItem as ComboBoxItem;
-            string doc = pickAdoc.SelectedItem?.ToString();
-            string[] words = doc.Split(' ');
-            string docidstring= words[2];
-            int docid= int.Parse(docidstring);
-            _Appointment app = new _Appointment(appdate,apptime,apptype, 300, patientid, docid  );
             DB db = new DB();
-            db.InsertAppointment(app);
-            
+            if (NewPatientcheckbox.IsChecked == false)
+            {
+                AddBusyTimeAppointment(dateTimeEdit.DateTime, "#" + PatientID.Text + " , " + PatientName.Text + " , " + typeOfVisit.Text);
+                DateTime? selectedDateTime = dateTimeEdit.DateTime;
+                DateTime appdate;
+                TimeSpan apptime;
+                appdate = selectedDateTime.Value.Date; // Extract date
+                apptime = selectedDateTime.Value.TimeOfDay; // Extract time
+                ComboBoxItem typeSelectedComboBoxItem = typeOfVisit.SelectedItem as ComboBoxItem;
+                string apptype = typeSelectedComboBoxItem.Content?.ToString();
+                int patientid = int.Parse(PatientID.Text);
+                ComboBoxItem docSelectedComboBoxItem = pickAdoc.SelectedItem as ComboBoxItem;
+                string doc = pickAdoc.SelectedItem?.ToString();
+                string[] words = doc.Split(' ');
+                string docidstring = words[2];
+                int docid = int.Parse(docidstring);
+                _Appointment app = new _Appointment(appdate, apptime, apptype, 300, patientid, docid);
+                
+                db.InsertAppointment(app);
+            }
+            else
+            {
+                Patient p = new Patient(NATIONALID.Text,PatientName.Text, PhoneNumber.Text);
+                DB.CreateTempPatient(p);
+                AddBusyTimeAppointment(dateTimeEdit.DateTime,"#"+p.PatientID +" "+PatientName.Text + " , " + typeOfVisit.Text);
+                DateTime? selectedDateTime = dateTimeEdit.DateTime;
+                DateTime appdate;
+                TimeSpan apptime;
+                appdate = selectedDateTime.Value.Date; // Extract date
+                apptime = selectedDateTime.Value.TimeOfDay; // Extract time
+                ComboBoxItem typeSelectedComboBoxItem = typeOfVisit.SelectedItem as ComboBoxItem;
+                string apptype = typeSelectedComboBoxItem.Content?.ToString();
+                
+                ComboBoxItem docSelectedComboBoxItem = pickAdoc.SelectedItem as ComboBoxItem;
+                string doc = pickAdoc.SelectedItem?.ToString();
+                string[] words = doc.Split(' ');
+                string docidstring = words[2];
+                int docid = int.Parse(docidstring);
+                _Appointment app = new _Appointment(appdate, apptime, apptype, 300, p.PatientID, docid);
+
+                db.InsertAppointment(app);
+
+            }
         }
 
         private void NewPatientcheckbox_Checked(object sender, RoutedEventArgs e)

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using CareTech.classes;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +26,57 @@ namespace CareTech
         public DoctorDashboard()
         {
             InitializeComponent();
+            LoadAppointments();
         }
+
+        public class AppointmentViewModel
+        {
+            public string PatientInfo { get; set; }
+            public string AppointmentTime { get; set; }
+            public int AppointmentID { get; set; }
+        }
+        private ObservableCollection<AppointmentViewModel> appointmentsViewModel = new ObservableCollection<AppointmentViewModel>();
+
+        private void LoadAppointments()
+        {
+            DB db = new DB();
+             string connectionString = "server=localhost;database=caretech;user=root;password=caretech;";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Your SQL query to select today's appointments
+                string query = "SELECT * FROM appointment WHERE DATE(appointmentDate) = CURDATE()";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int patientId = Convert.ToInt32(reader["patientID"]);
+                            Patient patient = db.GetPatientById(patientId);
+
+                            // Map database fields to AppointmentViewModel properties
+                            AppointmentViewModel appointmentViewModel = new AppointmentViewModel
+                            {
+                                PatientInfo = patient.Name+" #"+patient.PatientID,
+                                AppointmentTime = $"{reader["appointmentTime"]}",
+                                AppointmentID = Convert.ToInt32(reader["appointmentID"])
+                            };
+
+                            appointmentsViewModel.Add(appointmentViewModel);
+                        }
+                    }
+                }
+            }
+
+            appointmentListView.ItemsSource = appointmentsViewModel;
+        }
+
+
+
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
             // Set tooltip visibility

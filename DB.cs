@@ -13,7 +13,7 @@ namespace CareTech
 {
     internal class DB
     {
-        static public string connectionString = "server=localhost;database=DB;user=root;password=caretech;";
+        static public string connectionString = "server=localhost;database=caretech;user=root;password=caretech;";
         static public MySqlConnection connection;
 
         //MySqlConnection connection;
@@ -60,6 +60,38 @@ namespace CareTech
             }
         }
 
+        static public void CreateTempPatient(Patient patient)
+        {
+            string insertSql = @"INSERT INTO Patient 
+                             (nationalID, name, phoneNumber,patientID) 
+                             VALUES (@NationalID, @Name, @PhoneNumber, @PatientID)";
+            try
+            {
+                connection = new MySqlConnection(connectionString);
+                using (connection)
+                {
+
+                    connection.Open();
+
+                    using (MySqlCommand command = new MySqlCommand(insertSql, connection))
+                    {
+                        ;
+                        command.Parameters.AddWithValue("@NationalID", patient.NationalID);
+                        command.Parameters.AddWithValue("@Name", patient.Name);
+                        command.Parameters.AddWithValue("@PhoneNumber", patient.PhoneNumber);
+                        command.Parameters.AddWithValue("@PatientID", patient.PatientID);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+                Console.WriteLine("Patient created successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating patient: {ex.Message}");
+            }
+        }
+
 
         public List<string> GetPatientIdsAndNames()
         {
@@ -89,6 +121,48 @@ namespace CareTech
             }
 
             return patientsInfo;
+        }
+        public Patient GetPatientById(int patientId)
+        {
+            Patient patient = null;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Your SQL query to select a patient by ID
+                string query = "SELECT * FROM patient WHERE patientID = @PatientId";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PatientId", patientId);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Map database fields to Patient properties
+                            patient = new Patient
+                            {
+                                PatientID = Convert.ToInt32(reader["patientID"]),
+                                NationalID = reader["nationalID"].ToString(),
+                                Name = reader["name"].ToString(),
+                                DOB = reader["DOB"] is DBNull ? null : (DateTime?)reader["DOB"],
+                                Age = Convert.ToInt32(reader["age"]),
+                                Address = reader["address"].ToString(),
+                                PhoneNumber = reader["phoneNumber"].ToString(),
+                                Gender = reader["gender"].ToString(),
+                                MaritalStatus = reader["maritalStatus"].ToString(),
+                                Height = Convert.ToInt32(reader["height"]),
+                                Weight = Convert.ToInt32(reader["weight"]),
+                                BloodGroup = reader["bloodGroup"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+
+            return patient;
         }
         ////////////////////////EMERGENCY CONTACT///////////////////////////
 
@@ -132,13 +206,13 @@ namespace CareTech
             string insertSql = @"
                 INSERT INTO medicalassessment
                 (patientID, hyperTension, heartAttack, highCholestrol, stroke, cancer, heartFailure, clottingDisorder, 
-                diabetes, kidneyDisease, thyroidDisease, alcoholConsumption, pencillinAllgery, aspirinAllergy, sulfaDrugAllergy, 
+                diabetes, kidneyDisease, thyroidDisease, alcoholConsumption, pencillinAllergy, aspirinAllergy, sulfaDrugAllergy, 
                 ibuprofen, coldHeatIntolerance, drugResistantInfection, abdominalPain, nausea, bloodyVomit, ulcerDisease, 
                 lossOfApetite_heartBurn, fatigue_nightSweats, fever_chills, cartoidSurgery, cartoidSurgeryDate, heartStent, 
                 heartStentDate, laparoscopy, laparoscopyDate, pacemaker, pacemakerDate, otherSurgeries)
                 VALUES
                 (@PatientID, @HyperTension, @HeartAttack, @HighCholestrol, @Stroke, @Cancer, @HeartFailure, @ClottingDisorder,
-                @Diabetes, @KidneyDisease, @ThyroidDisease, @AlcoholConsumption, @PencillinAllergy, @AspirinAllergy, 
+                @Diabetes, @KidneyDisease, @ThyroidDisease, @AlcoholConsumption, @pencillinAllergy, @AspirinAllergy, 
                 @SulfaDrugAllergy, @Ibuprofen, @ColdHeatIntolerance, @DrugResistantInfection, @AbdominalPain, @Nausea, 
                 @BloodyVomit, @UlcerDisease, @LossOfApetite_HeartBurn, @Fatigue_NightSweats, @Fever_Chills, @CartoidSurgery, 
                 @CartoidSurgeryDate, @HeartStent, @HeartStentDate, @Laparoscopy, @LaparoscopyDate, @Pacemaker, @PacemakerDate, @OtherSurgeries)";
@@ -160,7 +234,7 @@ namespace CareTech
                     command.Parameters.AddWithValue("@KidneyDisease", medicalAssessment.KidneyDisease);
                     command.Parameters.AddWithValue("@ThyroidDisease", medicalAssessment.ThyroidDisease);
                     command.Parameters.AddWithValue("@AlcoholConsumption", medicalAssessment.AlcoholConsumption);
-                    command.Parameters.AddWithValue("@PencillinAllergy", medicalAssessment.PencillinAllergy);
+                    command.Parameters.AddWithValue("@pencillinAllergy", medicalAssessment.PencillinAllergy);
                     command.Parameters.AddWithValue("@AspirinAllergy", medicalAssessment.AspirinAllergy);
                     command.Parameters.AddWithValue("@SulfaDrugAllergy", medicalAssessment.SulfaDrugsAllergy);
                     command.Parameters.AddWithValue("@Ibuprofen", medicalAssessment.IbuprofenAllergy);
@@ -277,8 +351,82 @@ namespace CareTech
             }
         }
 
+        public List<_Appointment> GetAllAppointments()
+        {
+            List<_Appointment> appointments = new List<_Appointment>();
 
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
 
+                // Your SQL query to select all appointments
+                string query = "SELECT * FROM appointment";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Map database fields to _Appointment properties
+                            _Appointment appointment = new _Appointment
+                            {
+                                AppointmentID = Convert.ToInt32(reader["appointmentID"]),
+                                AppointmentDate = Convert.ToDateTime(reader["appointmentDate"]),
+                                AppointmentTime = (TimeSpan)reader["appointmentTime"],
+                                AppointmentType = reader["appointmentType"].ToString(),
+                                AppointmentStatus = reader["appointmentStatus"].ToString(),
+                                AppointmentFees = Convert.ToInt32(reader["appointmentFees"]),
+                                PatientID = Convert.ToInt32(reader["patientID"]),
+                                DoctorID = Convert.ToInt32(reader["doctorID"])
+                            };
+
+                            appointments.Add(appointment);
+                        }
+                    }
+                }
+            }
+
+            return appointments;
+        }
+        public List<_Appointment> GetAppointmentsForToday()
+        {
+            List<_Appointment> appointments = new List<_Appointment>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Your SQL query to select appointments for today
+                string query = "SELECT * FROM appointment WHERE DATE(appointmentDate) = CURDATE()";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Map database fields to _Appointment properties
+                            _Appointment appointment = new _Appointment
+                            {
+                                AppointmentID = Convert.ToInt32(reader["appointmentID"]),
+                                AppointmentDate = Convert.ToDateTime(reader["appointmentDate"]),
+                                AppointmentTime = (TimeSpan)reader["appointmentTime"],
+                                AppointmentType = reader["appointmentType"].ToString(),
+                                AppointmentStatus = reader["appointmentStatus"].ToString(),
+                                AppointmentFees = Convert.ToInt32(reader["appointmentFees"]),
+                                PatientID = Convert.ToInt32(reader["patientID"]),
+                                DoctorID = Convert.ToInt32(reader["doctorID"])
+                            };
+
+                            appointments.Add(appointment);
+                        }
+                    }
+                }
+            }
+
+            return appointments;
+        }
 
     }
 }

@@ -194,17 +194,23 @@
 			</Grid>
 			<Grid Name="newPatientInfo" Height="60" Visibility="Hidden">
 				<StackPanel Orientation="Horizontal" Width="1300">
-					<Grid Width="250">
+					<Grid Width="170">
 						<TextBlock Text="Patient Name" FontFamily="Inter" FontSize="25" FontWeight="Medium" VerticalAlignment="Center"></TextBlock>
 					</Grid>
-					<Grid Width="350">
-						<TextBox Name="PatientName" Height="30" Background="White" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBox>
+					<Grid Width="230">
+						<TextBox Name="PatientName" Height="30" Background="White" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBox>
 					</Grid>
-					<Grid Width="250">
-						<TextBlock Text="Phone Number" FontFamily="Inter" FontSize="25" FontWeight="Medium" VerticalAlignment="Center"></TextBlock>
+					<Grid Width="200">
+						<TextBlock Text="Phone Number" FontFamily="Inter" FontSize="25" FontWeight="Medium" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
 					</Grid>
-					<Grid Width="350">
-						<TextBox Height="30" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBox>
+					<Grid Width="230">
+						<TextBox x:Name="PhoneNumber" Height="30" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBox>
+					</Grid>
+					<Grid Width="200">
+						<TextBlock Text="National ID" FontFamily="Inter" FontSize="25" FontWeight="Medium" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+					</Grid>
+					<Grid Width="230">
+						<TextBox x:Name="NATIONALID" Height="30" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBox>
 					</Grid>
 				</StackPanel>
 			</Grid>
