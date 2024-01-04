@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CareTech"
         mc:Ignorable="d"
         Title="Settings" Height="820" Width="1550"
-		WindowState="Maximized">
+		WindowStartupLocation="CenterScreen">
 
 	<Window.Resources>
 		<Style x:Key="CustomButtonStyle" TargetType="Button">
@@ -574,7 +574,7 @@ Width="230">
 
 					<!--// Maps //-->
 
-					<ListViewItem HorizontalAlignment="Left"
+					<ListViewItem HorizontalAlignment="Left" Visibility="Collapsed"
                       Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                       Height="50">
 
@@ -607,7 +607,7 @@ Width="230">
 
 					<!--// Settings //-->
 
-					<ListViewItem HorizontalAlignment="Left"
+					<ListViewItem HorizontalAlignment="Left" Visibility="Collapsed"
                       Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                       >
 

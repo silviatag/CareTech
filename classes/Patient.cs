@@ -58,5 +58,10 @@ namespace CareTech.classes
             PatientID = int.Parse(nationalid.Substring(nationalid.Length - 4));
 
         }
+        public Patient(int id, string name )
+        {
+            PatientID= id;
+            Name= name;
+        }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CareTech"
         mc:Ignorable="d"
-        Title="PatientList" Height="820" Width="1550" WindowState="Maximized">
+        Title="PatientList" Height="820" Width="1550" WindowStartupLocation="CenterScreen">
 	<Window.Resources>
 		<Style x:Key="CustomButtonStyle" TargetType="Button">
 			<Setter Property="Background" Value="#30646B"/>
@@ -159,65 +159,38 @@
 					<TextBlock Text="Recently New Patient" FontSize="30" FontWeight="Bold" Foreground="Black" FontFamily="Inter" Height="40" ></TextBlock>
 					<Line X1="0" Y1="70" X2="1300" Y2="70" Fill="Black" Stroke="Black" StrokeThickness="1"></Line>
 				</Grid>
-				<Grid Height="102">
-					<Rectangle Fill="#F0F0F0" Stroke="Gray" Height="95" Width="1400" RadiusX="20" RadiusY="20"></Rectangle>
-					<StackPanel Orientation="Horizontal" Width="1350" Height="90">
-						<Grid Width="100" Height="80">
-							<Image Source="/images/profile.jpg" Width="80" Height="70"></Image>
-						</Grid>
-						<TextBlock Text="Patient 1" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="Condition" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="010XX-XXX-XXX" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<Button x:Name="view"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium" Click="view_Click"></Button>
-					</StackPanel>
-				</Grid>
-				<Grid Height="102">
-					<Rectangle Fill="#F0F0F0" Stroke="Gray" Height="95" Width="1400" RadiusX="20" RadiusY="20"></Rectangle>
-					<StackPanel Orientation="Horizontal" Width="1350" Height="90">
-						<Grid Width="100" Height="80">
-							<Image Source="/images/profile.jpg" Width="80" Height="70"></Image>
-						</Grid>
-						<TextBlock Text="Patient 1" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="Condition" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="010XX-XXX-XXX" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<Button Click="view_Click"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium"></Button>
-					</StackPanel>
-				</Grid>
-				<Grid Height="102">
-					<Rectangle Fill="#F0F0F0" Stroke="Gray" Height="95" Width="1400" RadiusX="20" RadiusY="20"></Rectangle>
-					<StackPanel Orientation="Horizontal" Width="1350" Height="90">
-						<Grid Width="100" Height="80">
-							<Image Source="/images/profile.jpg" Width="80" Height="70"></Image>
-						</Grid>
-						<TextBlock Text="Patient 1" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="Condition" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="010XX-XXX-XXX" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<Button Click="view_Click"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium"></Button>
-					</StackPanel>
-				</Grid>
-				<Grid Height="102">
-					<Rectangle Fill="#F0F0F0" Stroke="Gray" Height="95" Width="1400" RadiusX="20" RadiusY="20"></Rectangle>
-					<StackPanel Orientation="Horizontal" Width="1350" Height="90">
-						<Grid Width="100" Height="80">
-							<Image Source="/images/profile.jpg" Width="80" Height="70"></Image>
-						</Grid>
-						<TextBlock Text="Patient 1" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="Condition" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="010XX-XXX-XXX" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<Button Click="view_Click"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium"></Button>
-					</StackPanel>
-				</Grid>
-				<Grid Height="102">
-					<Rectangle Fill="#F0F0F0" Stroke="Gray" Height="95" Width="1400" RadiusX="20" RadiusY="20"></Rectangle>
-					<StackPanel Orientation="Horizontal" Width="1350" Height="90">
-						<Grid Width="100" Height="80">
-							<Image Source="/images/profile.jpg" Width="80" Height="70"></Image>
-						</Grid>
-						<TextBlock Text="Patient 1" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="Condition" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="010XX-XXX-XXX" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<Button Click="view_Click"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium"></Button>
-					</StackPanel>
+				<Grid Height="500">
+					<Rectangle Fill="White" Stroke="Gray" RadiusX="30" RadiusY="30"></Rectangle>
+					<ListView x:Name="appointmentListView" Margin="10" BorderBrush="Transparent">
+						<ListView.View>
+							<GridView>
+								<GridViewColumn Header="Patient" Width="600">
+									<GridViewColumn.CellTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding PatientInfo}" FontSize="17" FontFamily="Inter" FontWeight="Medium" TextAlignment="Center"/>
+										</DataTemplate>
+									</GridViewColumn.CellTemplate>
+								</GridViewColumn>
+								<GridViewColumn Header="Details" Width="600">
+									<GridViewColumn.CellTemplate >
+										<DataTemplate >
+											<Button Width="100" FontSize="17" FontWeight="Medium" FontFamily="Inter" HorizontalAlignment="Center" Background="#7163ba" Foreground="White" BorderBrush="Transparent" Click="Details_CLick">
+												<Button.Template>
+													<ControlTemplate TargetType="Button">
+														<Border CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+															<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+														</Border>
+													</ControlTemplate>
+												</Button.Template>
+												Details
+											</Button>
+
+										</DataTemplate>
+									</GridViewColumn.CellTemplate>
+								</GridViewColumn>
+							</GridView>
+						</ListView.View>
+					</ListView>
 				</Grid>
 			</StackPanel>
 		</Grid>
@@ -456,7 +429,7 @@ Width="230">
 
 					<!--// Maps //-->
 
-					<ListViewItem HorizontalAlignment="Left"
+					<ListViewItem HorizontalAlignment="Left" Visibility="Collapsed"
                   Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                   Height="50">
 
@@ -489,7 +462,7 @@ Width="230">
 
 					<!--// Settings //-->
 
-					<ListViewItem HorizontalAlignment="Left"
+					<ListViewItem HorizontalAlignment="Left" Visibility="Collapsed"
                   Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                   >
 

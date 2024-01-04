@@ -137,6 +137,7 @@ namespace CareTech
                 {
                     command.Parameters.AddWithValue("@PatientId", patientId);
 
+                    
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
@@ -156,6 +157,43 @@ namespace CareTech
                                 Height = Convert.ToInt32(reader["height"]),
                                 Weight = Convert.ToInt32(reader["weight"]),
                                 BloodGroup = reader["bloodGroup"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+
+            return patient;
+        }
+
+
+
+        public Patient GetPatientNameById(int patientId)
+        {
+            Patient patient = null;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Your SQL query to select a patient by ID
+                string query = "SELECT * FROM patient WHERE patientID = @PatientId";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PatientId", patientId);
+
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Map database fields to Patient properties
+                            patient = new Patient
+                            {
+                                PatientID = Convert.ToInt32(reader["patientID"]),
+                                Name = reader["name"].ToString(),
+                                
                             };
                         }
                     }

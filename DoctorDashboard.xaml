@@ -705,7 +705,7 @@ Width="230">
 
 						<!--// Maps //-->
 
-						<ListViewItem HorizontalAlignment="Left"
+						<ListViewItem HorizontalAlignment="Left" Visibility="Collapsed"
                               Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                               Height="50">
 
@@ -739,7 +739,7 @@ Width="230">
 
 						<!--// Settings //-->
 
-						<ListViewItem HorizontalAlignment="Left"
+						<ListViewItem HorizontalAlignment="Left" Visibility="Collapsed"
                               Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                               >
 
@@ -804,7 +804,7 @@ Width="230">
 							</ListViewItem.ToolTip>
 
 						</ListViewItem>
-						<ListViewItem HorizontalAlignment="Left"
+						<ListViewItem HorizontalAlignment="Left" Visibility="Collapsed"
                               Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                               >
 
@@ -835,7 +835,7 @@ Width="230">
 							</ListViewItem.ToolTip>
 
 						</ListViewItem>
-						<ListViewItem HorizontalAlignment="Left"
+						<ListViewItem HorizontalAlignment="Left" Visibility="Collapsed"
                               Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                               >
 

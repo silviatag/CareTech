@@ -267,15 +267,15 @@
 							<Rectangle Fill="White"></Rectangle>
 							<StackPanel Orientation="Horizontal">
 								<Button BorderThickness="0" Background="White" Content="Prescriptions" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="Labs" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="ECG/Imaging" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
+								<Button BorderThickness="0" Background="White" Content="Labs" Visibility="Collapsed" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
+								<Button BorderThickness="0" Background="White" Content="ECG/Imaging" Visibility="Collapsed" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
 								<Button Visibility="Collapsed" BorderThickness="0" Background="White" Content="Analysis" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="History" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="Comments" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="Appointments and Fees" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="248" Click="Button_Click"></Button>
+								<Button BorderThickness="0" Background="White" Content="History" Visibility="Collapsed" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
+								<Button BorderThickness="0" Background="White" Content="Comments" Visibility="Collapsed" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
+								<Button BorderThickness="0" Background="White" Content="Appointments and Fees" Visibility="Collapsed" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="248" Click="Button_Click"></Button>
 							</StackPanel>
 						</Grid>
-						<Grid x:Name="Prescriptions" Visibility="Collapsed" Height="680" Background="#F0F0F0">
+						<Grid x:Name="Prescriptions" Visibility="Visible" Height="680" Background="#F0F0F0">
 							<Grid Width="1000" Height="580">
 								<ScrollViewer VerticalScrollBarVisibility="Visible">
 									<StackPanel Name="prescmain" Orientation="Vertical">
@@ -297,7 +297,7 @@
 
 
 
-						<Grid x:Name="Labs" Visibility="Visible" Height="680" Background="#F0F0F0">
+						<Grid x:Name="Labs" Visibility="Collapsed" Height="680" Background="#F0F0F0">
 							<Grid Width="1000" Height="580">
 								<ScrollViewer VerticalScrollBarVisibility="Visible">
 									<StackPanel Orientation="Vertical">
@@ -1233,7 +1233,7 @@ Width="230">
 
 					<!--// Maps //-->
 
-					<ListViewItem HorizontalAlignment="Left"
+					<ListViewItem HorizontalAlignment="Left" Visibility="Collapsed"
                   Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                   Height="50">
 
@@ -1267,7 +1267,7 @@ Width="230">
 
 					<!--// Settings //-->
 
-					<ListViewItem HorizontalAlignment="Left"
+					<ListViewItem HorizontalAlignment="Left" Visibility="Collapsed"
                   Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                   >
 

@@ -81,7 +81,7 @@ namespace CareTech
 
         private void appointments_Click(object sender, RoutedEventArgs e)
         {
-            Appointments doctorDashboard = new Appointments();
+            AddAppointment doctorDashboard = new AddAppointment();
             doctorDashboard.Show();
             this.Close();
         }

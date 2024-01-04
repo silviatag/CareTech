@@ -1,5 +1,8 @@
-﻿using System;
+﻿using CareTech.classes;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +25,69 @@ namespace CareTech
         public PatientList()
         {
             InitializeComponent();
+            LoadAppointments();
+        }
+
+        public class AppointmentViewModel
+        {
+            public string PatientInfo { get; set; }
+        }
+        private ObservableCollection<AppointmentViewModel> appointmentsViewModel = new ObservableCollection<AppointmentViewModel>();
+
+        private void LoadAppointments()
+        {
+            DB db = new DB();
+            string connectionString = "server=localhost;database=caretech;user=root;password=caretech;";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Your SQL query to select today's appointments
+                string query = "SELECT * FROM patient";
+
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int patientId = Convert.ToInt32(reader["patientID"]);
+                            Patient patient = db.GetPatientNameById(patientId);
+
+                            // Map database fields to AppointmentViewModel properties
+                            AppointmentViewModel appointmentViewModel = new AppointmentViewModel
+                            {
+                                PatientInfo = patient.Name + " #" + patient.PatientID
+                            };
+
+                            appointmentsViewModel.Add(appointmentViewModel);
+                        }
+                    }
+                }
+            }
+
+            appointmentListView.ItemsSource = appointmentsViewModel;
+        }
+
+        private void Details_CLick(object sender, RoutedEventArgs e)
+        {
+            if (appointmentListView.SelectedItem is AppointmentViewModel selectedAppointment)
+            {
+                // Create a new instance of the window
+                PatientFile pf = new PatientFile();
+                pf.idtxt.Text = selectedAppointment.PatientInfo.Split('#')[1];
+                pf.PatientID = Convert.ToInt32(selectedAppointment.PatientInfo.Split('#')[1]);
+                int patientid = int.Parse(selectedAppointment.PatientInfo.Split('#')[1]);
+                pf.SetPatientID(patientid);
+                pf.Show();
+                // Set the PatientID property of the new window
+
+
+
+                this.Close();
+            }
         }
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -76,7 +142,7 @@ namespace CareTech
 
         private void appointments_Click(object sender, RoutedEventArgs e)
         {
-            Appointments ap = new Appointments();
+            AddAppointment ap = new AddAppointment();
             ap.Show();
             this.Close();
         }
@@ -120,7 +186,6 @@ namespace CareTech
         {
             AddPatient addPatient = new AddPatient();
             addPatient.Show();
-            this.Close();
         }
     }
 }
