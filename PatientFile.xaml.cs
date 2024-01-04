@@ -303,6 +303,31 @@ namespace CareTech
         }
 
         
+        void generateLab(Lab lab )
+        {
+            StackPanel s = new StackPanel();
+            s.Orientation = Orientation.Horizontal;
+            s.Height = 500;
+            Grid grid = new Grid();
+            grid.Width = 870;
+            Rectangle r = new Rectangle();
+            r.Fill = new SolidColorBrush(System.Windows.Media.Color.FromRgb(240, 240, 240));
+            r.Stroke = new SolidColorBrush(System.Windows.Media.Color.FromRgb(212, 212, 212));
+            grid.Children.Add(r);
+            StackPanel sv = new StackPanel();
+            sv.Orientation = Orientation.Vertical;
+            sv.Children.Add(GeneratePrescriptionHeaderGrid("#" + lab.LabID.ToString()));
+            
+
+
+
+            grid.Children.Add(sv);
+            string abbreviation = monthAbbreviations.TryGetValue(lab.DateCreated.Month, out var result) ? result : null;
+
+            s.Children.Add(GenerateDateGrid(lab.DateCreated.Day, result)); //monthAbbreviations.TryGetValue(targetMonth(int), out string abbreviation)
+            s.Children.Add(grid);
+            prescmain.Children.Add(s);
+        }
 
     void generatePresc(Prescription p)
         {
@@ -415,6 +440,7 @@ namespace CareTech
             }
             else if (clickedButton.Content.Equals("Prescriptions"))
             {
+                generateALLPresc(PatientID);
                 Prescriptions.Visibility = Visibility.Visible;
             }
             else if (clickedButton.Content.Equals("Appointments and Fees"))
@@ -497,7 +523,7 @@ namespace CareTech
 
         private void zeft_Click(object sender, RoutedEventArgs e)
         {
-            generateALLPresc(PatientID);
+           
         }
     }
 }

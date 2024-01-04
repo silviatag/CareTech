@@ -190,6 +190,7 @@
     <Compile Include="AdminDashboard.xaml.cs">
       <DependentUpon>AdminDashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="classes\LabTests.cs" />
     <Compile Include="classes\Prescription.cs" />
     <Compile Include="classes\_Appointment.cs" />
     <Compile Include="classes\Doctor.cs" />

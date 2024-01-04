@@ -615,6 +615,54 @@ namespace CareTech
             return prescriptions;
         }
 
+
+        ///////////////// LABS /////////////////////// 
+        public List<Lab> GetAllLabs()
+        {
+            List<Lab> labs = new List<Lab>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM lab";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Lab lab = new Lab
+                            {
+                                LabID = Convert.ToInt32(reader["lab_id"]),
+                                PatientID = Convert.ToInt32(reader["patientID"]),
+                                CBCResults = reader["cbc_results"].ToString(),
+                                BMPResults = reader["bmp_results"].ToString(),
+                                LipidPanelResults = reader["lipid_panel_results"].ToString(),
+                                ThyroidTestsResults = reader["thyroid_tests_results"].ToString(),
+                                HbA1CResult = Convert.ToDouble(reader["hba1c_result"]),
+                                UrinalysisResults = reader["urinalysis_results"].ToString(),
+                                LFTResults = reader["lft_results"].ToString(),
+                                CoagulationPanelResults = reader["coagulation_panel_results"].ToString(),
+                                SerumElectrolytesResults = reader["serum_electrolytes_results"].ToString(),
+                                CRPResult = Convert.ToDouble(reader["crp_result"]),
+                                ESRResult = Convert.ToDouble(reader["esr_result"]),
+                                HIVTestResult = reader["hiv_test_result"].ToString(),
+                                HepatitisTestResults = reader["hepatitis_test_results"].ToString(),
+                                PTResult = Convert.ToDouble(reader["pt_result"]),
+                                INRResult = Convert.ToDouble(reader["inr_result"]),
+                                BloodTypingResults = reader["blood_typing_results"].ToString(),
+                                DateCreated = Convert.ToDateTime(reader["dateCreated"])
+                            };
+
+                            labs.Add(lab);
+                        }
+                    }
+                }
+            }
+
+            return labs;
+        }
     }
 
 
