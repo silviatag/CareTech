@@ -264,11 +264,12 @@
 				<Grid>
 					<StackPanel Orientation="Vertical">
 						<Grid x:Name="tabs" Height="65">
+							<Rectangle Fill="White"></Rectangle>
 							<StackPanel Orientation="Horizontal">
 								<Button BorderThickness="0" Background="White" Content="Prescriptions" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
 								<Button BorderThickness="0" Background="White" Content="Labs" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
 								<Button BorderThickness="0" Background="White" Content="ECG/Imaging" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="Analysis" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
+								<Button Visibility="Collapsed" BorderThickness="0" Background="White" Content="Analysis" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
 								<Button BorderThickness="0" Background="White" Content="History" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
 								<Button BorderThickness="0" Background="White" Content="Comments" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
 								<Button BorderThickness="0" Background="White" Content="Appointments and Fees" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="248" Click="Button_Click"></Button>

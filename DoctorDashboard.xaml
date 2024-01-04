@@ -148,19 +148,20 @@
 			<Border CornerRadius="30" BorderBrush="#DFDFDF" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="1190" Background="White" BorderThickness="1" Margin="200,10,0,0">
 				<TextBox Width="1100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" BorderThickness="0" Text="Search for patients"/>
 			</Border>
+
 			<StackPanel Orientation="Vertical" Width="600" Height="300" Margin="175,65,775,439">
 				<Border Height="150">
 					<StackPanel Height="120" Orientation="Horizontal">
 						<Grid Width="300" HorizontalAlignment="Left">
 							<Border Width="200" HorizontalAlignment="Left" Background="#F0F0F0" BorderThickness="1" BorderBrush="Gray" CornerRadius="30"></Border>
-							<TextBlock Text="Important Tasks" TextAlignment="Center" FontFamily="Inter" FontSize="20" FontWeight="Bold" Width="200" Height="28" VerticalAlignment="Top" Margin="-7,35,107,0"/>
-							<TextBlock Text="00" TextAlignment="Center" FontFamily="Inter" FontSize="35" FontWeight="Bold" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="73,68,0,0"/>
+							<TextBlock Text="Consultations" TextAlignment="Center" FontFamily="Inter" FontSize="20" FontWeight="Bold" Width="200" Height="28" VerticalAlignment="Top" Margin="-7,35,107,0"/>
+							<TextBlock Name="consultationCount" Text="00" TextAlignment="Center" FontFamily="Inter" FontSize="35" FontWeight="Bold" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="73,68,0,0"/>
 							<Button Width="200" HorizontalAlignment="Left" BorderThickness="0" Background="Transparent"></Button>
 						</Grid>
 						<Grid Width="300" HorizontalAlignment="Left">
 							<Border Width="200" HorizontalAlignment="Left" Background="#F0F0F0" BorderThickness="1" BorderBrush="Gray" CornerRadius="30"></Border>
-							<TextBlock Text="Total Patients" TextAlignment="Center" FontFamily="Inter" FontSize="20" FontWeight="Bold" Width="200" Height="28" VerticalAlignment="Top" Margin="-7,35,107,0"/>
-							<TextBlock Text="00" TextAlignment="Center" FontFamily="Inter" FontSize="35" FontWeight="Bold" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="73,68,0,0"/>
+							<TextBlock Text="Follow ups" TextAlignment="Center" FontFamily="Inter" FontSize="20" FontWeight="Bold" Width="200" Height="28" VerticalAlignment="Top" Margin="-7,35,107,0"/>
+							<TextBlock Name="followUpCount" Text="00" TextAlignment="Center" FontFamily="Inter" FontSize="35" FontWeight="Bold" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="73,68,0,0"/>
 							<Button Width="200" HorizontalAlignment="Left" BorderThickness="0" Background="Transparent"></Button>
 						</Grid>
 					</StackPanel>
@@ -169,19 +170,24 @@
 					<StackPanel Height="120" Orientation="Horizontal">
 						<Grid Width="300" HorizontalAlignment="Left">
 							<Border Width="200" HorizontalAlignment="Left" Background="#F0F0F0" BorderThickness="1" BorderBrush="Gray" CornerRadius="30"></Border>
-							<TextBlock Text="New Patients" TextAlignment="Center" FontFamily="Inter" FontSize="20" FontWeight="Bold" Width="200" Height="28" VerticalAlignment="Top" Margin="-7,35,107,0"/>
-							<TextBlock Text="00" TextAlignment="Center" FontFamily="Inter" FontSize="35" FontWeight="Bold" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="73,68,0,0"/>
+							<TextBlock Text="Total Patients" TextAlignment="Center" FontFamily="Inter" FontSize="20" FontWeight="Bold" Width="200" Height="28" VerticalAlignment="Top" Margin="-7,35,107,0"/>
+							<TextBlock Name="totalPatientCount" Text="00" TextAlignment="Center" FontFamily="Inter" FontSize="35" FontWeight="Bold" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="73,68,0,0"/>
 							<Button Width="200" HorizontalAlignment="Left" BorderThickness="0" Background="Transparent"></Button>
 						</Grid>
 						<Grid Width="300" HorizontalAlignment="Left">
 							<Border Width="200" HorizontalAlignment="Left" Background="#F0F0F0" BorderThickness="1" BorderBrush="Gray" CornerRadius="30"></Border>
 							<TextBlock Text="Total Payment" TextAlignment="Center" FontFamily="Inter" FontSize="20" FontWeight="Bold" Width="200" Height="28" VerticalAlignment="Top" Margin="-7,35,107,0"/>
-							<TextBlock Text="00" TextAlignment="Center" FontFamily="Inter" FontSize="35" FontWeight="Bold" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="73,68,0,0"/>
+							<TextBlock x:Name="totalfeestxt" Text="00" TextAlignment="Center" FontFamily="Inter" FontSize="35" FontWeight="Bold" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="73,68,0,0"/>
 							<Button Width="200" HorizontalAlignment="Left" BorderThickness="0" Background="Transparent"></Button>
 						</Grid>
 					</StackPanel>
 				</Border>
 			</StackPanel>
+			<Grid Margin="759,112,316,504">
+				<Viewbox >
+					<Calendar Name="calendar" />
+				</Viewbox>
+			</Grid>
 			<Grid x:Name="shortcuts" Width="1000" Height="100">
 				<StackPanel Orientation="Horizontal">
 					<Grid Width="250">

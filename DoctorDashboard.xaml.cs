@@ -27,6 +27,11 @@ namespace CareTech
         {
             InitializeComponent();
             LoadAppointments();
+            DB db = new DB();
+            followUpCount.Text = db.CountFollowUpAppointmentsForToday().ToString();
+            consultationCount.Text =db.CountConsultationAppointmentsForToday().ToString() ;  
+            totalPatientCount.Text= (db.CountFollowUpAppointmentsForToday()+ db.CountConsultationAppointmentsForToday()).ToString();
+            totalfeestxt.Text =db.SumFeesForToday().ToString();
         }
         
 

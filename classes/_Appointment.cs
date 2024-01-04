@@ -16,6 +16,7 @@ namespace CareTech.classes
         public int AppointmentFees { get; set; }
         public int PatientID { get; set; }
         public int DoctorID { get; set; }
+        public int fees { get; set; }
 
         public _Appointment() { }
 
@@ -29,6 +30,9 @@ namespace CareTech.classes
             AppointmentFees = appointmentFees;
             PatientID = patientID;
             DoctorID = doctorID;
+            if (appointmentType == "Follow Up")
+                fees = 300;
+            else fees = 200;
         }
     }
 }

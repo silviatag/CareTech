@@ -332,8 +332,8 @@ namespace CareTech
                 connection.Open();
 
                 string query = @"INSERT INTO appointment 
-                         (appointmentDate, appointmentTime, appointmentType, appointmentFees, patientID, doctorID) 
-                         VALUES (@AppointmentDate, @AppointmentTime, @AppointmentType, @AppointmentFees, @PatientID, @DoctorID)";
+                         (appointmentDate, appointmentTime, appointmentType, appointmentFees, patientID, doctorID, fees) 
+                         VALUES (@AppointmentDate, @AppointmentTime, @AppointmentType, @AppointmentFees, @PatientID, @DoctorID, @fees)";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -344,6 +344,7 @@ namespace CareTech
                     command.Parameters.AddWithValue("@AppointmentFees", appointment.AppointmentFees);
                     command.Parameters.AddWithValue("@PatientID", appointment.PatientID);
                     command.Parameters.AddWithValue("@DoctorID", appointment.DoctorID);
+                    command.Parameters.AddWithValue("@fees", appointment.fees);
 
                     // Execute the command
                     command.ExecuteNonQuery();
@@ -427,8 +428,72 @@ namespace CareTech
 
             return appointments;
         }
+        
+        public int CountFollowUpAppointmentsForToday()
+        {
+            int count = 0;
 
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT COUNT(*) FROM appointment WHERE DATE(appointmentDate) = CURDATE() AND appointmentType = 'Follow Up'";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    count = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+
+            return count;
+        }
+        public int CountConsultationAppointmentsForToday()
+        {
+            int count = 0;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT COUNT(*) FROM appointment WHERE DATE(appointmentDate) = CURDATE() AND appointmentType = 'Consultation'";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    count = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+
+            return count;
+        }
+
+        public int SumFeesForToday()
+        {
+            int totalFees = 0;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Your SQL query to sum all fees for today
+                string query = "SELECT SUM(fees) FROM appointment WHERE DATE(appointmentDate) = CURDATE()";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    // ExecuteScalar is used since we are expecting a single value (sum of fees)
+                    object result = command.ExecuteScalar();
+
+                    // Check if the result is not DBNull
+                    if (result != DBNull.Value)
+                    {
+                        totalFees = Convert.ToInt32(result);
+                    }
+                }
+            }
+
+            return totalFees;
+        }
     }
+
+
+
 }
-
-
