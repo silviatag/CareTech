@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CareTech.classes;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
@@ -22,8 +23,10 @@ namespace CareTech
     /// </summary>
     public partial class PatientFile : Window
     {
+        public int PatientID { get; set; }
         public PatientFile()
         {
+            
             InitializeComponent();
             Chart_Loaded(Chart, new RoutedEventArgs());
             SeriesCollection = new SeriesCollection
@@ -35,17 +38,15 @@ namespace CareTech
                 },
 
             };
-
+            idtxt.Text = PatientID.ToString();
             string[] Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
             //YFormatter = value => value.ToString("%");
 
             //modifying the series collection will animate and update the chart
 
 
-
             DataContext = this;
         }
-
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
             // Set tooltip visibility

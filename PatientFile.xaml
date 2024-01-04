@@ -152,11 +152,14 @@
 									</Grid>
 									<Grid Height="30">
 										<StackPanel Orientation="Horizontal">
-											<Grid Width="90">
-												<TextBlock Text="ID #123" FontSize="20" FontWeight="Medium" FontFamily="Inter" Foreground="Gray" VerticalAlignment="Bottom"></TextBlock>
+											<Grid Width="30">
+												<TextBlock Text="ID #"  FontSize="15" FontWeight="Medium" FontFamily="Inter" Foreground="Gray" VerticalAlignment="Bottom"></TextBlock>
+											</Grid>
+											<Grid Width="60">
+												<TextBlock Name="idtxt" Text=""  FontSize="15" FontWeight="Medium" FontFamily="Inter" Foreground="Gray" VerticalAlignment="Bottom"></TextBlock>
 											</Grid>
 											<Grid Width="90">
-												<TextBlock Text="Gender" FontSize="20" FontWeight="Medium" FontFamily="Inter" Foreground="Gray" VerticalAlignment="Bottom"></TextBlock>
+												<TextBlock Text="Gender" FontSize="15" FontWeight="Medium" FontFamily="Inter" Foreground="Gray" VerticalAlignment="Bottom"></TextBlock>
 											</Grid>
 										</StackPanel>
 									</Grid>
@@ -271,7 +274,7 @@
 								<Button BorderThickness="0" Background="White" Content="Appointments and Fees" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="248" Click="Button_Click"></Button>
 							</StackPanel>
 						</Grid>
-						<Grid x:Name="Prescriptions" Visibility="Collapsed" Height="680" Background="#F0F0F0">
+						<Grid x:Name="Prescriptions" Visibility="Visible" Height="680" Background="#F0F0F0">
 							<Grid Width="1000" Height="580">
 								<ScrollViewer VerticalScrollBarVisibility="Visible">
 									<StackPanel Orientation="Vertical">
@@ -833,7 +836,7 @@
 							</Grid>
 						</Grid>
 
-						<Grid x:Name="Analysis" Visibility="Visible" Height="680" Background="#F0F0F0">
+						<Grid x:Name="Analysis" Visibility="Collapsed" Height="680" Background="#F0F0F0">
 							<Grid Width="1000" Height="580">
 								<ScrollViewer VerticalScrollBarVisibility="Visible">
 									<StackPanel Orientation="Vertical">

@@ -431,15 +431,31 @@
 					</Grid>
 					<Grid Height="250">
 						<Rectangle Fill="White" Stroke="Gray" RadiusX="30" RadiusY="30"></Rectangle>
-						<ListView x:Name="appointmentListView" Margin="10">
+						<ListView x:Name="appointmentListView" Margin="10" BorderBrush="Transparent">
 							<ListView.View>
 								<GridView>
-									<GridViewColumn Header="Patient" Width="400" DisplayMemberBinding="{Binding PatientInfo}" />
-									<GridViewColumn Header="Time" Width="400" DisplayMemberBinding="{Binding AppointmentTime}" />
-									<GridViewColumn Header="Details" Width="400">
+									<GridViewColumn Header="Patient" Width="400">
 										<GridViewColumn.CellTemplate>
 											<DataTemplate>
-												<Button Content="Details" Click="Button_Click"/>
+												<TextBlock Text="{Binding PatientInfo}" FontSize="17" FontFamily="Inter" FontWeight="Medium" TextAlignment="Center"/>
+											</DataTemplate>
+										</GridViewColumn.CellTemplate>
+									</GridViewColumn>
+									<GridViewColumn Header="Time"  Width="400"  DisplayMemberBinding="{Binding AppointmentTime}" />
+									<GridViewColumn Header="Details" Width="400">
+										<GridViewColumn.CellTemplate >
+											<DataTemplate >
+												<Button Width="100" FontSize="17" FontWeight="Medium" FontFamily="Inter" HorizontalAlignment="Center" Background="#7163ba" Foreground="White" BorderBrush="Transparent" Click="Details_CLick">
+													<Button.Template>
+														<ControlTemplate TargetType="Button">
+															<Border CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+																<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+															</Border>
+														</ControlTemplate>
+													</Button.Template>
+													Details
+												</Button>
+
 											</DataTemplate>
 										</GridViewColumn.CellTemplate>
 									</GridViewColumn>

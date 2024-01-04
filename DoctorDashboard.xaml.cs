@@ -28,6 +28,10 @@ namespace CareTech
             InitializeComponent();
             LoadAppointments();
         }
+        
+
+        
+
 
         public class AppointmentViewModel
         {
@@ -47,7 +51,8 @@ namespace CareTech
                 connection.Open();
 
                 // Your SQL query to select today's appointments
-                string query = "SELECT * FROM appointment WHERE DATE(appointmentDate) = CURDATE()";
+                string query = "SELECT * FROM appointment WHERE DATE(appointmentDate) = CURDATE() AND TIME(appointmentTime) >= CURTIME()";
+
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -75,7 +80,21 @@ namespace CareTech
             appointmentListView.ItemsSource = appointmentsViewModel;
         }
 
+        private void Details_CLick(object sender, RoutedEventArgs e)
+        {
+            if (appointmentListView.SelectedItem is AppointmentViewModel selectedAppointment)
+            {
+                // Create a new instance of the window
+                PatientFile pf = new PatientFile();
+                pf.idtxt.Text = selectedAppointment.PatientInfo.Split('#')[1];
+                pf.Show();
+                // Set the PatientID property of the new window
+               // pf.PatientID = patientId;
+                
 
+                this.Close();
+            }
+        }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
