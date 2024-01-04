@@ -87,9 +87,10 @@ namespace CareTech
                 // Create a new instance of the window
                 PatientFile pf = new PatientFile();
                 pf.idtxt.Text = selectedAppointment.PatientInfo.Split('#')[1];
+                int patientid = int.Parse(selectedAppointment.PatientInfo.Split('#')[1]);
                 pf.Show();
                 // Set the PatientID property of the new window
-               // pf.PatientID = patientId;
+                pf.SetPatientID(patientid);
                 
 
                 this.Close();

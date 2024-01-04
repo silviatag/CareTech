@@ -38,7 +38,6 @@ namespace CareTech
                 },
 
             };
-            idtxt.Text = PatientID.ToString();
             string[] Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
             //YFormatter = value => value.ToString("%");
 
@@ -46,6 +45,12 @@ namespace CareTech
 
 
             DataContext = this;
+            
+        }
+        public void SetPatientID(int patientId)
+        {
+            PatientID = patientId;
+            // You can use the PatientID value as needed in the PatientFile window
         }
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -71,15 +76,7 @@ namespace CareTech
             }
         }
 
-        /*private void Tg_Btn_Unchecked(object sender, RoutedEventArgs e)
-        {
-            img_bg.Opacity = 1;
-        }
-
-        private void Tg_Btn_Checked(object sender, RoutedEventArgs e)
-        {
-            img_bg.Opacity = 0.3;
-        }*/
+        
 
         private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
