@@ -45,8 +45,11 @@ namespace CareTech
 
 
             DataContext = this;
+            DB db = new DB();
+
             
         }
+       
         public void SetPatientID(int patientId)
         {
             PatientID = patientId;
@@ -90,8 +93,11 @@ namespace CareTech
 
         private void AddPrescriptionBtn_Click(object sender, RoutedEventArgs e)
         {
+            DB db = new DB();
             NewPrescription ap = new NewPrescription();
             ap.Show();
+            ap.name_agetxt.Text = db.GetPatientById(PatientID).Name + ", " + db.GetPatientById(PatientID).Age.ToString();
+            ap.SetPatientID(PatientID);
         }
 
 

@@ -11,16 +11,22 @@
 			<Grid Height="730" Width="650">
 				<StackPanel Orientation="Vertical">
 					<Grid Height="45">
-						<TextBlock Text="PATIENT NAME, AGE" FontSize="30" FontWeight="Bold" FontFamily="Inter" VerticalAlignment="Bottom" Width="500" HorizontalAlignment="Left"></TextBlock>
+						<TextBlock Name="name_agetxt" Text="PATIENT NAME, AGE" FontSize="30" FontWeight="Bold" FontFamily="Inter" VerticalAlignment="Bottom" Width="500" HorizontalAlignment="Left"></TextBlock>
 					</Grid>
 					<Grid Height="30">
-						<TextBlock Text="DATE: dd/mm/yyyy" FontSize="20" FontWeight="Medium" FontFamily="Inter" Foreground="Gray" VerticalAlignment="Center"></TextBlock>
+						<StackPanel Orientation="Horizontal" Width="500" HorizontalAlignment="Left">
+						<TextBlock  Text="DATE: " FontSize="20" FontWeight="Medium" FontFamily="Inter" Foreground="Gray" VerticalAlignment="Center"></TextBlock>
+							<TextBlock x:Name="prescDate" Text="" FontSize="20" FontWeight="Medium" FontFamily="Inter" Foreground="Gray" VerticalAlignment="Center"></TextBlock>
+						</StackPanel>
 					</Grid>
 					<Grid Height="80">
 						<TextBlock Text="Prescribing doctor" FontSize="12" FontWeight="Bold" FontFamily="Inter" Height="30" VerticalAlignment="Bottom"></TextBlock>
 					</Grid>
 					<Grid Height="30">
-						<TextBlock Text="DR. doc name" FontSize="12" FontWeight="Regular" FontFamily="Inter" Height="30" VerticalAlignment="Bottom"></TextBlock>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="DR. " FontSize="12" FontWeight="Regular" FontFamily="Inter" Height="30" VerticalAlignment="Bottom"></TextBlock>
+							<TextBlock Name="docNametxt" Text="" FontSize="12" FontWeight="Regular" FontFamily="Inter" Height="30" VerticalAlignment="Bottom"></TextBlock>
+						</StackPanel>
 					</Grid>
 					<Grid Height="60">
 						<StackPanel Orientation="Vertical">
@@ -36,7 +42,7 @@
 								<Grid Width="200">
 									<StackPanel Orientation="Horizontal" Width="180">
 										<Border BorderThickness="0" Width="100" Height="25">
-											<TextBox  Text="00"></TextBox>
+											<TextBox x:Name="weighttxt"  Text="00"></TextBox>
 										</Border>
 										<Border BorderThickness="0" Width="20" Height="25">
 											<StackPanel Orientation="Vertical">
@@ -85,7 +91,7 @@
 								<Grid Width="180">
 									<StackPanel Orientation="Horizontal" Width="180">
 										<Border BorderThickness="0" Width="100" Height="25">
-											<TextBox  Text="00"></TextBox>
+											<TextBox x:Name="heighttxt"  Text="00"></TextBox>
 										</Border>
 										<Border BorderThickness="0" Width="20" Height="25">
 											<StackPanel Orientation="Vertical">
@@ -141,31 +147,31 @@
 					<Grid Height="40">
 						<StackPanel Orientation="Horizontal">
 							<Grid Width="25" Height="20">
-								<CheckBox></CheckBox>
+								<CheckBox Name="headacheyes"></CheckBox>
 							</Grid>
 							<Grid Width="80" Height="20">
 								<TextBlock Text="Headache" FontSize="12" FontWeight="Regular" FontFamily="Inter"/>
 							</Grid>
 							<Grid Width="25" Height="20">
-								<CheckBox></CheckBox>
+								<CheckBox Name="nauseayes"></CheckBox>
 							</Grid>
 							<Grid Width="80" Height="20">
 								<TextBlock Text="Nausea" FontSize="12" FontWeight="Regular" FontFamily="Inter"/>
 							</Grid>
 							<Grid Width="25" Height="20">
-								<CheckBox></CheckBox>
+								<CheckBox x:Name="vomitingyes"></CheckBox>
 							</Grid>
 							<Grid Width="80" Height="20">
 								<TextBlock Text="vomiting" FontSize="12" FontWeight="Regular" FontFamily="Inter"/>
 							</Grid>
 							<Grid Width="25" Height="20">
-								<CheckBox></CheckBox>
+								<CheckBox x:Name="coughingyes"></CheckBox>
 							</Grid>
 							<Grid Width="80" Height="20">
 								<TextBlock Text="Coughing" FontSize="12" FontWeight="Regular" FontFamily="Inter"/>
 							</Grid>
 							<Grid Width="25" Height="20">
-								<CheckBox></CheckBox>
+								<CheckBox Name="chestpainyes"></CheckBox>
 							</Grid>
 							<Grid Width="80" Height="20">
 								<TextBlock Text="Chest pain" FontSize="12" FontWeight="Regular" FontFamily="Inter"/>
@@ -185,7 +191,7 @@
 					<Grid Height="40">
 						<StackPanel Orientation="Horizontal">
 							<Grid Width="80" Height="20">
-								<ComboBox SelectedIndex="0" Height="25">
+								<ComboBox Name="diagnosis" SelectedIndex="0" Height="25">
 									<ComboBoxItem Content="Diabetes" IsEnabled="True"/>
 									<ComboBoxItem Content="Renal failure"/>
 									<ComboBoxItem Content="Heart attack"/>
@@ -215,7 +221,7 @@
 						<Grid Width="200">
 							<StackPanel Orientation="Horizontal">
 								<Grid>
-									<ComboBox SelectedIndex="0" Height="25" Width="150">
+									<ComboBox  Name="med" SelectedIndex="0" Height="25" Width="150">
 										<ComboBoxItem Content="Glucophage XR" IsEnabled="False"/>
 										<ComboBoxItem Content="Glucophage XR"/>
 										<ComboBoxItem Content="med 2"/>
@@ -227,7 +233,7 @@
 						<Grid Width="180">
 							<StackPanel Orientation="Horizontal" Width="180">
 								<Border BorderThickness="0" Width="100" Height="25">
-									<TextBox  Text="00"></TextBox>
+									<TextBox x:Name="dosetxt" Text="00"></TextBox>
 								</Border>
 								<Border BorderThickness="0" Width="20" Height="25">
 									<StackPanel Orientation="Vertical">
@@ -275,7 +281,7 @@
 							</StackPanel>
 						</Grid>
 						<Grid Width="200">
-							<ComboBox SelectedIndex="0" Height="25" Width="150">
+							<ComboBox Name="freqcbx" SelectedIndex="0" Height="25" Width="150">
 								<ComboBoxItem Content="Select frequency" IsEnabled="False"/>
 								<ComboBoxItem Content="6 hrs"/>
 								<ComboBoxItem Content="12 hrs"/>
@@ -283,7 +289,7 @@
 							</ComboBox>
 						</Grid>
 						<Grid >
-							<Button Width="15" Height="15">
+							<Button Click="AddRowButton_Click" Width="15" Height="15" >
 								<Button.Background>
 									<ImageBrush ImageSource="/images/add.jpg"></ImageBrush>
 								</Button.Background>
@@ -291,28 +297,28 @@
 						</Grid>
 					</StackPanel>
 					<Grid Height="130">
-					<ListView  Height="100" Width="600">
-						<ListView.View>
-							<GridView>
-								<GridViewColumn Header="Drug" Width="200" DisplayMemberBinding="{Binding Drug}" />
-								<GridViewColumn Header="Dose" Width="200" DisplayMemberBinding="{Binding Dose}" />
-								<GridViewColumn Header="Frequency" Width="200" DisplayMemberBinding="{Binding Frequency}" />
-							</GridView>
-						</ListView.View>
-					</ListView>
+						<ListView Name="listView" Height="100" Width="600">
+							<ListView.View>
+								<GridView>
+									<GridViewColumn Header="Drug" Width="200" DisplayMemberBinding="{Binding Drug}" />
+									<GridViewColumn Header="Dose" Width="200" DisplayMemberBinding="{Binding Dose}" />
+									<GridViewColumn Header="Frequency" Width="200" DisplayMemberBinding="{Binding Frequency}" />
+								</GridView>
+							</ListView.View>
+						</ListView>
 					</Grid>
 					<Grid Height="30">
 						<TextBlock Text="Additional Notes" FontSize="12" FontWeight="Bold" FontFamily="Inter"></TextBlock>
 					</Grid>
 					<Grid Height="70">
-						<TextBlock Background="#FFD2D5EE" Text="add notes" FontSize="12" FontWeight="Medium" FontFamily="Inter " Foreground="gray"></TextBlock>
+						<TextBox Name="addnotetxt" Background="#FFD2D5EE" Text="add notes" FontSize="12" FontWeight="Medium" FontFamily="Inter " Foreground="gray"></TextBox>
 					</Grid>
 				</StackPanel>
 			</Grid>
 			<Grid Height="50">
 				<StackPanel Orientation="Horizontal">
 					<Grid Width="325">
-						<Button x:Name="save" Content="Save" Foreground="White" FontFamily="Inter" FontWeight="SemiBold" Width="80" Height="30" Background="#7163ba" BorderBrush="Gray" ></Button>
+						<Button x:Name="save" Content="Save" Foreground="White" FontFamily="Inter" FontWeight="SemiBold" Width="80" Height="30" Background="#7163ba" BorderBrush="Gray" Click="save_Click" ></Button>
 					</Grid>
 					<Grid Width="325">
 						<Button Content="Print" Foreground="White" FontFamily="Inter" FontWeight="SemiBold" Width="80" Height="30" Background="#7163ba" BorderBrush="Gray"></Button>

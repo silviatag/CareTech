@@ -36,9 +36,14 @@ namespace CareTech
         {
             /*Page1 page1 = new Page1();
             this.Content = page1;*/
-            DoctorDashboard ap= new DoctorDashboard();
-            ap.Show();
-            this.Close();
+            if (txtUser.Text == "5" && txtPass.Password == "0000")
+            {
+                DoctorDashboard ap = new DoctorDashboard();
+                ap.Show();
+                this.Close();
+            }
+            else
+                MessageBox.Show("Wrong username or password");
         }
     }
 }

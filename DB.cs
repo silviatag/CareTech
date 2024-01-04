@@ -323,6 +323,46 @@ namespace CareTech
             }
         }
 
+        public static Doctor GetDoctorById(int doctorId)
+        {
+            Doctor resultDoctor = null;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM doctor WHERE doctorID = @DoctorId";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@DoctorId", doctorId);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            resultDoctor = new Doctor
+                            {
+                                DoctorID = Convert.ToInt32(reader["doctorID"]),
+                                DoctorName = reader["doctorName"].ToString(),
+                                NationalID = reader["nationalID"].ToString(),
+                                DOB = reader["DOB"] is DBNull ? null : (DateTime?)reader["DOB"],
+                                Age = Convert.ToInt32(reader["age"]),
+                                Gender = reader["gender"].ToString(),
+                                Address = reader["address"].ToString(),
+                                PhoneNumber = reader["phoneNumber"].ToString(),
+                                Email = reader["email"].ToString(),
+                                DocPassword = reader["docPassword"].ToString(),
+                                Specialization = reader["specialization"].ToString(),
+                                JointDate = reader["jointDate"] is DBNull ? null : (DateTime?)reader["jointDate"]
+                            };
+                        }
+                    }
+                }
+            }
+
+            return resultDoctor;
+        }
 
         //////////////// APPOINTMENT ////////////////
         public void InsertAppointment(_Appointment appointment)
@@ -492,6 +532,41 @@ namespace CareTech
 
             return totalFees;
         }
+
+
+        ///////////////// PRESCRIPTION ///////////////////
+        public void AddPrescription(Prescription prescription)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "INSERT INTO prescription (patientID, doctorID, weight, height, headache, nausea, vomiting, " +
+                               "coughing, diagnosis, medicineName, dose, frequency, additionalNotes) " +
+                               "VALUES (@PatientID, @DoctorID, @Weight, @Height, @Headache, @Nausea, @Vomiting, " +
+                               "@Coughing, @Diagnosis, @MedicineName, @Dose, @Frequency, @AdditionalNotes)";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PatientID", prescription.PatientID);
+                    command.Parameters.AddWithValue("@DoctorID", prescription.DoctorID);
+                    command.Parameters.AddWithValue("@Weight", prescription.Weight);
+                    command.Parameters.AddWithValue("@Height", prescription.Height);
+                    command.Parameters.AddWithValue("@Headache", prescription.Headache);
+                    command.Parameters.AddWithValue("@Nausea", prescription.Nausea);
+                    command.Parameters.AddWithValue("@Vomiting", prescription.Vomiting);
+                    command.Parameters.AddWithValue("@Coughing", prescription.Coughing);
+                    command.Parameters.AddWithValue("@Diagnosis", prescription.Diagnosis);
+                    command.Parameters.AddWithValue("@MedicineName", prescription.MedicineName);
+                    command.Parameters.AddWithValue("@Dose", prescription.Dose);
+                    command.Parameters.AddWithValue("@Frequency", prescription.Frequency);
+                    command.Parameters.AddWithValue("@AdditionalNotes", prescription.AdditionalNotes);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 
 
