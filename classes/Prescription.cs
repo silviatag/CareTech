@@ -23,6 +23,7 @@ namespace CareTech.classes
         public int Dose { get; set; }
         public string Frequency { get; set; }
         public string AdditionalNotes { get; set; }
+        public DateTime dateCreated { get; set; }
 
         public Prescription() { }  
         
@@ -41,6 +42,7 @@ namespace CareTech.classes
             Dose = dose;
             Frequency = frequency;
             AdditionalNotes = additionalNotes;
+            dateCreated = DateTime.Today;
         }
         
     }

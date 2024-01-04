@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using CareTech.classes;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using MindFusion.Excel.Wpf;
 
 namespace CareTech
 {
@@ -42,12 +44,14 @@ namespace CareTech
             //YFormatter = value => value.ToString("%");
 
             //modifying the series collection will animate and update the chart
-
+           
 
             DataContext = this;
-            DB db = new DB();
+            settingdict();
+            //MessageBox.Show(PatientID.ToString());
+           
 
-            
+
         }
        
         public void SetPatientID(int patientId)
@@ -99,8 +103,239 @@ namespace CareTech
             ap.name_agetxt.Text = db.GetPatientById(PatientID).Name + ", " + db.GetPatientById(PatientID).Age.ToString();
             ap.SetPatientID(PatientID);
         }
+        private Grid GenerateDateGrid(int day, string month)
+        {
+            // Create the main Grid
+            Grid dateGrid = new Grid
+            {
+                Width = 120,
+                Height = 100,
+                VerticalAlignment = System.Windows.VerticalAlignment.Top
+            };
+
+            // Add Rectangle to dateGrid
+            dateGrid.Children.Add(new Rectangle
+            {
+                Fill = new SolidColorBrush(System.Windows.Media.Color.FromRgb(242, 154, 52)),
+                Opacity = 0.4,
+                RadiusX = 20,
+                RadiusY = 20,
+                Height = 90,
+                Width = 90
+            });
+
+            // Create a StackPanel for text blocks in dateGrid
+            StackPanel textStackPanel = new StackPanel
+            {
+                Orientation = Orientation.Vertical,
+                Height = 85,
+                VerticalAlignment = System.Windows.VerticalAlignment.Bottom
+            };
+
+            // Add TextBlocks to textStackPanel
+            textStackPanel.Children.Add(new TextBlock
+            {
+                Text = day.ToString(),
+                FontSize = 26,
+                FontWeight = FontWeights.Bold,
+                FontFamily = new FontFamily("Inter"),
+                Height = 30,
+                TextAlignment = TextAlignment.Center,
+                VerticalAlignment = System.Windows.VerticalAlignment.Bottom
+            });
+
+            textStackPanel.Children.Add(new TextBlock
+            {
+                Text = month,
+                FontSize = 26,
+                FontWeight = FontWeights.Bold,
+                FontFamily = new FontFamily("Inter"),
+                Height = 35,
+                TextAlignment = TextAlignment.Center
+            });
+
+            // Add textStackPanel to dateGrid
+            dateGrid.Children.Add(textStackPanel);
+
+            return dateGrid;
+        }
+        private Grid GeneratePrescriptionHeaderGrid(string prescriptionNumber)
+        {
+            // Create the main Grid
+            Grid prescriptionHeaderGrid = new Grid
+            {
+                Height = 60,
+                Width = 860,
+                HorizontalAlignment = System.Windows.HorizontalAlignment.Right
+            };
+
+            // Add TextBlock to prescriptionHeaderGrid
+            prescriptionHeaderGrid.Children.Add(new TextBlock
+            {
+                Text = $"Prescription {prescriptionNumber}",
+                FontSize = 20,
+                Foreground = Brushes.Gray,
+                FontWeight = FontWeights.Medium,
+                FontFamily = new FontFamily("Inter"),
+                VerticalAlignment = System.Windows.VerticalAlignment.Center
+            });
+
+            return prescriptionHeaderGrid;
+        }
+        private Grid GenerateVitalSignsGrid()
+        {
+            // Create the main Grid
+            Grid vitalSignsGrid = new Grid
+            {
+                Height = 40
+            };
+
+            // Add Rectangle to vitalSignsGrid
+            vitalSignsGrid.Children.Add(new Rectangle
+            {
+                Fill = new SolidColorBrush(System.Windows.Media.Color.FromRgb(231, 231, 231)),
+                Stroke = new SolidColorBrush(System.Windows.Media.Color.FromRgb(212, 212, 212))
+            });
+
+            // Add inner Grid to vitalSignsGrid
+            Grid innerGrid = new Grid
+            {
+                Width = 850,
+                HorizontalAlignment = System.Windows.HorizontalAlignment.Right
+            };
+
+            // Add TextBlock to innerGrid
+            innerGrid.Children.Add(new TextBlock
+            {
+                Text = "Clinical Notes",
+                FontSize = 20,
+                FontWeight = FontWeights.Medium,
+                FontFamily = new FontFamily("Inter"),
+                VerticalAlignment = System.Windows.VerticalAlignment.Center
+            });
+
+            // Add inner Grid to vitalSignsGrid
+            vitalSignsGrid.Children.Add(innerGrid);
+
+            return vitalSignsGrid;
+        }
+        public UIElement GenerateSymptomsGrid(string name)
+        {
+            var symptomsGrid = new Grid
+            {
+                Height = 40
+            };
+
+            var rectangle = new Rectangle
+            {
+                Fill = Brushes.Transparent,
+                Stroke = new SolidColorBrush(System.Windows.Media.Color.FromRgb(212, 212, 212))
+            };
+
+            var innerGrid = new Grid
+            {
+                Width = 850
+            };
+
+            var textBlock = new TextBlock
+            {
+                Text = name,
+                VerticalAlignment = System.Windows.VerticalAlignment.Center,
+                FontSize = 17,
+                FontWeight = FontWeights.Medium,
+                FontFamily = new FontFamily("Inter"),
+                Foreground = Brushes.Gray
+            };
+
+            // Add controls to innerGrid
+            innerGrid.Children.Add(textBlock);
+
+            // Add controls to symptomsGrid
+            symptomsGrid.Children.Add(rectangle);
+            symptomsGrid.Children.Add(innerGrid);
+
+            return symptomsGrid;
+        }
+        public UIElement GenerateTextBlockGrid(string text)
+        {
+            var textBlockGrid = new Grid
+            {
+                Height = 80
+            };
+
+            var textBlock = new TextBlock
+            {
+                Text = text,
+                FontSize = 15,
+                FontFamily = new System.Windows.Media.FontFamily("Inter"),
+                Width = 800,
+                Height = 50
+            };
+
+            // Add controls to textBlockGrid
+            textBlockGrid.Children.Add(textBlock);
+
+            return textBlockGrid;
+        }
+
+        Dictionary<int, string> monthAbbreviations = new Dictionary<int, string>();
+
+        // Populate the dictionary
+        void settingdict()
+        {
+            for (int monthNumber = 1; monthNumber <= 12; monthNumber++)
+            {
+                string abbreviation = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(monthNumber);
+                monthAbbreviations.Add(monthNumber, abbreviation);
+            }
+        }
+        // this is how we use it:    monthAbbreviations.TryGetValue(targetMonth(int), out string abbreviation)
+        void generateALLPresc(int pid)
+        {
+            Console.WriteLine(pid.ToString());
+            DB db = new DB();
+            List<Prescription> prescriptions = db.GetPrescriptionsByPatientID(pid);
+            foreach (Prescription prescription in prescriptions)
+            {
+                generatePresc(prescription);
+            }
+
+        }
+
+        
+
+    void generatePresc(Prescription p)
+        {
+            StackPanel s = new StackPanel();
+            s.Orientation=Orientation.Horizontal;
+            s.Height= 500;
+            
+            Grid grid = new Grid();
+            grid.Width = 870;
+            Rectangle r= new Rectangle();
+            r.Fill = new SolidColorBrush(System.Windows.Media.Color.FromRgb(240, 240, 240));
+            r.Stroke = new SolidColorBrush(System.Windows.Media.Color.FromRgb(212, 212, 212));
+            grid.Children.Add(r);
+            StackPanel sv = new StackPanel();
+            sv.Orientation=Orientation.Vertical;
+            sv.Children.Add(GeneratePrescriptionHeaderGrid("#"+p.PrescriptionID.ToString()));
+            sv.Children.Add(GenerateVitalSignsGrid());
+            sv.Children.Add(GenerateSymptomsGrid("Symptoms"));
+            sv.Children.Add(GenerateTextBlockGrid((p.Coughing?"coughing":"")+", "+ (p.Nausea? "nausea" : "")+", "+ (p.Vomiting? "vomiting" : "")+", "+ (p.Headache ? "headache" : "")));
+            sv.Children.Add(GenerateSymptomsGrid("Observations"));
+            sv.Children.Add(GenerateTextBlockGrid(p.Diagnosis+",  additional note: "+p.AdditionalNotes));
+            sv.Children.Add(GenerateSymptomsGrid("Medications"));
+            sv.Children.Add(GenerateTextBlockGrid(p.MedicineName));
 
 
+
+            grid.Children.Add(sv);
+            string abbreviation = monthAbbreviations.TryGetValue(p.dateCreated.Month, out var result) ? result : null;
+
+            s.Children.Add(GenerateDateGrid(p.dateCreated.Day, result)); //monthAbbreviations.TryGetValue(targetMonth(int), out string abbreviation)
+            s.Children.Add(grid);
+            prescmain.Children.Add(s);
+        }
 
 
 
@@ -258,6 +493,11 @@ namespace CareTech
             Settings ap = new Settings();
             ap.Show();
             this.Close();
+        }
+
+        private void zeft_Click(object sender, RoutedEventArgs e)
+        {
+            generateALLPresc(PatientID);
         }
     }
 }

@@ -184,7 +184,7 @@
 										<Grid Width="50" HorizontalAlignment="Right">
 											<Image Source="/images/add.jpg" Width="30" Height="20" HorizontalAlignment="Left"></Image>
 										</Grid>
-										<Button Background="Transparent" BorderThickness="0" Width="120" Height="40"></Button>
+										<Button x:Name="zeft" Background="Transparent" BorderThickness="0" Width="120" Height="40" Click="zeft_Click"></Button>
 									</Grid>
 								</StackPanel>
 							</Grid>
@@ -275,233 +275,11 @@
 								<Button BorderThickness="0" Background="White" Content="Appointments and Fees" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="248" Click="Button_Click"></Button>
 							</StackPanel>
 						</Grid>
-						<Grid x:Name="Prescriptions" Visibility="Visible" Height="680" Background="#F0F0F0">
+						<Grid x:Name="Prescriptions" Visibility="Collapsed" Height="680" Background="#F0F0F0">
 							<Grid Width="1000" Height="580">
 								<ScrollViewer VerticalScrollBarVisibility="Visible">
-									<StackPanel Orientation="Vertical">
-										<StackPanel Orientation="Horizontal" Height="660">
-											<Grid Width="120" Height="100" VerticalAlignment="Top">
-												<Rectangle Fill="#FFF29A34" Opacity="0.4" RadiusX="20" RadiusY="20" Height="90" Width="90"></Rectangle>
-												<StackPanel Orientation="Vertical" Height="85" VerticalAlignment="Bottom">
-													<TextBlock Text="13" FontSize="26" FontWeight="Bold" FontFamily="Inter" Height="30" TextAlignment="Center" VerticalAlignment="Bottom" ></TextBlock>
-													<TextBlock Text="Dec" FontSize="26" FontWeight="Bold" FontFamily="Inter" Height="35" TextAlignment="Center"></TextBlock>
-												</StackPanel>
-											</Grid>
-											<Grid Width="870">
-												<Rectangle Fill="#F0F0F0" Stroke="#D4D4D4" StrokeThickness="2"></Rectangle>
-												<StackPanel Orientation="Vertical">
-													<Grid Height="60" Width="860" HorizontalAlignment="Right">
-														<TextBlock Text="Prescription ######" FontSize="20" Foreground="Gray" FontWeight="Medium" FontFamily="Inter" VerticalAlignment="Center"></TextBlock>
-													</Grid>
-													<Grid Height="40">
-														<Rectangle Fill="#FFE7E7E7" Stroke="#FFD4D4D4"></Rectangle>
-														<Grid Width="850" HorizontalAlignment="Right">
-															<TextBlock Text="Vital Signs" FontSize="20" FontWeight="Medium" FontFamily="Inter" VerticalAlignment="Center"></TextBlock>
-														</Grid>
-														<Button BorderThickness="0" Height="20" Margin="783,10,63,10">
-															<Button.Background>
-																<ImageBrush ImageSource="/images/edit.png"></ImageBrush>
-															</Button.Background>
-														</Button>
-													</Grid>
-													<Grid Height="50">
-														<Rectangle Fill="Transparent" Stroke="#FFD4D4D4"></Rectangle>
-														<StackPanel Orientation="Horizontal">
-															<Grid Width="172" >
-																<TextBlock Text="Weight" FontSize="17" FontWeight="SemiBold" FontFamily="Inter" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-															</Grid>
-															<Grid Width="172" >
-																<TextBlock Text="BP (mmHg)" FontSize="17" FontWeight="SemiBold" FontFamily="Inter" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-															</Grid>
-															<Grid Width="172" >
-																<TextBlock Text="Pulse" FontSize="17" FontWeight="SemiBold" FontFamily="Inter" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-															</Grid>
-															<Grid Width="172" >
-																<TextBlock Text="Temperature" FontSize="17" FontWeight="SemiBold" FontFamily="Inter" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-															</Grid>
-															<Grid Width="172" >
-																<TextBlock Text="Resp. Rate" FontSize="17" FontWeight="SemiBold" FontFamily="Inter" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-															</Grid>
-														</StackPanel>
-													</Grid>
-													<Grid Height="60">
-														<TextBlock Text="88 kg" FontSize="15" FontWeight="Medium" FontFamily="Inter" Margin="58,10,756,0"></TextBlock>
-														<TextBlock Text="120/80mmHg" FontSize="15" FontWeight="Medium" FontFamily="Inter" Margin="212,11,558,-1"/>
-														<TextBlock Text="76" FontSize="15" FontWeight="Medium" FontFamily="Inter" Margin="419,10,419,0"/>
-														<TextBlock Text="37.5 C" FontSize="15" FontWeight="Medium" FontFamily="Inter" Margin="578,11,242,-1"/>
-														<TextBlock Text=" 13 /min" FontSize="15" FontWeight="Medium" FontFamily="Inter" Margin="741,10,69,0"/>
-													</Grid>
-													<Grid Height="40">
-														<Rectangle Fill="#FFE7E7E7" Stroke="#FFD4D4D4"></Rectangle>
-														<Grid Width="850" HorizontalAlignment="Right">
-															<TextBlock Text="Clinical Notes" FontSize="20" FontWeight="Medium" FontFamily="Inter" VerticalAlignment="Center"></TextBlock>
-														</Grid>
-														<Button BorderThickness="0" Height="20" Margin="783,10,63,10">
-															<Button.Background>
-																<ImageBrush ImageSource="/images/edit.png"></ImageBrush>
-															</Button.Background>
-														</Button>
-													</Grid>
-													<Grid Height="40">
-														<Rectangle Fill="Transparent" Stroke="#FFD4D4D4"></Rectangle>
-														<Grid Width="850">
-															<TextBlock Text="Symptoms" VerticalAlignment="Center"  FontSize="17" FontWeight="Medium" FontFamily="Inter" Foreground="Gray"></TextBlock>
-														</Grid>
-														<Button BorderThickness="0" Height="18" Margin="783,10,63,10">
-															<Button.Background>
-																<ImageBrush ImageSource="/images/add.jpg"></ImageBrush>
-															</Button.Background>
-														</Button>
-													</Grid>
-													<Grid Height="80"></Grid>
-													<Grid Height="40">
-														<Rectangle Fill="Transparent" Stroke="#FFD4D4D4"></Rectangle>
-														<Grid Width="850">
-															<TextBlock Text="Observations" VerticalAlignment="Center"  FontSize="17" FontWeight="Medium" FontFamily="Inter" Foreground="Gray"></TextBlock>
-														</Grid>
-														<Button BorderThickness="0" Height="18" Margin="783,10,63,10">
-															<Button.Background>
-																<ImageBrush ImageSource="/images/add.jpg"></ImageBrush>
-															</Button.Background>
-														</Button>
-													</Grid>
-													<Grid Height="80">
-														<TextBlock Text="doctor's medical observations  will be written here" FontSize="15" FontWeight="Medium" FontFamily="Inter" VerticalAlignment="Center" Width="850"/>
-													</Grid>
-													<Grid Height="40">
-														<Rectangle Fill="Transparent" Stroke="#FFD4D4D4"></Rectangle>
-														<Grid Width="850">
-															<TextBlock Text="Medication" VerticalAlignment="Center"  FontSize="17" FontWeight="Medium" FontFamily="Inter" Foreground="Gray"></TextBlock>
-														</Grid>
-														<Button BorderThickness="0" Height="18" Margin="783,10,63,10">
-															<Button.Background>
-																<ImageBrush ImageSource="/images/add.jpg"></ImageBrush>
-															</Button.Background>
-														</Button>
-													</Grid>
-													<Grid Height="80"></Grid>
-												</StackPanel>
-												<StackPanel Orientation="Horizontal" Margin="0,291,520,299">
-													<Grid Width="150">
-														<Rectangle Fill="#FFBBBFE8" Opacity="0.4" Width="120" HorizontalAlignment="Center" Height="40" RadiusX="20" RadiusY="20"/>
-														<TextBlock Text="symptom"  Width="70" FontSize="15" FontWeight="Medium" FontFamily="Inter" VerticalAlignment="Center"/>
-													</Grid>
-													<Grid Width="150">
-														<Rectangle Fill="#FFBBBFE8" Opacity="0.4" Width="120" HorizontalAlignment="Center" Height="40" RadiusX="20" RadiusY="20"/>
-														<TextBlock Text="symptom"  Width="70" FontSize="15" FontWeight="Medium" FontFamily="Inter" VerticalAlignment="Center"/>
-													</Grid>
-												</StackPanel>
-												<StackPanel Orientation="Horizontal" Margin="292,291,228,299">
-													<Grid Width="150">
-														<Rectangle Fill="#FFBBBFE8" Opacity="0.4" Width="120" HorizontalAlignment="Center" Height="40" RadiusX="20" RadiusY="20"/>
-														<TextBlock Text="symptom"  Width="70" FontSize="15" FontWeight="Medium" FontFamily="Inter" VerticalAlignment="Center"/>
-													</Grid>
-													<Grid Width="150">
-														<Rectangle Fill="#FFBBBFE8" Opacity="0.4" Width="120" HorizontalAlignment="Center" Height="40" RadiusX="20" RadiusY="20"/>
-														<TextBlock Text="symptom"  Width="70" FontSize="15" FontWeight="Medium" FontFamily="Inter" VerticalAlignment="Center"/>
-													</Grid>
-												</StackPanel>
-											</Grid>
-										</StackPanel>
-										<StackPanel Orientation="Horizontal" Height="660">
-											<Grid Width="120" Height="100" VerticalAlignment="Top">
-												<Rectangle Fill="#FFF29A34" Opacity="0.4" RadiusX="20" RadiusY="20" Height="90" Width="90"></Rectangle>
-												<StackPanel Orientation="Vertical" Height="85" VerticalAlignment="Bottom">
-													<TextBlock Text="13" FontSize="26" FontWeight="Bold" FontFamily="Inter" Height="30" TextAlignment="Center" VerticalAlignment="Bottom" ></TextBlock>
-													<TextBlock Text="Dec" FontSize="26" FontWeight="Bold" FontFamily="Inter" Height="35" TextAlignment="Center"></TextBlock>
-												</StackPanel>
-											</Grid>
-											<Grid Width="870">
-												<Rectangle Fill="#F0F0F0" Stroke="#D4D4D4" StrokeThickness="2"></Rectangle>
-												<StackPanel Orientation="Vertical">
-													<Grid Height="60" Width="860" HorizontalAlignment="Right">
-														<TextBlock Text="Prescription ######" FontSize="20" Foreground="Gray" FontWeight="Medium" FontFamily="Inter" VerticalAlignment="Center"></TextBlock>
-													</Grid>
-													<Grid Height="40">
-														<Rectangle Fill="#FFE7E7E7" Stroke="#FFD4D4D4"></Rectangle>
-														<Grid Width="850" HorizontalAlignment="Right">
-															<TextBlock Text="Vital Signs" FontSize="20" FontWeight="Medium" FontFamily="Inter" VerticalAlignment="Center"></TextBlock>
-														</Grid>
-														<Button BorderThickness="0" Height="20" Margin="783,10,63,10">
-															<Button.Background>
-																<ImageBrush ImageSource="/images/edit.png"></ImageBrush>
-															</Button.Background>
-														</Button>
-													</Grid>
-													<Grid Height="50">
-														<Rectangle Fill="Transparent" Stroke="#FFD4D4D4"></Rectangle>
-														<StackPanel Orientation="Horizontal">
-															<Grid Width="172" >
-																<TextBlock Text="Weight" FontSize="17" FontWeight="SemiBold" FontFamily="Inter" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-															</Grid>
-															<Grid Width="172" >
-																<TextBlock Text="BP (mmHg)" FontSize="17" FontWeight="SemiBold" FontFamily="Inter" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-															</Grid>
-															<Grid Width="172" >
-																<TextBlock Text="Pulse" FontSize="17" FontWeight="SemiBold" FontFamily="Inter" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-															</Grid>
-															<Grid Width="172" >
-																<TextBlock Text="Temperature" FontSize="17" FontWeight="SemiBold" FontFamily="Inter" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-															</Grid>
-															<Grid Width="172" >
-																<TextBlock Text="Resp. Rate" FontSize="17" FontWeight="SemiBold" FontFamily="Inter" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-															</Grid>
-														</StackPanel>
-													</Grid>
-													<Grid Height="60">
-
-													</Grid>
-													<Grid Height="40">
-														<Rectangle Fill="#FFE7E7E7" Stroke="#FFD4D4D4"></Rectangle>
-														<Grid Width="850" HorizontalAlignment="Right">
-															<TextBlock Text="Clinical Notes" FontSize="20" FontWeight="Medium" FontFamily="Inter" VerticalAlignment="Center"></TextBlock>
-														</Grid>
-														<Button BorderThickness="0" Height="20" Margin="783,10,63,10">
-															<Button.Background>
-																<ImageBrush ImageSource="/images/edit.png"></ImageBrush>
-															</Button.Background>
-														</Button>
-													</Grid>
-													<Grid Height="40">
-														<Rectangle Fill="Transparent" Stroke="#FFD4D4D4"></Rectangle>
-														<Grid Width="850">
-															<TextBlock Text="Symptoms" VerticalAlignment="Center"  FontSize="17" FontWeight="Medium" FontFamily="Inter" Foreground="Gray"></TextBlock>
-														</Grid>
-														<Button BorderThickness="0" Height="18" Margin="783,10,63,10">
-															<Button.Background>
-																<ImageBrush ImageSource="/images/add.jpg"></ImageBrush>
-															</Button.Background>
-														</Button>
-													</Grid>
-													<Grid Height="80"></Grid>
-													<Grid Height="40">
-														<Rectangle Fill="Transparent" Stroke="#FFD4D4D4"></Rectangle>
-														<Grid Width="850">
-															<TextBlock Text="Observations" VerticalAlignment="Center"  FontSize="17" FontWeight="Medium" FontFamily="Inter" Foreground="Gray"></TextBlock>
-														</Grid>
-														<Button BorderThickness="0" Height="18" Margin="783,10,63,10">
-															<Button.Background>
-																<ImageBrush ImageSource="/images/add.jpg"></ImageBrush>
-															</Button.Background>
-														</Button>
-													</Grid>
-													<Grid Height="80"></Grid>
-													<Grid Height="40">
-														<Rectangle Fill="Transparent" Stroke="#FFD4D4D4"></Rectangle>
-														<Grid Width="850">
-															<TextBlock Text="Medication" VerticalAlignment="Center"  FontSize="17" FontWeight="Medium" FontFamily="Inter" Foreground="Gray"></TextBlock>
-														</Grid>
-														<Button BorderThickness="0" Height="18" Margin="783,10,63,10">
-															<Button.Background>
-																<ImageBrush ImageSource="/images/add.jpg"></ImageBrush>
-															</Button.Background>
-														</Button>
-													</Grid>
-													<Grid Height="80"></Grid>
-												</StackPanel>
-											</Grid>
-										</StackPanel>
-
+									<StackPanel Name="prescmain" Orientation="Vertical">
+										
 									</StackPanel>
 								</ScrollViewer>
 							</Grid>
@@ -519,7 +297,7 @@
 
 
 
-						<Grid x:Name="Labs" Visibility="Collapsed" Height="680" Background="#F0F0F0">
+						<Grid x:Name="Labs" Visibility="Visible" Height="680" Background="#F0F0F0">
 							<Grid Width="1000" Height="580">
 								<ScrollViewer VerticalScrollBarVisibility="Visible">
 									<StackPanel Orientation="Vertical">

@@ -542,9 +542,9 @@ namespace CareTech
                 connection.Open();
 
                 string query = "INSERT INTO prescription (patientID, doctorID, weight, height, headache, nausea, vomiting, " +
-                               "coughing, diagnosis, medicineName, dose, frequency, additionalNotes) " +
+                               "coughing, diagnosis, medicineName, dose, frequency, additionalNotes, dateCreated) " +
                                "VALUES (@PatientID, @DoctorID, @Weight, @Height, @Headache, @Nausea, @Vomiting, " +
-                               "@Coughing, @Diagnosis, @MedicineName, @Dose, @Frequency, @AdditionalNotes)";
+                               "@Coughing, @Diagnosis, @MedicineName, @Dose, @Frequency, @AdditionalNotes, @dateCreated)";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -561,10 +561,58 @@ namespace CareTech
                     command.Parameters.AddWithValue("@Dose", prescription.Dose);
                     command.Parameters.AddWithValue("@Frequency", prescription.Frequency);
                     command.Parameters.AddWithValue("@AdditionalNotes", prescription.AdditionalNotes);
+                    command.Parameters.AddWithValue("@dateCreated", prescription.dateCreated);
 
                     command.ExecuteNonQuery();
                 }
             }
+        }
+
+
+        public List<Prescription> GetPrescriptionsByPatientID(int patientID)
+        {
+            List<Prescription> prescriptions = new List<Prescription>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM prescription WHERE patientID = @PatientID";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PatientID", patientID);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Prescription prescription = new Prescription
+                            {
+                                PrescriptionID = Convert.ToInt32(reader["prescriptionID"]),
+                                PatientID = Convert.ToInt32(reader["patientID"]),
+                                DoctorID = Convert.ToInt32(reader["doctorID"]),
+                                Weight = Convert.ToInt32(reader["weight"]),
+                                Height = Convert.ToInt32(reader["height"]),
+                                Headache = Convert.ToBoolean(reader["headache"]),
+                                Nausea = Convert.ToBoolean(reader["nausea"]),
+                                Vomiting = Convert.ToBoolean(reader["vomiting"]),
+                                Coughing = Convert.ToBoolean(reader["coughing"]),
+                                Diagnosis = reader["diagnosis"].ToString(),
+                                MedicineName = reader["medicineName"].ToString(),
+                                Dose = Convert.ToInt32(reader["dose"]),
+                                Frequency = reader["frequency"].ToString(),
+                                AdditionalNotes = reader["additionalNotes"].ToString(),
+                                dateCreated = Convert.ToDateTime(reader["dateCreated"])
+
+                            };
+
+                            prescriptions.Add(prescription);
+                        }
+                    }
+                }
+            }
+
+            return prescriptions;
         }
 
     }
