@@ -16,12 +16,13 @@ namespace CareTech
         static public string connectionString = "server=localhost;database=caretech;user=root;password=caretech;";
         static public MySqlConnection connection;
 
-        //MySqlConnection connection;
         public DB() 
         { 
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
         }
+
+        /////////////////////// PATIENT /////////////////////////////////
         static public void CreatePatient(Patient patient)
         {
             string insertSql = @"INSERT INTO Patient 
@@ -185,7 +186,6 @@ namespace CareTech
 
         ////////////////////////EMERGENCY CONTACT///////////////////////////
 
-
         public static void CreateEmergencyContact(EmergencyContact emergencyContact)
         {
             string insertSql = @"
@@ -217,6 +217,7 @@ namespace CareTech
                 Console.WriteLine($"Error creating patient: {ex.Message}");
             }
         }
+
 
         /////////////// MEDICAL ASSESSMENT///////////////
 
@@ -279,7 +280,6 @@ namespace CareTech
                 }
             }
         }
-
 
         /////////////////// DOCTOR ///////////////////////////
         public void InsertDoctor(Doctor doctor)
@@ -392,7 +392,7 @@ namespace CareTech
 
                 string query = @"INSERT INTO appointment 
                          (appointmentDate, appointmentTime, appointmentType, appointmentFees, patientID, doctorID, fees) 
-                         VALUES (@AppointmentDate, @AppointmentTime, @AppointmentType, @AppointmentFees, @PatientID, @DoctorID, @fees)";
+                         VALUES (@AppointmentDate, @AppointmentTime, @AppointmentType, @AppointmentFees, @PatientID, @DoctorID)";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -403,7 +403,6 @@ namespace CareTech
                     command.Parameters.AddWithValue("@AppointmentFees", appointment.AppointmentFees);
                     command.Parameters.AddWithValue("@PatientID", appointment.PatientID);
                     command.Parameters.AddWithValue("@DoctorID", appointment.DoctorID);
-                    command.Parameters.AddWithValue("@fees", appointment.fees);
 
                     // Execute the command
                     command.ExecuteNonQuery();
@@ -449,7 +448,7 @@ namespace CareTech
 
             return appointments;
         }
-        public List<_Appointment> GetAppointmentsForToday()
+        public List<_Appointment> GetAppointmentsForDate(DateTime selectedDate)
         {
             List<_Appointment> appointments = new List<_Appointment>();
 
@@ -457,11 +456,14 @@ namespace CareTech
             {
                 connection.Open();
 
-                // Your SQL query to select appointments for today
-                string query = "SELECT * FROM appointment WHERE DATE(appointmentDate) = CURDATE()";
+                // Your SQL query to select appointments for a specific date
+                string query = "SELECT * FROM appointment WHERE DATE(appointmentDate) = @selectedDate";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
+                    // Use parameterized query to prevent SQL injection
+                    command.Parameters.AddWithValue("@selectedDate", selectedDate.ToString("yyyy-MM-dd"));
+
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())

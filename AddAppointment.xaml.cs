@@ -234,7 +234,7 @@ namespace CareTech
                 string[] words = doc.Split(' ');
                 string docidstring = words[2];
                 int docid = int.Parse(docidstring);
-                _Appointment app = new _Appointment(appdate, apptime, apptype, 300, patientid, docid);
+                _Appointment app = new _Appointment(appdate, apptime, apptype,patientid, docid);
                 
                 db.InsertAppointment(app);
             }
@@ -256,7 +256,7 @@ namespace CareTech
                 string[] words = doc.Split(' ');
                 string docidstring = words[2];
                 int docid = int.Parse(docidstring);
-                _Appointment app = new _Appointment(appdate, apptime, apptype, 300, p.PatientID, docid);
+                _Appointment app = new _Appointment(appdate, apptime, apptype, p.PatientID, docid);
 
                 db.InsertAppointment(app);
 

@@ -34,10 +34,6 @@ namespace CareTech
             totalfeestxt.Text =db.SumFeesForToday().ToString();
         }
 
-
-
-        
-
         public class AppointmentViewModel
         {
             public string PatientInfo { get; set; }
@@ -204,7 +200,7 @@ namespace CareTech
 
         private void appointments_Click(object sender, RoutedEventArgs e)
         {
-            AddAppointment ap = new AddAppointment();
+            Appointments ap = new Appointments();
             ap.Show();
             this.Close();
         }
@@ -265,37 +261,7 @@ namespace CareTech
             this.Close();
         }
 
-        private void file_Click(object sender, RoutedEventArgs e)
-        {
-            PatientFile ap = new PatientFile();
-            ap.Show();
-            this.Close();
-        }
-
-        private void file2_Click(object sender, RoutedEventArgs e)
-        {
-            PatientFile ap = new PatientFile();
-            ap.Show();
-            this.Close();
-        }
-
-        private void prescription1_Click(object sender, RoutedEventArgs e)
-        {
-            NewPrescription ap = new NewPrescription();
-            ap.Show();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            NewPrescription ap = new NewPrescription();
-            ap.Show();
-        }
-
-        private void prescription3_Click(object sender, RoutedEventArgs e)
-        {
-            NewPrescription ap = new NewPrescription();
-            ap.Show();
-        }
+        
         private void OCR_Click(object sender, RoutedEventArgs e)
         {
             OCR ap = new OCR();
