@@ -575,7 +575,7 @@ namespace CareTech
                 connection.Open();
 
                 // Your SQL query to sum all fees for today
-                string query = "SELECT SUM(fees) FROM appointment WHERE DATE(appointmentDate) = CURDATE()";
+                string query = "SELECT SUM(appointmentFees) FROM appointment WHERE DATE(appointmentDate) = CURDATE()";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
