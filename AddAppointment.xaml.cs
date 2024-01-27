@@ -220,7 +220,7 @@ namespace CareTech
             DB db = new DB();
             if (NewPatientcheckbox.IsChecked == false)
             {
-                AddBusyTimeAppointment(dateTimeEdit.DateTime, "#" + PatientID.Text + " , " + PatientName.Text + " , " + typeOfVisit.Text);
+                AddBusyTimeAppointment(dateTimeEdit.DateTime, "#" + PatientIDtxt.Text + " , " + PatientName.Text + " , " + typeOfVisit.Text);
                 DateTime? selectedDateTime = dateTimeEdit.DateTime;
                 DateTime appdate;
                 TimeSpan apptime;
@@ -228,7 +228,7 @@ namespace CareTech
                 apptime = selectedDateTime.Value.TimeOfDay; // Extract time
                 ComboBoxItem typeSelectedComboBoxItem = typeOfVisit.SelectedItem as ComboBoxItem;
                 string apptype = typeSelectedComboBoxItem.Content?.ToString();
-                int patientid = int.Parse(PatientID.Text);
+                int patientid = int.Parse(PatientIDtxt.Text);
                 ComboBoxItem docSelectedComboBoxItem = pickAdoc.SelectedItem as ComboBoxItem;
                 string doc = pickAdoc.SelectedItem?.ToString();
                 string[] words = doc.Split(' ');
@@ -266,39 +266,39 @@ namespace CareTech
         private void NewPatientcheckbox_Checked(object sender, RoutedEventArgs e)
         {
             newPatientInfo.Visibility= Visibility.Visible;
-            PatientID.IsEnabled = false;
-            PatientID.Background = Brushes.LightGray;
+            PatientIDtxt.IsEnabled = false;
+            PatientIDtxt.Background = Brushes.LightGray;
         }
         private void NewPatientcheckbox_Unchecked(object sender, RoutedEventArgs e)
         {
             newPatientInfo.Visibility = Visibility.Hidden;
-            PatientID.IsEnabled = true;
-            PatientID.Background= Brushes.White;
+            PatientIDtxt.IsEnabled = true;
+            PatientIDtxt.Background= Brushes.White;
         }
 
         private void PatientID_TextChanged(object sender, TextChangedEventArgs e)
         {
             DB db = new DB();
-            List<string> patients = db.GetPatientIdsAndNames();
-            if (!string.IsNullOrEmpty(PatientID.Text))
+            List<Patient> patients = db.GetAllPatients();
+            if (!string.IsNullOrEmpty(PatientIDtxt.Text))
             {
                 patientslist.Items.Clear();
-                patientslist.Visibility= Visibility.Visible;
-                foreach(string str in patients )
+                patientslist.Visibility = Visibility.Visible;
+                foreach( Patient p in patients)
                 {
-                    if(str.StartsWith(PatientID.Text))
+                    if(p.Name.StartsWith(PatientIDtxt.Text))
                     {
-                        patientslist.Items.Add(str);
+                        patientslist.Items.Add(p.Name + " #" + p.PatientID);
                     }
                 }
             }
-            else if(PatientID.Text=="")
+            else if(PatientIDtxt.Text=="")
             {
                 patientslist.Items.Clear();
-                foreach (string str in patients)
+                foreach (Patient p in patients)
                 {
-                    patientslist.Items.Add(str);
-                }    
+                    patientslist.Items.Add(p.Name + " #" + p.PatientID);
+                } 
             }
         }
 
@@ -313,7 +313,7 @@ namespace CareTech
                 string selectedPatientID = words[0];
 
                 // Perform any action with the extracted patientID, for example:
-                PatientID.Text= selectedPatientID;
+                PatientIDtxt.Text= selectedPatientID;
                 // Hide the ListBox
                 patientslist.Visibility = Visibility.Hidden;
             }

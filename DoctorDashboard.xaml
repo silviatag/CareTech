@@ -437,7 +437,7 @@
 					</Grid>
 					<Grid Height="250">
 						<Rectangle Fill="White" Stroke="Gray" RadiusX="30" RadiusY="30"></Rectangle>
-						<ListView x:Name="appointmentListView" Margin="10" BorderBrush="Transparent">
+						<ListView x:Name="appointmentListView" Margin="10" BorderBrush="Transparent" >
 							<ListView.View>
 								<GridView>
 									<GridViewColumn Header="Patient" Width="400">

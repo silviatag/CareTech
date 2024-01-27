@@ -37,37 +37,15 @@ namespace CareTech
         private void LoadAppointments()
         {
             DB db = new DB();
-            string connectionString = "server=localhost;database=caretech;user=root;password=caretech;";
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            List<Patient> patients = db.GetAllPatients();
+            foreach (Patient p in patients)
             {
-                connection.Open();
-
-                // Your SQL query to select today's appointments
-                string query = "SELECT * FROM patient";
-
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                AppointmentViewModel appointmentViewModel = new AppointmentViewModel
                 {
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int patientId = Convert.ToInt32(reader["patientID"]);
-                            Patient patient = db.GetPatientNameById(patientId);
-
-                            // Map database fields to AppointmentViewModel properties
-                            AppointmentViewModel appointmentViewModel = new AppointmentViewModel
-                            {
-                                PatientInfo = patient.Name + " #" + patient.PatientID
-                            };
-
-                            appointmentsViewModel.Add(appointmentViewModel);
-                        }
-                    }
-                }
+                    PatientInfo = p.Name + " #" + p.PatientID
+                };
+                appointmentsViewModel.Add(appointmentViewModel);
             }
-
             appointmentListView.ItemsSource = appointmentsViewModel;
         }
 

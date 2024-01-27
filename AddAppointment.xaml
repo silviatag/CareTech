@@ -160,7 +160,7 @@
 						<TextBlock  Text="Patient ID" FontFamily="Inter" FontSize="25" FontWeight="Medium" VerticalAlignment="Center"></TextBlock>
 					</Grid>
 					<Grid Width="215">
-						<TextBox x:Name="PatientID" Height="30" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" TextChanged="PatientID_TextChanged"></TextBox>
+						<TextBox x:Name="PatientIDtxt" Height="30" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" TextChanged="PatientID_TextChanged"></TextBox>
 						<ListBox x:Name="patientslist" Width="200" Height="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Hidden" SelectionChanged="patientListBox_SelectionChanged"/>
 					</Grid>
 					<Grid Width="430">

@@ -133,7 +133,7 @@ namespace CareTech
                 {
                     connection.Open();
 
-                    string selectQuery = "SELECT * FROM patient";
+                    string selectQuery = "SELECT * FROM patient WHERE age IS NOT NULL";
 
                     using (MySqlCommand cmd = new MySqlCommand(selectQuery, connection))
                     using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -185,7 +185,7 @@ namespace CareTech
                 {
                     command.Parameters.AddWithValue("@PatientId", patientId);
 
-                    
+
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
@@ -214,42 +214,6 @@ namespace CareTech
             return patient;
         }
 
-
-
-        public Patient GetPatientNameById(int patientId)
-        {
-            Patient patient = null;
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                // Your SQL query to select a patient by ID
-                string query = "SELECT * FROM patient WHERE patientID = @PatientId";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@PatientId", patientId);
-
-
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            // Map database fields to Patient properties
-                            patient = new Patient
-                            {
-                                PatientID = Convert.ToInt32(reader["patientID"]),
-                                Name = reader["name"].ToString(),
-                                
-                            };
-                        }
-                    }
-                }
-            }
-
-            return patient;
-        }
         ////////////////////////EMERGENCY CONTACT///////////////////////////
 
 
