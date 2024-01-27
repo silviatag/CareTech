@@ -93,7 +93,7 @@ namespace CareTech
         }
 
 
-        public List<string> GetPatientIdsAndNames()
+        /*public List<string> GetPatientIdsAndNames()
         {
             List<string> patientsInfo = new List<string>();
 
@@ -121,7 +121,55 @@ namespace CareTech
             }
 
             return patientsInfo;
+        }*/
+
+        public List<Patient> GetAllPatients()
+        {
+            List<Patient> patients = new List<Patient>();
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string selectQuery = "SELECT * FROM patient";
+
+                    using (MySqlCommand cmd = new MySqlCommand(selectQuery, connection))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Patient patient = new Patient
+                            {
+                                PatientID = reader.GetInt32("patientID"),
+                                NationalID = reader.GetString("nationalID"),
+                                Name = reader.GetString("name"),
+                                DOB = reader.IsDBNull(reader.GetOrdinal("DOB")) ? (DateTime?)null : reader.GetDateTime("DOB"),
+                                Age = reader.GetInt32("age"),
+                                Address = reader.GetString("address"),
+                                PhoneNumber = reader.GetString("phoneNumber"),
+                                Gender = reader.GetString("gender"),
+                                MaritalStatus = reader.GetString("maritalStatus"),
+                                Height = reader.GetInt32("height"),
+                                Weight = reader.GetInt32("weight"),
+                                BloodGroup = reader.GetString("bloodGroup")
+                            };
+
+                            patients.Add(patient);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            
+            return patients;
         }
+
+
         public Patient GetPatientById(int patientId)
         {
             Patient patient = null;
