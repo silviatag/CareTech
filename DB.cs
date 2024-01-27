@@ -92,37 +92,6 @@ namespace CareTech
             }
         }
 
-
-        /*public List<string> GetPatientIdsAndNames()
-        {
-            List<string> patientsInfo = new List<string>();
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = "SELECT patientID, name FROM patient";
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int patientID = reader.GetInt32("patientID");
-                            string name = reader.GetString("name");
-
-                            // Convert patientID to string and concatenate with name
-                            string patientInfo = $"{patientID.ToString()} - {name}";
-
-                            patientsInfo.Add(patientInfo);
-                        }
-                    }
-                }
-            }
-
-            return patientsInfo;
-        }*/
-
         public List<Patient> GetAllPatients()
         {
             List<Patient> patients = new List<Patient>();
@@ -518,7 +487,46 @@ namespace CareTech
 
             return appointments;
         }
-        
+
+        public List<_Appointment> GetAppointmentsFromNow()
+        {
+            List<_Appointment> appointments = new List<_Appointment>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Your SQL query to select appointments for today
+                string query = "SELECT * FROM appointment WHERE DATE(appointmentDate) = CURDATE() AND TIME(appointmentTime) >= CURTIME()";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Map database fields to _Appointment properties
+                            _Appointment appointment = new _Appointment
+                            {
+                                AppointmentID = Convert.ToInt32(reader["appointmentID"]),
+                                AppointmentDate = Convert.ToDateTime(reader["appointmentDate"]),
+                                AppointmentTime = (TimeSpan)reader["appointmentTime"],
+                                AppointmentType = reader["appointmentType"].ToString(),
+                                AppointmentStatus = reader["appointmentStatus"].ToString(),
+                                AppointmentFees = Convert.ToInt32(reader["appointmentFees"]),
+                                PatientID = Convert.ToInt32(reader["patientID"]),
+                                DoctorID = Convert.ToInt32(reader["doctorID"])
+                            };
+
+                            appointments.Add(appointment);
+                        }
+                    }
+                }
+            }
+
+            return appointments;
+        }
+
         public int CountFollowUpAppointmentsForToday()
         {
             int count = 0;
@@ -537,6 +545,8 @@ namespace CareTech
 
             return count;
         }
+
+
         public int CountConsultationAppointmentsForToday()
         {
             int count = 0;

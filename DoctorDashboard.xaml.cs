@@ -33,10 +33,10 @@ namespace CareTech
             totalPatientCount.Text= (db.CountFollowUpAppointmentsForToday()+ db.CountConsultationAppointmentsForToday()).ToString();
             totalfeestxt.Text =db.SumFeesForToday().ToString();
         }
-        
+
+
 
         
-
 
         public class AppointmentViewModel
         {
@@ -44,66 +44,108 @@ namespace CareTech
             public string AppointmentTime { get; set; }
             public int AppointmentID { get; set; }
         }
-        private ObservableCollection<AppointmentViewModel> appointmentsViewModel = new ObservableCollection<AppointmentViewModel>();
+        private void Details_CLick(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            PatientFile pf = new PatientFile();
+            pf.idtxt.Text = btn.Name.Split('d')[1];
+            pf.PatientID = Convert.ToInt32(btn.Name.Split('d')[1]);
+            int patientid = int.Parse(btn.Name.Split('d')[1]);
+            pf.SetPatientID(patientid);
+            pf.Show();
+            this.Close();
+        }
 
         private void LoadAppointments()
         {
             DB db = new DB();
-             string connectionString = "server=localhost;database=caretech;user=root;password=caretech;";
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            List<_Appointment> appointments = db.GetAppointmentsFromNow();
+            foreach (var app in appointments.OrderBy(a => a.AppointmentTime).ToList())
             {
-                connection.Open();
-
-                // Your SQL query to select today's appointments
-                string query = "SELECT * FROM appointment WHERE DATE(appointmentDate) = CURDATE() AND TIME(appointmentTime) >= CURTIME()";
-
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                Patient p = db.GetPatientById(app.PatientID);
+                StackPanel horizontalStackPanel = new StackPanel
                 {
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int patientId = Convert.ToInt32(reader["patientID"]);
-                            Patient patient = db.GetPatientById(patientId);
+                    Orientation = Orientation.Horizontal,
+                    Height = 40
+                };
+                Grid nameGrid = new Grid
+                {
+                    Width = 383
+                };
 
-                            // Map database fields to AppointmentViewModel properties
-                            AppointmentViewModel appointmentViewModel = new AppointmentViewModel
-                            {
-                                PatientInfo = patient.Name+" #"+patient.PatientID,
-                                AppointmentTime = $"{reader["appointmentTime"]}",
-                                AppointmentID = Convert.ToInt32(reader["appointmentID"])
-                            };
+                TextBlock nametxt = new TextBlock
+                {
+                    Text = p.Name+" #"+p.PatientID,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    TextAlignment = TextAlignment.Center,
+                    FontSize=15
+                };
 
-                            appointmentsViewModel.Add(appointmentViewModel);
-                        }
-                    }
-                }
+                // Add the TextBlock to the Grid
+                nameGrid.Children.Add(nametxt);
+
+                // Add the Grid to the StackPanel
+                horizontalStackPanel.Children.Add(nameGrid);
+
+                Grid timeGrid = new Grid
+                {
+                    Width = 383
+                };
+
+                TextBlock timetxt = new TextBlock
+                {
+                    Text = app.AppointmentTime.ToString(),
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    TextAlignment = TextAlignment.Center,
+                    FontSize =15
+                };
+
+                // Add the TextBlock to the Grid
+                timeGrid.Children.Add(timetxt);
+
+                // Add the Grid to the StackPanel
+                horizontalStackPanel.Children.Add(timeGrid);
+
+                Grid DetailsGrid = new Grid
+                {
+                    Width = 390
+                };
+                Rectangle rec = new Rectangle
+                {
+                    Fill = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#7163ba")),
+                    RadiusX =15,
+                    RadiusY =15,
+                    StrokeThickness = 0,
+                    Width = 100,
+                    Height = 30
+                };
+                DetailsGrid.Children.Add(rec);
+                Button detailsBtn = new Button
+                {
+                    Name="id"+ p.PatientID.ToString(),
+                    Content = "Details",
+                    FontFamily = new System.Windows.Media.FontFamily("Inter"),
+                    FontWeight = FontWeights.Medium,
+                    Foreground= System.Windows.Media.Brushes.White,
+                    Width = 100,
+                    Height = 30,
+                    FontSize = 15,
+                    Background = System.Windows.Media.Brushes.Transparent,
+                    BorderThickness = new Thickness(0),
+                    
+                };
+                detailsBtn.Click += Details_CLick;
+                DetailsGrid.Children.Add(detailsBtn);
+
+                // Add the Grid to the StackPanel
+                horizontalStackPanel.Children.Add(DetailsGrid);
+                appsPanel.Children.Add(horizontalStackPanel);
             }
-
-            appointmentListView.ItemsSource = appointmentsViewModel;
         }
 
-        private void Details_CLick(object sender, RoutedEventArgs e)
-        {
-            if (appointmentListView.SelectedItem is AppointmentViewModel selectedAppointment)
-            {
-                // Create a new instance of the window
-                PatientFile pf = new PatientFile();
-                pf.idtxt.Text = selectedAppointment.PatientInfo.Split('#')[1];
-                pf.PatientID = Convert.ToInt32(selectedAppointment.PatientInfo.Split('#')[1]);
-                int patientid = int.Parse(selectedAppointment.PatientInfo.Split('#')[1]);
-                pf.SetPatientID(patientid);
-                pf.Show();
-                // Set the PatientID property of the new window
-               
-                
-
-                this.Close();
-            }
-        }
-
+      
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
             // Set tooltip visibility
