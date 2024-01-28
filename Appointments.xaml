@@ -205,7 +205,7 @@
 							<TextBlock Name="appTypetxt" Text="Appointment Type" FontSize="30" FontWeight="Medium" FontFamily="Inter" Foreground="Black" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
 						</Grid>
 						<Grid Width="433">
-							<Button Content="open file" x:Name="emr" Foreground="White" FontFamily="Inter" FontWeight="Medium" FontSize="25" Height="60" Width="250" Background="#7163ba" Click="emr_Click" >
+							<Button Name="fileBTN" Content="open file" Foreground="White" FontFamily="Inter" FontWeight="Medium" FontSize="25" Height="60" Width="250" Background="#7163ba" Click="emr_Click" >
 								<Button.Template>
 									<ControlTemplate TargetType="{x:Type Button}">
 										<Border CornerRadius="20" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">

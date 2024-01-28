@@ -30,6 +30,7 @@ namespace CareTech
         {
             
             InitializeComponent();
+            
             Chart_Loaded(Chart, new RoutedEventArgs());
             SeriesCollection = new SeriesCollection
             {
@@ -49,7 +50,6 @@ namespace CareTech
             DataContext = this;
             settingdict();
             //MessageBox.Show(PatientID.ToString());
-           
 
 
         }
@@ -161,18 +161,21 @@ namespace CareTech
         }
         private Grid GeneratePrescriptionHeaderGrid(string prescriptionNumber)
         {
+
             // Create the main Grid
             Grid prescriptionHeaderGrid = new Grid
             {
+
                 Height = 60,
                 Width = 860,
                 HorizontalAlignment = System.Windows.HorizontalAlignment.Right
             };
-
+/*
+            MessageBox.Show(PatientID.ToString());*/
             // Add TextBlock to prescriptionHeaderGrid
             prescriptionHeaderGrid.Children.Add(new TextBlock
             {
-                Text = $"Prescription {prescriptionNumber}",
+                Text = "Prescription "+prescriptionNumber,
                 FontSize = 20,
                 Foreground = Brushes.Gray,
                 FontWeight = FontWeights.Medium,
@@ -319,7 +322,7 @@ namespace CareTech
             grid.Children.Add(r);
             StackPanel sv = new StackPanel();
             sv.Orientation=Orientation.Vertical;
-            sv.Children.Add(GeneratePrescriptionHeaderGrid("#"+p.PrescriptionID.ToString()));
+            sv.Children.Add(GeneratePrescriptionHeaderGrid("#"+(p.PrescriptionID.ToString())));
             sv.Children.Add(GenerateVitalSignsGrid());
             sv.Children.Add(GenerateSymptomsGrid("Symptoms"));
             sv.Children.Add(GenerateTextBlockGrid((p.Coughing?"coughing":"")+", "+ (p.Nausea? "nausea" : "")+", "+ (p.Vomiting? "vomiting" : "")+", "+ (p.Headache ? "headache" : "")));
@@ -416,6 +419,7 @@ namespace CareTech
             }
             else if (clickedButton.Content.Equals("Prescriptions"))
             {
+
                 generateALLPresc(PatientID);
                 Prescriptions.Visibility = Visibility.Visible;
             }
@@ -497,9 +501,6 @@ namespace CareTech
             this.Close();
         }
 
-        private void zeft_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
+        
     }
 }

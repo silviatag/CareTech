@@ -26,14 +26,20 @@ namespace CareTech
             GenerateDynamicUI(DateTime.Today);
             string today = (DateTime.Today).ToString("dd-MM-yyyy");
             TodayDate.Text = today;
-            //dateSelected(selectedDate);
-            
+            DB db = new DB();
+            List<_Appointment> appointments = db.GetAppointmentsFromNow().OrderBy(appointment => appointment.AppointmentTime).ToList();
+            _Appointment nextApp = appointments[0];
+            Patient nextPatient = db.GetPatientById(nextApp.PatientID);
+            patientNametxt.Text = nextPatient.Name;
+            patientIDtxt.Text = nextPatient.PatientID.ToString();
+            fileBTN.Name = "id"+nextPatient.PatientID.ToString();
+
         }
         private void GenerateDynamicUI(DateTime sDate)
         {
             appTable.Children.Clear();
             DB db = new DB();
-            List<_Appointment> appointments = db.GetAppointmentsForDate(sDate);
+            List<_Appointment> appointments = db.GetAppointmentsForDate(sDate).OrderBy(appointment => appointment.AppointmentTime).ToList();
             foreach (var app in appointments)
             {
                 Patient p = db.GetPatientById(app.PatientID);
@@ -214,8 +220,13 @@ namespace CareTech
 
         private void emr_Click(object sender, RoutedEventArgs e)
         {
-            PatientFile ap = new PatientFile();
-            ap.Show();
+            Button btn = (Button)sender;
+            PatientFile pf = new PatientFile();
+            pf.idtxt.Text = btn.Name.Split('d')[1];
+            pf.PatientID = Convert.ToInt32(btn.Name.Split('d')[1]);
+            int patientid = int.Parse(btn.Name.Split('d')[1]);
+            pf.SetPatientID(patientid);
+            pf.Show();
             this.Close();
         }
     }

@@ -184,7 +184,7 @@
 										<Grid Width="50" HorizontalAlignment="Right">
 											<Image Source="/images/add.jpg" Width="30" Height="20" HorizontalAlignment="Left"></Image>
 										</Grid>
-										<Button x:Name="zeft" Background="Transparent" BorderThickness="0" Width="120" Height="40" Click="zeft_Click"></Button>
+										<Button x:Name="zeft" Background="Transparent" BorderThickness="0" Width="120" Height="40" ></Button>
 									</Grid>
 								</StackPanel>
 							</Grid>
@@ -213,7 +213,7 @@
 								<Grid Width="50" HorizontalAlignment="Right">
 									<Image Source="/images/add.jpg" Width="30" Height="20" HorizontalAlignment="Left"></Image>
 								</Grid>
-								<Button Background="Transparent" BorderThickness="0" Width="120" Height="40"></Button>
+								<Button Background="Transparent" BorderThickness="0" Width="120" Margin="15,0,15,0"/>
 							</Grid>
 						</StackPanel>
 					</Grid>
@@ -279,7 +279,7 @@
 							<Grid Width="1000" Height="580">
 								<ScrollViewer VerticalScrollBarVisibility="Visible">
 									<StackPanel Name="prescmain" Orientation="Vertical">
-										
+
 									</StackPanel>
 								</ScrollViewer>
 							</Grid>
@@ -981,7 +981,7 @@ LegendLocation="Right" InnerRadius="80" Margin="34,42,20,29" Loaded="Chart_Loade
 														</Grid>
 													</Grid>
 												</StackPanel>
-												
+
 											</Grid>
 										</StackPanel>
 									</StackPanel>
@@ -1421,7 +1421,7 @@ Width="230">
 
 		</Grid>
 
-	
+
 
 
 
