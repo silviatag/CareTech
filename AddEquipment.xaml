@@ -29,7 +29,7 @@
                                 <TextBlock Text="Equipment Name" FontSize="15" VerticalAlignment="Center" FontWeight="SemiBold" FontFamily="Lato"></TextBlock>
                             </Grid>
                             <Grid Width="400" Height="30">
-                                <TextBox x:Name="NameTextBox"></TextBox>
+								<TextBox Name="NameTextBox"></TextBox>
                             </Grid>
                         </StackPanel>
                     </Grid>
