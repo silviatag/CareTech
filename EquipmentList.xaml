@@ -159,33 +159,19 @@
                     <TextBlock Text="Recently Added Equipment" FontSize="30" FontWeight="Bold" Foreground="Black" FontFamily="Inter" Height="40" ></TextBlock>
                     <Line X1="0" Y1="70" X2="1300" Y2="70" Fill="Black" Stroke="Black" StrokeThickness="1"></Line>
                 </Grid>
-                <Grid Height="102">
-                    <StackPanel Orientation="Horizontal" Width="1350" Height="90">
-                        <Grid Width="100" Height="80" />
-                        <TextBlock FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-                        <TextBlock  FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-                        <Button x:Name="view"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium" Click="view_Click"></Button>
-                    </StackPanel>
-                </Grid>
-                <Grid Height="102">
-                    <StackPanel Orientation="Horizontal" Width="1350" Height="90">
-                        <Grid Width="100" Height="80" />
-                        <TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-                        <TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-                        <Button Click="view_Click"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium"></Button>
-                    </StackPanel>
-                </Grid>
-                <Grid Height="102">
-                    <StackPanel Orientation="Horizontal" Width="1350" Height="90">
-                        <Grid Width="100" Height="80" />
-                        <TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-                        <TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-                        <Button Click="view_Click"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium"></Button>
-                    </StackPanel>
-                </Grid>
-                <Grid Height="102"/>
-                <Grid Height="102"/>
-            </StackPanel>
+
+				<DataGrid Name="EquipmentDataGrid" HorizontalAlignment="Left" Height="490"  VerticalAlignment="Top" Width="1400">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Equipment Name" Binding="{Binding EquipmentName}" Width="235" />
+						<DataGridTextColumn Header="Equipment Type" Binding="{Binding EquipmentType}" Width="235" />
+						<DataGridTextColumn Header="Vendor" Binding="{Binding Vendor}" Width="235" />
+						<DataGridTextColumn Header="Acquisition Cost" Binding="{Binding AcquisitionCost}" Width="235" />
+						<DataGridTextColumn Header="Expected Lifespan" Binding="{Binding ExpectedLifespan}" Width="235" />
+						<DataGridTextColumn Header="Maintenance Date" Binding="{Binding MaintenanceDate}" Width="235" />
+
+					</DataGrid.Columns>
+				</DataGrid>
+			</StackPanel>
         </Grid>
 
 
@@ -610,17 +596,7 @@ Width="230">
 
 
         </Grid>
-        <DataGrid Name="EquipmentDataGrid" HorizontalAlignment="Left" Height="594" Margin="90,183,0,0" VerticalAlignment="Top" Width="1460">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Equipment Name" Binding="{Binding EquipmentName}" Width="200" />
-                <DataGridTextColumn Header="Equipment Type" Binding="{Binding EquipmentType}" Width="150" />
-                <DataGridTextColumn Header="Vendor" Binding="{Binding Vendor}" Width="100" />
-                <DataGridTextColumn Header="Acquisition Cost" Binding="{Binding AcquisitionCost}" Width="120" />
-                <DataGridTextColumn Header="Expected Lifespan" Binding="{Binding ExpectedLifespan}" Width="150" />
-                <DataGridTextColumn Header="Maintenance Date" Binding="{Binding MaintenanceDate}" Width="150" />
-
-            </DataGrid.Columns>
-        </DataGrid>
+       
 
 
     </Grid>
