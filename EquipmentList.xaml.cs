@@ -25,20 +25,12 @@ namespace CareTech
     public partial class EquipmentList : Window
     {
 
-        public readonly string connectionString;
         private ObservableCollection<Equipment> equipmentList;
 
         public EquipmentList()
         {
             InitializeComponent();
 
-            // Initialize the connection string in the constructor
-            connectionString = "server=localhost;database=caretech;user=root;password=caretech;";
-
-            // Initialize ObservableCollection
-            equipmentList = new ObservableCollection<Equipment>();
-
-            // Load equipment data
             LoadEquipmentData();
         }
 
