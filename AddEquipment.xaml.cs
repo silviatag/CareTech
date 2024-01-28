@@ -20,19 +20,19 @@ namespace CareTech
     public partial class AddEquipment : Window
     {
         // Use the correct connection string name
-        private readonly string connectionString;
+        public readonly string connectionString;
 
         public AddEquipment()
         {
             InitializeComponent();
 
             // Initialize the connection string in the constructor
-            connectionString = ConfigurationManager.ConnectionStrings["server=localhost;database=caretech;user=root;password=caretech;"]?.ConnectionString;
+            connectionString = "server=localhost;database=caretech;user=root;password=caretech;";
         }
 
         public void SaveEquipment(string equipmentName, string equipmentType, string vendor, decimal acquisitionCost, int expectedLifespan, DateTime maintenanceDate)
         {
-            String connectionString = ConfigurationManager.ConnectionStrings["server=localhost;database=caretech;user=root;password=caretech;"]?.ConnectionString;
+            String connectionString = "server=localhost;database=caretech;user=root;password=caretech;";
 
             try
             {

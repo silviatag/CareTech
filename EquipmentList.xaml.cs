@@ -23,7 +23,7 @@ namespace CareTech
     public partial class EquipmentList : Window
     {
 
-            private readonly string connectionString;
+            public readonly string connectionString;
 
             private ObservableCollection<EquipmentItem> equipmentList;
 
@@ -31,7 +31,7 @@ namespace CareTech
             {
                 InitializeComponent();
 
-                connectionString = ConfigurationManager.ConnectionStrings["server=localhost;database=caretech;user=root;password=caretech;"]?.ConnectionString;
+            connectionString = "server=localhost;database=caretech;user=root;password=caretech;"; ;
 
                 equipmentList = new ObservableCollection<EquipmentItem>();
                 EquipmentDataGrid.ItemsSource = equipmentList;
@@ -44,7 +44,7 @@ namespace CareTech
                 try
                 {
                     equipmentList.Clear();
-                String connectionString = ConfigurationManager.ConnectionStrings["server=localhost;database=caretech;user=root;password=caretech;"]?.ConnectionString;
+                String connectionString = "server=localhost;database=caretech;user=root;password=caretech;";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                     {
