@@ -9,6 +9,8 @@ using MySql.Data.MySqlClient;
 using CareTech.classes;
 using System.Data.SqlClient;
 using System.Windows.Controls;
+using System.Configuration;
+
 namespace CareTech
 {
     internal class DB
@@ -723,6 +725,13 @@ namespace CareTech
 
             return labs;
         }
+
+
+        //////AddEqupment///////
+       
+
+       
+
     }
 
 

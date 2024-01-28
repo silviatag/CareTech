@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +22,64 @@ namespace CareTech
     /// </summary>
     public partial class EquipmentList : Window
     {
-        public EquipmentList()
-        {
-            InitializeComponent();
-        }
+
+            private readonly string connectionString;
+
+            private ObservableCollection<EquipmentItem> equipmentList;
+
+            public EquipmentList()
+            {
+                InitializeComponent();
+
+                connectionString = ConfigurationManager.ConnectionStrings["server=localhost;database=caretech;user=root;password=caretech;"]?.ConnectionString;
+
+                equipmentList = new ObservableCollection<EquipmentItem>();
+                EquipmentDataGrid.ItemsSource = equipmentList;
+
+                LoadEquipmentData();
+            }
+
+            private void LoadEquipmentData()
+            {
+                try
+                {
+                    equipmentList.Clear();
+                String connectionString = ConfigurationManager.ConnectionStrings["server=localhost;database=caretech;user=root;password=caretech;"]?.ConnectionString;
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        string query = "SELECT EquipmentName, EquipmentType, Vendor, AcquisitionCost, ExpectedLifespan, MaintenanceDate FROM Equipment";
+
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+                            connection.Open();
+
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    EquipmentItem item = new EquipmentItem
+                                    {
+                                        EquipmentName = reader["EquipmentName"].ToString(),
+                                        EquipmentType = reader["EquipmentType"].ToString(),
+                                        Vendor = reader["Vendor"].ToString(),
+                                        AcquisitionCost = Convert.ToDecimal(reader["AcquisitionCost"]),
+                                        ExpectedLifespan = Convert.ToInt32(reader["ExpectedLifespan"]),
+                                        MaintenanceDate = Convert.ToDateTime(reader["MaintenanceDate"])
+                                    };
+
+                                    equipmentList.Add(item);
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
             // Set tooltip visibility
@@ -120,5 +177,21 @@ namespace CareTech
             AddEquipment eq= new AddEquipment();
             eq.Show();
         }
+
+
+
+        public class EquipmentItem
+        {
+            public string EquipmentName { get; set; }
+            public string EquipmentType { get; set; }
+            public string Vendor { get; set; }
+            public decimal AcquisitionCost { get; set; }
+            public int ExpectedLifespan { get; set; }
+            public DateTime MaintenanceDate { get; set; }
+        }
+
+
     }
+
+
 }
