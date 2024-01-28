@@ -32,11 +32,7 @@ namespace CareTech
         {
             InitializeComponent();
 
-            // Initialize the connection string in the constructor
-            connectionString = "server=localhost;database=caretech;user=root;password=caretech;";
 
-            // Initialize ObservableCollection
-            equipmentList = new ObservableCollection<Equipment>();
 
             // Load equipment data
             LoadEquipmentData();
