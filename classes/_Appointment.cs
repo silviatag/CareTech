@@ -16,23 +16,21 @@ namespace CareTech.classes
         public int AppointmentFees { get; set; }
         public int PatientID { get; set; }
         public int DoctorID { get; set; }
-        public int fees { get; set; }
 
         public _Appointment() { }
 
         public _Appointment( DateTime appointmentDate, TimeSpan appointmentTime,
-                           string appointmentType, int appointmentFees,
+                           string appointmentType,
                            int patientID, int doctorID)
         {
             AppointmentDate = appointmentDate;
             AppointmentTime = appointmentTime;
             AppointmentType = appointmentType;
-            AppointmentFees = appointmentFees;
             PatientID = patientID;
             DoctorID = doctorID;
             if (appointmentType == "Follow Up")
-                fees = 300;
-            else fees = 200;
+                AppointmentFees = 300;
+            else AppointmentFees = 200;
         }
     }
 }
