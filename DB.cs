@@ -729,10 +729,32 @@ namespace CareTech
         }
 
 
-        //////AddEqupment///////
-       
+        //////////////// EQUIPMENT ////////////////
+        public void InsertEquipment(Equipment equipment)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
 
-       
+                // Your SQL query to insert data into the Equipment table
+                string query = "INSERT INTO Equipment (EquipmentName, EquipmentType, Vendor, AcquisitionCost, ExpectedLifespan, MaintenanceDate) " +
+                               "VALUES (@EquipmentName, @EquipmentType, @Vendor, @AcquisitionCost, @ExpectedLifespan, @MaintenanceDate)";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@EquipmentName", equipment.EquipmentName);
+                    command.Parameters.AddWithValue("@EquipmentType", equipment.EquipmentType);
+                    command.Parameters.AddWithValue("@Vendor", equipment.Vendor);
+                    command.Parameters.AddWithValue("@AcquisitionCost", equipment.AcquisitionCost);
+                    command.Parameters.AddWithValue("@ExpectedLifespan", equipment.ExpectedLifespan);
+                    command.Parameters.AddWithValue("@MaintenanceDate", equipment.MaintenanceDate);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
 
     }
 
