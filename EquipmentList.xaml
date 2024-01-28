@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CareTech"
         mc:Ignorable="d"
-        Title="EquipmentList" Height="820" Width="1550" WindowState="Maximized">
+        Title="EquipmentList" Height="820" Width="1570" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="CustomButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#30646B"/>
