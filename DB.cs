@@ -754,6 +754,44 @@ namespace CareTech
             }
         }
 
+        public List<Equipment> GetAllEquipment()
+        {
+            List<Equipment> equipmentList = new List<Equipment>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Your SQL query to select all equipment from the Equipment table
+                string query = "SELECT * FROM Equipment";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Map database fields to Equipment properties
+                            Equipment equipment = new Equipment
+                            {
+                                EquipmentID = Convert.ToInt32(reader["EquipmentID"]),
+                                EquipmentName = reader["EquipmentName"].ToString(),
+                                EquipmentType = reader["EquipmentType"].ToString(),
+                                Vendor = reader["Vendor"].ToString(),
+                                AcquisitionCost = Convert.ToDecimal(reader["AcquisitionCost"]),
+                                ExpectedLifespan = Convert.ToInt32(reader["ExpectedLifespan"]),
+                                MaintenanceDate = Convert.ToDateTime(reader["MaintenanceDate"])
+                            };
+
+                            equipmentList.Add(equipment);
+                        }
+                    }
+                }
+            }
+
+            return equipmentList;
+        }
+
 
 
     }

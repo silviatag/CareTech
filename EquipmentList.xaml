@@ -160,75 +160,31 @@
                     <Line X1="0" Y1="70" X2="1300" Y2="70" Fill="Black" Stroke="Black" StrokeThickness="1"></Line>
                 </Grid>
                 <Grid Height="102">
-                    <Rectangle Fill="#F0F0F0" Stroke="Gray" Height="95" Width="1400" RadiusX="20" RadiusY="20"></Rectangle>
                     <StackPanel Orientation="Horizontal" Width="1350" Height="90">
-                        <Grid Width="100" Height="80" >
-                            <Grid Width="80" Background="#FFD2D5EE">
-                                <Image Source="/images/settings.png"  Width="80" Height="70"></Image>
-                            </Grid>
-                        </Grid>
-                        <TextBlock Text="ECG" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
+                        <Grid Width="100" Height="80" />
                         <TextBlock FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
                         <TextBlock  FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
                         <Button x:Name="view"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium" Click="view_Click"></Button>
                     </StackPanel>
                 </Grid>
                 <Grid Height="102">
-                    <Rectangle Fill="#F0F0F0" Stroke="Gray" Height="95" Width="1400" RadiusX="20" RadiusY="20"></Rectangle>
                     <StackPanel Orientation="Horizontal" Width="1350" Height="90">
-                        <Grid Width="100" Height="80" >
-                            <Grid Width="80" Background="#FFD2D5EE">
-                                <Image Source="/images/settings.png"  Width="80" Height="70"></Image>
-                            </Grid>
-                        </Grid>
-                        <TextBlock Text="EEG" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
+                        <Grid Width="100" Height="80" />
                         <TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
                         <TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
                         <Button Click="view_Click"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium"></Button>
                     </StackPanel>
                 </Grid>
                 <Grid Height="102">
-                    <Rectangle Fill="#F0F0F0" Stroke="Gray" Height="95" Width="1400" RadiusX="20" RadiusY="20"></Rectangle>
                     <StackPanel Orientation="Horizontal" Width="1350" Height="90">
-                        <Grid Width="100" Height="80" >
-                            <Grid Width="80" Background="#FFD2D5EE">
-                                <Image Source="/images/settings.png"  Width="80" Height="70"></Image>
-                            </Grid>
-                        </Grid>
-                        <TextBlock Text="MRI" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
+                        <Grid Width="100" Height="80" />
                         <TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
                         <TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
                         <Button Click="view_Click"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium"></Button>
                     </StackPanel>
                 </Grid>
-                <Grid Height="102">
-                    <Rectangle Fill="#F0F0F0" Stroke="Gray" Height="95" Width="1400" RadiusX="20" RadiusY="20"></Rectangle>
-                    <StackPanel Orientation="Horizontal" Width="1350" Height="90">
-                        <Grid Width="100" Height="80" >
-                            <Grid Width="80" Background="#FFD2D5EE">
-                                <Image Source="/images/settings.png"  Width="80" Height="70"></Image>
-                            </Grid>
-                        </Grid>
-                        <TextBlock Text="CT" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-                        <TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-                        <TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-                        <Button Click="view_Click"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium"></Button>
-                    </StackPanel>
-                </Grid>
-                <Grid Height="102">
-                    <Rectangle Fill="#F0F0F0" Stroke="Gray" Height="95" Width="1400" RadiusX="20" RadiusY="20"></Rectangle>
-                    <StackPanel Orientation="Horizontal" Width="1350" Height="90">
-                        <Grid Width="100" Height="80" >
-                            <Grid Width="80" Background="#FFD2D5EE">
-                                <Image Source="/images/settings.png"  Width="80" Height="70"></Image>
-                            </Grid>
-                        </Grid>
-                        <TextBlock Text="PET" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-                        <TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-                        <TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-                        <Button Click="view_Click"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium"></Button>
-                    </StackPanel>
-                </Grid>
+                <Grid Height="102"/>
+                <Grid Height="102"/>
             </StackPanel>
         </Grid>
 
@@ -654,7 +610,7 @@ Width="230">
 
 
         </Grid>
-        <DataGrid Name="EquipmentDataGrid" HorizontalAlignment="Left" Height="544" Margin="80,250,0,0" VerticalAlignment="Top" Width="1460">
+        <DataGrid Name="EquipmentDataGrid" HorizontalAlignment="Left" Height="544" Margin="90,250,0,0" VerticalAlignment="Top" Width="1460">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Equipment Name" Binding="{Binding EquipmentName}" Width="*" />
                 <DataGridTextColumn Header="Equipment Type" Binding="{Binding EquipmentType}" Width="*" />

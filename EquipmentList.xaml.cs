@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CareTech.classes;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
@@ -23,62 +25,40 @@ namespace CareTech
     public partial class EquipmentList : Window
     {
 
-            public readonly string connectionString;
+        public readonly string connectionString;
+        private ObservableCollection<Equipment> equipmentList;
 
-            private ObservableCollection<EquipmentItem> equipmentList;
+        public EquipmentList()
+        {
+            InitializeComponent();
 
-            public EquipmentList()
+            // Initialize the connection string in the constructor
+            connectionString = "server=localhost;database=caretech;user=root;password=caretech;";
+
+            // Initialize ObservableCollection
+            equipmentList = new ObservableCollection<Equipment>();
+
+            // Load equipment data
+            LoadEquipmentData();
+        }
+
+        private void LoadEquipmentData()
+        {
+            try
             {
-                InitializeComponent();
 
-            connectionString = "server=localhost;database=caretech;user=root;password=caretech;"; ;
+                 DB db = new DB();
 
-                equipmentList = new ObservableCollection<EquipmentItem>();
-                EquipmentDataGrid.ItemsSource = equipmentList;
 
-                LoadEquipmentData();
+                // Set the ObservableCollection as the data source for your ListView or DataGrid
+                EquipmentDataGrid.ItemsSource = db.GetAllEquipment();
             }
-
-            private void LoadEquipmentData()
+            catch (Exception ex)
             {
-                try
-                {
-                    equipmentList.Clear();
-                String connectionString = "server=localhost;database=caretech;user=root;password=caretech;";
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                    {
-                        string query = "SELECT EquipmentName, EquipmentType, Vendor, AcquisitionCost, ExpectedLifespan, MaintenanceDate FROM Equipment";
-
-                        using (SqlCommand command = new SqlCommand(query, connection))
-                        {
-                            connection.Open();
-
-                            using (SqlDataReader reader = command.ExecuteReader())
-                            {
-                                while (reader.Read())
-                                {
-                                    EquipmentItem item = new EquipmentItem
-                                    {
-                                        EquipmentName = reader["EquipmentName"].ToString(),
-                                        EquipmentType = reader["EquipmentType"].ToString(),
-                                        Vendor = reader["Vendor"].ToString(),
-                                        AcquisitionCost = Convert.ToDecimal(reader["AcquisitionCost"]),
-                                        ExpectedLifespan = Convert.ToInt32(reader["ExpectedLifespan"]),
-                                        MaintenanceDate = Convert.ToDateTime(reader["MaintenanceDate"])
-                                    };
-
-                                    equipmentList.Add(item);
-                                }
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message);
-                }
+                MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -180,15 +160,6 @@ namespace CareTech
 
 
 
-        public class EquipmentItem
-        {
-            public string EquipmentName { get; set; }
-            public string EquipmentType { get; set; }
-            public string Vendor { get; set; }
-            public decimal AcquisitionCost { get; set; }
-            public int ExpectedLifespan { get; set; }
-            public DateTime MaintenanceDate { get; set; }
-        }
 
 
     }
