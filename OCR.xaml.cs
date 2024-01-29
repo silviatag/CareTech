@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Tesseract; 
+
 
 namespace CareTech
 {
@@ -19,6 +21,7 @@ namespace CareTech
     /// </summary>
     public partial class OCR : Window
     {
+        string filePath = string.Empty;
         public OCR()
         {
             InitializeComponent();
@@ -109,5 +112,43 @@ namespace CareTech
             settings.Show();
             this.Close();
         }
+        private void Upload(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            bool? response = openFileDialog.ShowDialog();
+            if (response == true)
+            {
+                filePath = openFileDialog.FileName;
+                //MessageBox.Show(filePath);
+
+            }
+
+
+
+        }
+        private void RecognizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var engine = new TesseractEngine(@"tessdata", "eng", EngineMode.Default))
+                {
+                    using (var img = Pix.LoadFromFile(filePath))
+                    {
+                        using (var page = engine.Process(img))
+                        {
+                            var text = page.GetText();
+                            RecognizedTextBox.Text = text;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+
+
     }
 }

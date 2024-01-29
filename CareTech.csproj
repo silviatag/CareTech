@@ -154,6 +154,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Tesseract, Version=5.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Tesseract.5.2.0\lib\net47\Tesseract.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -338,6 +341,61 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="tessdata\configs\ambigs.train" />
+    <None Include="tessdata\configs\api_config" />
+    <None Include="tessdata\configs\bigram" />
+    <None Include="tessdata\configs\box.train" />
+    <None Include="tessdata\configs\box.train.stderr" />
+    <None Include="tessdata\configs\digits" />
+    <None Include="tessdata\configs\hocr" />
+    <None Include="tessdata\configs\inter" />
+    <None Include="tessdata\configs\kannada" />
+    <None Include="tessdata\configs\linebox" />
+    <None Include="tessdata\configs\logfile" />
+    <None Include="tessdata\configs\makebox" />
+    <None Include="tessdata\configs\quiet" />
+    <None Include="tessdata\configs\rebox" />
+    <None Include="tessdata\configs\strokewidth" />
+    <None Include="tessdata\configs\unlv" />
+    <None Include="tessdata\eng.cube.bigrams">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tessdata\eng.cube.fold">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tessdata\eng.cube.lm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tessdata\eng.cube.lm_">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tessdata\eng.cube.nn">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tessdata\eng.cube.params">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tessdata\eng.cube.size">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tessdata\eng.cube.word-freq">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tessdata\eng.tesseract_cube.nn">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tessdata\eng.traineddata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tessdata\osd.traineddata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tessdata\tessconfigs\batch" />
+    <None Include="tessdata\tessconfigs\batch.nochop" />
+    <None Include="tessdata\tessconfigs\matdemo" />
+    <None Include="tessdata\tessconfigs\msdemo" />
+    <None Include="tessdata\tessconfigs\nobatch" />
+    <None Include="tessdata\tessconfigs\segdemo" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -418,5 +476,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\MaterialDesignThemes.5.0.0-ci484\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MaterialDesignThemes.5.0.0-ci484\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('packages\tesseract-dotnet-avx2-x64.4.1.1.1\build\tesseract-dotnet-avx2-x64.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\tesseract-dotnet-avx2-x64.4.1.1.1\build\tesseract-dotnet-avx2-x64.targets'))" />
+    <Error Condition="!Exists('packages\Tesseract.5.2.0\build\Tesseract.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Tesseract.5.2.0\build\Tesseract.targets'))" />
   </Target>
+  <Import Project="packages\tesseract-dotnet-avx2-x64.4.1.1.1\build\tesseract-dotnet-avx2-x64.targets" Condition="Exists('packages\tesseract-dotnet-avx2-x64.4.1.1.1\build\tesseract-dotnet-avx2-x64.targets')" />
+  <Import Project="packages\Tesseract.5.2.0\build\Tesseract.targets" Condition="Exists('packages\Tesseract.5.2.0\build\Tesseract.targets')" />
 </Project>
