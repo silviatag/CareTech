@@ -161,36 +161,11 @@
 				</Grid>
 				<Grid Height="500">
 					<Rectangle Fill="White" Stroke="Gray" RadiusX="30" RadiusY="30"></Rectangle>
-					<ListView x:Name="appointmentListView" Margin="10" BorderBrush="Transparent">
-						<ListView.View>
-							<GridView>
-								<GridViewColumn Header="Patient" Width="600">
-									<GridViewColumn.CellTemplate>
-										<DataTemplate>
-											<TextBlock Text="{Binding PatientInfo}" FontSize="17" FontFamily="Inter" FontWeight="Medium" TextAlignment="Center"/>
-										</DataTemplate>
-									</GridViewColumn.CellTemplate>
-								</GridViewColumn>
-								<GridViewColumn Header="Details" Width="600">
-									<GridViewColumn.CellTemplate >
-										<DataTemplate >
-											<Button Width="100" FontSize="17" FontWeight="Medium" FontFamily="Inter" HorizontalAlignment="Center" Background="#7163ba" Foreground="White" BorderBrush="Transparent" Click="Details_CLick">
-												<Button.Template>
-													<ControlTemplate TargetType="Button">
-														<Border CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
-															<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-														</Border>
-													</ControlTemplate>
-												</Button.Template>
-												Details
-											</Button>
-
-										</DataTemplate>
-									</GridViewColumn.CellTemplate>
-								</GridViewColumn>
-							</GridView>
-						</ListView.View>
-					</ListView>
+					<ScrollViewer Width="1400" Height="450" VerticalScrollBarVisibility="Auto">
+						<StackPanel Orientation="Vertical"  Name="patientsStack">
+							
+						</StackPanel>
+					</ScrollViewer>
 				</Grid>
 			</StackPanel>
 		</Grid>

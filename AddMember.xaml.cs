@@ -1,10 +1,5 @@
-﻿using CareTech.classes;
-using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,38 +15,30 @@ using System.Windows.Shapes;
 namespace CareTech
 {
     /// <summary>
-    /// Interaction logic for EquipmentList.xaml
+    /// Interaction logic for AddMember.xaml
     /// </summary>
-    public partial class EquipmentList : Window
+    public partial class AddMember : Window
     {
-
-        private ObservableCollection<Equipment> equipmentList;
-
-        public EquipmentList()
+        public AddMember()
         {
             InitializeComponent();
-
-            LoadEquipmentData();
         }
 
-        private void LoadEquipmentData()
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+                string position = cmbPosition.Text;
+                string name = txtname.Text;
+                string email = txtEmail.Text;
+                string phoneNumber = txtPhoneNumber.Text;
+                string password = txtPassword.Text;
+                string gender = cmbGender.Text;
 
-                 DB db = new DB();
 
+                DB AM = new DB();
+                AM.AddMember(position, name, email, phoneNumber, password, gender);
+                
 
-                // Set the ObservableCollection as the data source for your ListView or DataGrid
-                EquipmentDataGrid.ItemsSource = db.GetAllEquipment();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
         }
-
-
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
             // Set tooltip visibility
@@ -146,15 +133,8 @@ namespace CareTech
 
         private void add_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipment eq= new AddEquipment();
+            AddEquipment eq = new AddEquipment();
             eq.Show();
         }
-
-
-
-
-
     }
-
-
 }

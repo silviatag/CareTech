@@ -1,11 +1,11 @@
-﻿<Window x:Class="CareTech.EquipmentList"
+﻿<Window x:Class="CareTech.AddMember"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CareTech"
         mc:Ignorable="d"
-        Title="EquipmentList" Height="820" Width="1570" WindowStartupLocation="CenterScreen">
+        Title="AddMember" Height="850" Width="1550" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="CustomButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#30646B"/>
@@ -31,26 +31,26 @@
         <!--// Toggle Button Style Template //-->
 
         <ImageBrush x:Key="tb_mouse_over"
-                ImageSource="/images/menu.png"/>
+             ImageSource="/images/menu.png"/>
 
         <!--// Text font style //-->
 
         <Style x:Key="font_style" TargetType="TextBlock">
 
             <Setter Property="FontFamily"
-                Value="Fonts/Roboto-Light.ttf #Roboto"/>
+             Value="Fonts/Roboto-Light.ttf #Roboto"/>
 
             <Setter Property="VerticalAlignment"
-                Value="Center"/>
+             Value="Center"/>
 
             <Setter Property="HorizontalAlignment"
-                Value="Left"/>
+             Value="Left"/>
 
             <Setter Property="Foreground"
-                Value="White"/>
+             Value="White"/>
 
             <Setter Property="FontSize"
-                Value="20"/>
+             Value="20"/>
 
         </Style>
 
@@ -84,9 +84,9 @@
                     <ControlTemplate TargetType="{x:Type ToggleButton}">
 
                         <Border  x:Name="border"
-                             BorderThickness="{TemplateBinding BorderThickness}"
-                             Background="{TemplateBinding Background}"
-                             SnapsToDevicePixels="True">
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                          Background="{TemplateBinding Background}"
+                          SnapsToDevicePixels="True">
 
                         </Border>
 
@@ -95,24 +95,24 @@
                             <Trigger Property="IsMouseOver" Value="true">
 
                                 <Setter Property="Background"
-                                    TargetName="border"
-                                    Value="{StaticResource tb_mouse_over}"/>
+                                 TargetName="border"
+                                 Value="{StaticResource tb_mouse_over}"/>
 
                                 <Setter Property="BorderBrush"
-                                    TargetName="border"
-                                    Value="{StaticResource tb_mouse_over}"/>
+                                 TargetName="border"
+                                 Value="{StaticResource tb_mouse_over}"/>
 
                             </Trigger>
 
                             <Trigger Property="IsChecked" Value="true">
 
                                 <Setter Property="Background"
-                                    TargetName="border"
-                                    Value="{StaticResource tb_mouse_over}"/>
+                                 TargetName="border"
+                                 Value="{StaticResource tb_mouse_over}"/>
 
                                 <Setter Property="BorderBrush"
-                                    TargetName="border"
-                                    Value="{StaticResource tb_mouse_over}"/>
+                                 TargetName="border"
+                                 Value="{StaticResource tb_mouse_over}"/>
 
                             </Trigger>
 
@@ -127,63 +127,48 @@
         </Style>
 
     </Window.Resources>
-
     <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                <GradientStop Color="#FFFFFF" Offset="0"/>
-                <GradientStop Color="LightGray" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Grid x:Name="MainGrid" Width="1440" Height="750" HorizontalAlignment="Right">
-            <StackPanel Orientation="Vertical" Width="1440">
-                <Grid Height="100" VerticalAlignment="Top">
-                    <TextBlock Text="Equpment" FontSize="30" FontWeight="Bold" Foreground="Black" FontFamily="Inter" Height="40" ></TextBlock>
-                    <Line X1="0" Y1="70" X2="300" Y2="70" Fill="Black" Stroke="Black" StrokeThickness="1"></Line>
-                </Grid>
-                <StackPanel Orientation="Horizontal"  Height="40">
-                    <Grid Width="40">
-                        <Button x:Name="add" Width="30" Height="30" BorderThickness="0" Click="add_Click">
-                            <Button.Background>
-                                <ImageBrush ImageSource="/images/add.jpg"></ImageBrush>
-                            </Button.Background>
-                        </Button>
-                    </Grid>
-                    <Grid Width="1350" HorizontalAlignment="Center">
-                        <Rectangle Fill="#F0F0F0" Stroke="Gray" RadiusX="20" RadiusY="20"></Rectangle>
-                        <Image Source="/images/search.png" Width="20" Height="20" Opacity="0.5" HorizontalAlignment="Left" Margin="17,0,0,0" ></Image>
-                        <TextBlock Text="search..." FontSize="18" Width="1250" VerticalAlignment="Center" FontWeight="SemiBold" FontFamily="Inter" Foreground="gray"></TextBlock>
-                    </Grid>
-                </StackPanel>
-                <Grid Height="100" VerticalAlignment="Top">
-                    <TextBlock Text="Recently Added Equipment" FontSize="30" FontWeight="Bold" Foreground="Black" FontFamily="Inter" Height="40" ></TextBlock>
-                    <Line X1="0" Y1="70" X2="1300" Y2="70" Fill="Black" Stroke="Black" StrokeThickness="1"></Line>
-                </Grid>
 
-				<DataGrid Name="EquipmentDataGrid" HorizontalAlignment="Left" Height="490"  VerticalAlignment="Top" Width="1400">
-					<DataGrid.Columns>
-						<DataGridTextColumn Header="Equipment Name" Binding="{Binding EquipmentName}" Width="235" />
-						<DataGridTextColumn Header="Equipment Type" Binding="{Binding EquipmentType}" Width="235" />
-						<DataGridTextColumn Header="Vendor" Binding="{Binding Vendor}" Width="235" />
-						<DataGridTextColumn Header="Acquisition Cost" Binding="{Binding AcquisitionCost}" Width="235" />
-						<DataGridTextColumn Header="Expected Lifespan" Binding="{Binding ExpectedLifespan}" Width="235" />
-						<DataGridTextColumn Header="Maintenance Date" Binding="{Binding MaintenanceDate}" Width="235" />
 
-					</DataGrid.Columns>
-				</DataGrid>
-			</StackPanel>
-        </Grid>
+        <!-- Your existing elements -->
+
+        <!-- TextBoxes -->
+        <TextBox x:Name="txtname" HorizontalAlignment="Left" Margin="604,274,0,0" VerticalAlignment="Top"
+         Width="570" Height="45" Background="#FFE6E3F7" BorderBrush="#D1DFE0" />
+        <TextBlock Text="Name" Foreground="#2F6462" Margin="604,237,715,565" FontSize="20"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="604,434,0,0" VerticalAlignment="Top"
+        Width="242" Height="45" Background="#FFE6E3F7" BorderBrush="#D1DFE0" />
+        <TextBlock Text="Email" Foreground="#2F6462" Margin="604,390,756,404" FontSize="20"/>
+        <TextBox x:Name="txtPhoneNumber" HorizontalAlignment="Left" Margin="978,434,0,0" VerticalAlignment="Top"
+         Width="242" Height="45" Background="#FFE6E3F7" BorderBrush="#D1DFE0" />
+        <TextBlock Text="Phone Number" Foreground="#2F6462" Margin="978,395,307,413" FontSize="20"/>
+        <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="604,585,0,0" VerticalAlignment="Top"
+        Width="242" Height="45" Background="#FFE6E3F7" BorderBrush="#D1DFE0" />
+        <TextBlock Text="Password" Foreground="#2F6462" Margin="604,552,720,254" FontSize="20"/>
 
 
 
+        <ComboBox x:Name="cmbGender" Background="#D1DFE0" Margin="978,584,330,0" VerticalAlignment="Top" Width="242" Height="45">
+            <ComboBoxItem Content="Male"/>
+            <ComboBoxItem Content="Female"/>
+        </ComboBox>
+        <TextBlock Text="Gender" Foreground="#2F6462" Margin="982,544,376,262" FontSize="20" />
+        <ComboBox  x:Name="cmbPosition" Background="#D1DFE0" Margin="777,150,531,0" VerticalAlignment="Top" Width="242" Height="45">
+            <ComboBoxItem Content="Doctor"/>
+            <ComboBoxItem Content="Reciptionist"/>
+            <ComboBoxItem Content="Nurse"/>
+        </ComboBox>
+        <TextBlock Text="Member" Foreground="#2F6462" Margin="847,117,607,689" FontSize="20" TextAlignment="Justify" />
+
+        <!-- Adjust other ComboBoxes and TextBlocks similarly -->
+
+        <!-- Image -->
+        <Image Source="/images/profile.jpg" Width="200" Height="200" Margin="248,196,1102,438"/>
+        <TextBlock Text="Add New Member" Foreground="#FF3B3171" Margin="157,39,906,730" FontSize="45"/>
+        <Button Style="{StaticResource CustomButtonStyle}" Content="Save" Foreground="white" FontFamily="Inter" FontWeight="Medium" FontSize="20" Margin="829,765,493,194" Background="#FF7163BA" ></Button>
 
 
-
-
-
-
-
-
+        <Button Name="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#7163ba" Foreground="White"  Height="37" Width="142" Content="Save" FontFamily="Inter" FontSize="15" FontWeight="Medium" Click="btnSave_Click" Margin="824,704,0,0"></Button>
 
 
         <Grid   x:Name="nav_pnl" HorizontalAlignment="Left" Width="65" Margin="10,10,0,10"
@@ -596,10 +581,11 @@ Width="230">
 
 
         </Grid>
-       
+
+
 
 
     </Grid>
-</Window>
 
-	
+</Window>
+ 

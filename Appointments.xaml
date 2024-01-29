@@ -184,8 +184,8 @@
 			<TextBlock Text="Next appointment in:" Foreground="Black" FontSize="30" FontWeight="SemiBold" FontFamily="Inter" TextAlignment="Left" Margin="167,561,1017,196"></TextBlock>
 			<Grid Margin="167,608,880,139">
 				<Rectangle Fill="#7163ba" Stroke="Gray" RadiusX="15" RadiusY="15"></Rectangle>
-				<TextBlock Text="dd : hh : mm" Foreground="White" FontSize="45" FontWeight="Regular" FontFamily="Inter" TextAlignment="Center"></TextBlock>
-			</Grid>
+                <TextBlock  x:Name="stopwatch_text" Text="dd : hh : mm" Foreground="White" FontSize="45" FontWeight="Regular" FontFamily="Inter" TextAlignment="Center"></TextBlock>
+            </Grid>
 			<Grid Height="90" Width="1300" Margin="26,685,-26,29">
 				<Rectangle Fill="#F0F0F0" Stroke="Gray" RadiusX="20" RadiusY="20"></Rectangle>
 				<Grid Margin="0,0,0,4">

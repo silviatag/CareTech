@@ -32,7 +32,7 @@ namespace CareTech
             Patient nextPatient = db.GetPatientById(nextApp.PatientID);
             patientNametxt.Text = nextPatient.Name;
             patientIDtxt.Text = nextPatient.PatientID.ToString();
-            fileBTN.Name = "id"+nextPatient.PatientID.ToString();
+            fileBTN.Name = "id" + nextPatient.PatientID.ToString();
 
         }
         private void GenerateDynamicUI(DateTime sDate)
@@ -130,93 +130,93 @@ namespace CareTech
                 GenerateDynamicUI(selectedDate);
             }
         }
-        
+
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
             // Set tooltip visibility
 
-            if (Tg_Btn.IsChecked == true)
-            {
-                tt_home.Visibility = Visibility.Collapsed;
-                tt_finance.Visibility = Visibility.Collapsed;
-                tt_analytics.Visibility = Visibility.Collapsed;
-                tt_patients.Visibility = Visibility.Collapsed;
-                tt_settings.Visibility = Visibility.Collapsed;
-                tt_appointements.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                tt_home.Visibility = Visibility.Visible;
-                tt_finance.Visibility = Visibility.Visible;
-                tt_analytics.Visibility = Visibility.Visible;
-                tt_patients.Visibility = Visibility.Visible;
-                tt_settings.Visibility = Visibility.Visible;
-                tt_appointements.Visibility = Visibility.Visible;
-            }
-        }
+                    if (Tg_Btn.IsChecked == true)
+                    {
+                        tt_home.Visibility = Visibility.Collapsed;
+                        tt_finance.Visibility = Visibility.Collapsed;
+                        tt_analytics.Visibility = Visibility.Collapsed;
+                        tt_patients.Visibility = Visibility.Collapsed;
+                        tt_settings.Visibility = Visibility.Collapsed;
+                        tt_appointements.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        tt_home.Visibility = Visibility.Visible;
+                        tt_finance.Visibility = Visibility.Visible;
+                        tt_analytics.Visibility = Visibility.Visible;
+                        tt_patients.Visibility = Visibility.Visible;
+                        tt_settings.Visibility = Visibility.Visible;
+                        tt_appointements.Visibility = Visibility.Visible;
+                    }
+                }
 
-        /*private void Tg_Btn_Unchecked(object sender, RoutedEventArgs e)
-        {
-            img_bg.Opacity = 1;
-        }
+                /*private void Tg_Btn_Unchecked(object sender, RoutedEventArgs e)
+                {
+                    img_bg.Opacity = 1;
+                }
 
-        private void Tg_Btn_Checked(object sender, RoutedEventArgs e)
-        {
-            img_bg.Opacity = 0.3;
-        }*/
+                private void Tg_Btn_Checked(object sender, RoutedEventArgs e)
+                {
+                    img_bg.Opacity = 0.3;
+                }*/
 
-        private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            Tg_Btn.IsChecked = false;
-        }
+                private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+                {
+                    Tg_Btn.IsChecked = false;
+                }
 
-        private void CloseBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+                private void CloseBtn_Click(object sender, RoutedEventArgs e)
+                {
+                    Close();
+                }
 
-        private void home_Click(object sender, RoutedEventArgs e)
-        {
-            DoctorDashboard ap = new DoctorDashboard();
-            ap.Show();
-            this.Close();
-        }
+                private void home_Click(object sender, RoutedEventArgs e)
+                {
+                    DoctorDashboard ap = new DoctorDashboard();
+                    ap.Show();
+                    this.Close();
+                }
 
-        private void appointments_Click(object sender, RoutedEventArgs e)
-        {
-            Appointments ap = new Appointments();
-            ap.Show();
-            this.Close();
-        }
+                private void appointments_Click(object sender, RoutedEventArgs e)
+                {
+                    Appointments ap = new Appointments();
+                    ap.Show();
+                    this.Close();
+                }
 
-        private void patients_Click(object sender, RoutedEventArgs e)
-        {
-            PatientList ap = new PatientList();
-            ap.Show();
-            this.Close();
-        }
+                private void patients_Click(object sender, RoutedEventArgs e)
+                {
+                    PatientList ap = new PatientList();
+                    ap.Show();
+                    this.Close();
+                }
 
-        private void analytics_Click(object sender, RoutedEventArgs e)
-        {
-            Analytics ap = new Analytics();
-            ap.Show();
-            this.Close();
-        }
+                private void analytics_Click(object sender, RoutedEventArgs e)
+                {
+                    Analytics ap = new Analytics();
+                    ap.Show();
+                    this.Close();
+                }
 
-        private void finance_Click(object sender, RoutedEventArgs e)
-        {
-            Financce ap = new Financce();
-            ap.Show();
-            this.Close();
-        }
+                private void finance_Click(object sender, RoutedEventArgs e)
+                {
+                    Financce ap = new Financce();
+                    ap.Show();
+                    this.Close();
+                }
 
-        private void settings_Click(object sender, RoutedEventArgs e)
-        {
-            Settings ap = new Settings();
-            ap.Show();
-            this.Close();
-        }
+                private void settings_Click(object sender, RoutedEventArgs e)
+                {
+                    Settings ap = new Settings();
+                    ap.Show();
+                    this.Close();
+                }
 
         private void emr_Click(object sender, RoutedEventArgs e)
         {
