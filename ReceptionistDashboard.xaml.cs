@@ -1,8 +1,6 @@
 ﻿using CareTech.classes;
-using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,49 +11,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CareTech
 {
     /// <summary>
-    /// Interaction logic for DoctorDashboard.xaml
+    /// Interaction logic for ReceptionistDashboard.xaml
     /// </summary>
-    public partial class DoctorDashboard : Window
+    public partial class ReceptionistDashboard : Window
     {
-        public DoctorDashboard()
-        {
+        public ReceptionistDashboard()
+        { 
+
             InitializeComponent();
             LoadAppointments();
             DB db = new DB();
-            followUpCount.Text = db.CountFollowUpAppointmentsForToday().ToString();
-            consultationCount.Text =db.CountConsultationAppointmentsForToday().ToString() ;  
-            totalPatientCount.Text= (db.CountFollowUpAppointmentsForToday()+ db.CountConsultationAppointmentsForToday()).ToString();
-            totalfeestxt.Text =db.SumFeesForToday().ToString();
+            List<_Appointment> appointments = db.GetAppointmentsFromNow().OrderBy(appointment => appointment.AppointmentTime).ToList();
+            _Appointment nextApp = appointments[0];
+            nextAppointment.Text = nextApp.AppointmentTime.ToString();
+            TotalAppointment.Text = (db.CountConsultationAppointmentsForToday() + db.CountFollowUpAppointmentsForToday()).ToString();
         }
-
-        public class AppointmentViewModel
-        {
-            public string PatientInfo { get; set; }
-            public string AppointmentTime { get; set; }
-            public int AppointmentID { get; set; }
-        }
-        private void Details_CLick(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)sender;
-            PatientFile pf = new PatientFile();
-            pf.idtxt.Text = btn.Name.Split('d')[1];
-            pf.PatientID = Convert.ToInt32(btn.Name.Split('d')[1]);
-            int patientid = int.Parse(btn.Name.Split('d')[1]);
-            pf.SetPatientID(patientid);
-            pf.Show();
-            this.Close();
-        }
-
-
-
-
-
         private void LoadAppointments()
         {
             DB db = new DB();
@@ -75,77 +50,17 @@ namespace CareTech
 
                 TextBlock nametxt = new TextBlock
                 {
-                    Text = p.Name+" #"+p.PatientID,
+                    Text = p.Name + " #" + p.PatientID,
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     TextAlignment = TextAlignment.Center,
-                    FontSize=15
+                    FontSize = 15
                 };
 
-                // Add the TextBlock to the Grid
-                nameGrid.Children.Add(nametxt);
-
-                // Add the Grid to the StackPanel
-                horizontalStackPanel.Children.Add(nameGrid);
-
-                Grid timeGrid = new Grid
-                {
-                    Width = 383
-                };
-
-                TextBlock timetxt = new TextBlock
-                {
-                    Text = app.AppointmentTime.ToString(),
-                    VerticalAlignment = VerticalAlignment.Center,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    TextAlignment = TextAlignment.Center,
-                    FontSize =15
-                };
-
-                // Add the TextBlock to the Grid
-                timeGrid.Children.Add(timetxt);
-
-                // Add the Grid to the StackPanel
-                horizontalStackPanel.Children.Add(timeGrid);
-
-                Grid DetailsGrid = new Grid
-                {
-                    Width = 390
-                };
-                Rectangle rec = new Rectangle
-                {
-                    Fill = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#7163ba")),
-                    RadiusX =15,
-                    RadiusY =15,
-                    StrokeThickness = 0,
-                    Width = 100,
-                    Height = 30
-                };
-                DetailsGrid.Children.Add(rec);
-                Button detailsBtn = new Button
-                {
-                    Name="id"+ p.PatientID.ToString(),
-                    Content = "Details",
-                    FontFamily = new System.Windows.Media.FontFamily("Inter"),
-                    FontWeight = FontWeights.Medium,
-                    Foreground= System.Windows.Media.Brushes.White,
-                    Width = 100,
-                    Height = 30,
-                    FontSize = 15,
-                    Background = System.Windows.Media.Brushes.Transparent,
-                    BorderThickness = new Thickness(0),
-                    
-                };
-                detailsBtn.Click += Details_CLick;
-                DetailsGrid.Children.Add(detailsBtn);
-
-                // Add the Grid to the StackPanel
-                horizontalStackPanel.Children.Add(DetailsGrid);
-                appsPanel.Children.Add(horizontalStackPanel);
             }
         }
 
-      
+
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
             // Set tooltip visibility
@@ -169,8 +84,8 @@ namespace CareTech
                 tt_patients.Visibility = Visibility.Visible;
                 tt_settings.Visibility = Visibility.Visible;
                 tt_appointements.Visibility = Visibility.Visible;
-                tt_ocr.Visibility= Visibility.Visible;
-                tt_equip.Visibility= Visibility.Visible;
+                tt_ocr.Visibility = Visibility.Visible;
+                tt_equip.Visibility = Visibility.Visible;
             }
         }
 
@@ -265,7 +180,7 @@ namespace CareTech
             this.Close();
         }
 
-        
+
         private void OCR_Click(object sender, RoutedEventArgs e)
         {
             AddMember ap = new AddMember();
@@ -284,6 +199,9 @@ namespace CareTech
 
 
 
-        
     }
+
 }
+
+
+

@@ -214,6 +214,9 @@
     <Compile Include="OCR.xaml.cs">
       <DependentUpon>OCR.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ReceptionistDashboard.xaml.cs">
+      <DependentUpon>ReceptionistDashboard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -301,6 +304,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PatientList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReceptionistDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
