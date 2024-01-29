@@ -194,6 +194,7 @@
     <Compile Include="AdminDashboard.xaml.cs">
       <DependentUpon>AdminDashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Class1.cs" />
     <Compile Include="classes\Equipment.cs" />
     <Compile Include="classes\LabTests.cs" />
     <Compile Include="classes\Prescription.cs" />
@@ -213,6 +214,9 @@
     </Compile>
     <Compile Include="OCR.xaml.cs">
       <DependentUpon>OCR.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Receptionist.xaml.cs">
+      <DependentUpon>Receptionist.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
@@ -304,6 +308,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PatientList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Receptionist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
