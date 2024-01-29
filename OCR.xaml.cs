@@ -65,7 +65,7 @@ namespace CareTech
         {
             Tg_Btn.IsChecked = false;
         }
-
+// hola
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
