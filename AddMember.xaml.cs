@@ -36,8 +36,8 @@ namespace CareTech
 
                 DB AM = new DB();
                 AM.AddMember(position, name, email, phoneNumber, password, gender);
-
                 
+
         }
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
