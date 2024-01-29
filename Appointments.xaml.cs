@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,8 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
-
 
 namespace CareTech
 {
@@ -26,6 +23,7 @@ namespace CareTech
         public Appointments()
         {
             InitializeComponent();
+            GenerateDynamicUI(DateTime.Today);
             string today = (DateTime.Today).ToString("dd-MM-yyyy");
             TodayDate.Text = today;
             DB db = new DB();
@@ -49,23 +47,94 @@ namespace CareTech
                 Grid dynamicGrid = new Grid();
                 dynamicGrid.Height = 57;
 
-                //DateTime selectedDate;
-                private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+                // Create the rectangle
+                Rectangle rectangle = new Rectangle();
+                rectangle.Stroke = Brushes.Gray;
+                rectangle.RadiusX = 15;
+                rectangle.RadiusY = 15;
+                dynamicGrid.Children.Add(rectangle);
+
+                // Create the inner grid
+                Grid innerGrid = new Grid();
+
+                // Create a stack panel
+                StackPanel stackPanel = new StackPanel();
+                stackPanel.Orientation = Orientation.Horizontal;
+
+                // Create three inner grids
+                for (int i = 0; i < 3; i++)
                 {
-                    if (e.AddedItems.Count > 0)
+                    Grid textBlockGrid = new Grid();
+                    textBlockGrid.Width = 233;
+
+                    TextBlock textBlock = new TextBlock();
+                    textBlock.Foreground = Brushes.Black;
+                    textBlock.FontSize = 20;
+                    textBlock.FontWeight = FontWeights.Medium;
+                    textBlock.FontFamily = new FontFamily("Inter");
+                    textBlock.VerticalAlignment = VerticalAlignment.Center;
+                    textBlock.HorizontalAlignment = HorizontalAlignment.Center;
+                    textBlock.TextAlignment = TextAlignment.Center;
+
+                    // Set different text content for each TextBlock
+                    if (i == 0)
                     {
-                        DateTime selectedDateTime = (DateTime)e.AddedItems[0];
-                        DateTime selectedDate = selectedDateTime.Date;
-                        calendar.SelectedDate = selectedDate;
-                        //TodayDate.Text= selectedDate.ToString();
-                        string formattedDate = selectedDate.ToString("dd-MM-yyyy");
-                        TodayDate.Text = formattedDate;
+                        textBlock.Text = app.AppointmentTime.ToString();
                     }
+                    else if (i == 1)
+                    {
+                        textBlock.Text = p.Name;
+
+                        // Add a second TextBlock for patient number
+                        TextBlock patientNumberTextBlock = new TextBlock();
+                        patientNumberTextBlock.Text = "#" + p.PatientID;
+                        patientNumberTextBlock.Foreground = Brushes.Gray;
+                        patientNumberTextBlock.FontSize = 12;
+                        patientNumberTextBlock.FontWeight = FontWeights.Medium;
+                        patientNumberTextBlock.FontFamily = new FontFamily("Inter");
+                        patientNumberTextBlock.VerticalAlignment = VerticalAlignment.Top;
+                        patientNumberTextBlock.HorizontalAlignment = HorizontalAlignment.Left;
+                        patientNumberTextBlock.TextAlignment = TextAlignment.Center;
+                        patientNumberTextBlock.Margin = new Thickness(96, 38, 0, 0);
+
+                        textBlockGrid.Children.Add(patientNumberTextBlock);
+                    }
+                    else if (i == 2)
+                    {
+                        textBlock.Text = app.AppointmentType;
+                    }
+
+                    textBlockGrid.Children.Add(textBlock);
+                    stackPanel.Children.Add(textBlockGrid);
                 }
 
-                private void ListViewItem_MouseEnter(object sender, System.Windows.Forms.MouseEventArgs e)
-                {
-                    // Set tooltip visibility
+                innerGrid.Children.Add(stackPanel);
+                dynamicGrid.Children.Add(innerGrid);
+
+                // Add the dynamically generated UI to the existing XAML structure
+                appTable.Children.Add(dynamicGrid);
+            }
+
+        }
+
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                DateTime selectedDateTime = (DateTime)e.AddedItems[0];
+                DateTime selectedDate = selectedDateTime.Date;
+                calendar.SelectedDate = selectedDate;
+                //TodayDate.Text= selectedDate.ToString();
+                string formattedDate = selectedDate.ToString("dd-MM-yyyy");
+                TodayDate.Text = formattedDate;
+                GenerateDynamicUI(selectedDate);
+            }
+        }
+
+
+        private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
+        {
+            // Set tooltip visibility
 
                     if (Tg_Btn.IsChecked == true)
                     {
@@ -149,20 +218,16 @@ namespace CareTech
                     this.Close();
                 }
 
-                private void emr_Click(object sender, RoutedEventArgs e)
-                {
-                    Button btn = (Button)sender;
-                    PatientFile pf = new PatientFile();
-                    pf.idtxt.Text = btn.Name.Split('d')[1];
-                    pf.PatientID = Convert.ToInt32(btn.Name.Split('d')[1]);
-                    int patientid = int.Parse(btn.Name.Split('d')[1]);
-                    pf.SetPatientID(patientid);
-                    pf.Show();
-                    this.Close();
-                }
-                System.Timers.Timer stopwatchTimer = new System.Timers.Timer();
-                int h, m, s, ms;
-
-
-            }
-        } } }
+        private void emr_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            PatientFile pf = new PatientFile();
+            pf.idtxt.Text = btn.Name.Split('d')[1];
+            pf.PatientID = Convert.ToInt32(btn.Name.Split('d')[1]);
+            int patientid = int.Parse(btn.Name.Split('d')[1]);
+            pf.SetPatientID(patientid);
+            pf.Show();
+            this.Close();
+        }
+    }
+}
