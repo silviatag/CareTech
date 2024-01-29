@@ -10,6 +10,7 @@ using CareTech.classes;
 using System.Data.SqlClient;
 using System.Windows.Controls;
 using System.Configuration;
+using System.Data;
 
 namespace CareTech
 {
@@ -794,8 +795,54 @@ namespace CareTech
         }
 
 
+        //////////////////////////// New Member //////////////////////
+        public void AddMember(string position, string name, string email, string phoneNumber, string password, string gender)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
 
-    }
+                    string insertQuery = "";
+
+                    // Choose the table based on the selected position
+                    switch (position.ToLower())
+                    {
+                        case "receptionist":
+                            insertQuery = "INSERT INTO receptionist (receptionistName, email, phoneNumber, receptionistPassword, gender) VALUES (@Name, @Email, @PhoneNumber, @Password, @Gender)";
+                            break;
+
+                        case "doctor":
+                            insertQuery = "INSERT INTO doctor (doctorName, email, phoneNumber, docPassword, gender) VALUES (@Name, @Email, @PhoneNumber, @Password, @Gender)";
+                            break;
+
+                        default:
+                            throw new Exception("Invalid position");
+                    }
+
+                    MySqlCommand cmd = new MySqlCommand(insertQuery, connection);
+                    cmd.Parameters.AddWithValue("@Name", name);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+                    cmd.Parameters.AddWithValue("@Password", password);
+                    cmd.Parameters.AddWithValue("@Gender", gender);
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Error: {ex.Message}");
+                }
+                finally
+                {
+                    if (connection.State == ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+
 
 
 
@@ -804,6 +851,11 @@ namespace CareTech
         }
 
 
-    }
 
+
+
+    }
 }
+
+
+    
