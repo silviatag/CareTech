@@ -232,7 +232,7 @@ namespace CareTech
                 ComboBoxItem docSelectedComboBoxItem = pickAdoc.SelectedItem as ComboBoxItem;
                 string doc = pickAdoc.SelectedItem?.ToString();
                 string[] words = doc.Split(' ');
-                string docidstring = words[2];
+                string docidstring = words[words.Length - 1];
                 int docid = int.Parse(docidstring);
                 _Appointment app = new _Appointment(appdate, apptime, apptype,patientid, docid);
                 

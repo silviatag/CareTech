@@ -395,7 +395,7 @@ namespace CareTech
                 connection.Open();
 
                 string query = @"INSERT INTO appointment 
-                         (appointmentDate, appointmentTime, appointmentType, appointmentFees, patientID, doctorID, fees) 
+                         (appointmentDate, appointmentTime, appointmentType, appointmentFees, patientID, doctorID) 
                          VALUES (@AppointmentDate, @AppointmentTime, @AppointmentType, @AppointmentFees, @PatientID, @DoctorID)";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
