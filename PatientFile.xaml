@@ -267,12 +267,12 @@
 							<Rectangle Fill="White"></Rectangle>
 							<StackPanel Orientation="Horizontal">
 								<Button BorderThickness="0" Background="White" Content="Prescriptions" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="Labs" Visibility="Collapsed" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="ECG/Imaging" Visibility="Collapsed" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button Visibility="Collapsed" BorderThickness="0" Background="White" Content="Analysis" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="History" Visibility="Collapsed" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="Comments" Visibility="Collapsed" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="Appointments and Fees" Visibility="Collapsed" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="248" Click="Button_Click"></Button>
+								<Button BorderThickness="0" Background="White" Content="Labs" Visibility="Visible" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
+								<Button BorderThickness="0" Background="White" Content="ECG/Imaging" Visibility="Visible" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
+								<Button Visibility="Visible" BorderThickness="0" Background="White" Content="Analysis" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
+								<Button BorderThickness="0" Background="White" Content="History" Visibility="Visible" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
+								<Button BorderThickness="0" Background="White" Content="Discussion" Visibility="Visible" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
+								<Button BorderThickness="0" Background="White" Content="Appointments and Fees" Visibility="Visible" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="248" Click="Button_Click"></Button>
 							</StackPanel>
 						</Grid>
 						<Grid x:Name="Prescriptions" Visibility="Visible" Height="680" Background="#F0F0F0">
