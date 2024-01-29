@@ -25,31 +25,14 @@ namespace CareTech.classes
         public Doctor() { }
 
         // Constructor with parameters
-        public Doctor(string doctorName, string nationalID, DateTime? dob, string gender,
-                      string address, string phoneNumber, string email, string docPassword,
-                      string specialization, DateTime? jointDate)
+        public Doctor(string doctorName, string gender,
+                      string phoneNumber, string email, string docPassword)
         {
             DoctorName = doctorName;
-            NationalID = nationalID;
-            DOB = dob;
             Gender = gender;
-            Address = address;
             PhoneNumber = phoneNumber;
             Email = email;
             DocPassword = docPassword;
-            Specialization = specialization;
-            JointDate = jointDate;
-            if (DOB.HasValue)
-            {
-                DateTime currentDate = DateTime.Now;
-                Age = currentDate.Year - DOB.Value.Year;
-
-                // Check if the birthday for this year has occurred or not
-                if (DOB.Value.Date > currentDate.AddYears(-Age))
-                {
-                    Age--;
-                }
-            }
         }
     }
 }

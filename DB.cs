@@ -289,11 +289,10 @@ namespace CareTech
         public void InsertDoctor(Doctor doctor)
         {
             string insertSql = @"INSERT INTO doctor 
-                                 (doctorName, nationalID, DOB, age, gender, address, 
-                                  phoneNumber, email, docPassword, specialization, jointDate) 
+                                 (doctorName, gender, 
+                                  phoneNumber, email, docPassword) 
                                  VALUES 
-                                 (@DoctorName, @NationalID, @DOB, @Age, @Gender, @Address, 
-                                  @PhoneNumber, @Email, @DocPassword, @Specialization, @JointDate)";
+                                 (@DoctorName, @Gender, @PhoneNumber, @Email, @DocPassword)";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -302,16 +301,10 @@ namespace CareTech
                 using (MySqlCommand command = new MySqlCommand(insertSql, connection))
                 {
                     command.Parameters.AddWithValue("@DoctorName", doctor.DoctorName);
-                    command.Parameters.AddWithValue("@NationalID", doctor.NationalID);
-                    command.Parameters.AddWithValue("@DOB", doctor.DOB);
-                    command.Parameters.AddWithValue("@Age", doctor.Age);
                     command.Parameters.AddWithValue("@Gender", doctor.Gender);
-                    command.Parameters.AddWithValue("@Address", doctor.Address);
                     command.Parameters.AddWithValue("@PhoneNumber", doctor.PhoneNumber);
                     command.Parameters.AddWithValue("@Email", doctor.Email);
                     command.Parameters.AddWithValue("@DocPassword", doctor.DocPassword);
-                    command.Parameters.AddWithValue("@Specialization", doctor.Specialization);
-                    command.Parameters.AddWithValue("@JointDate", doctor.JointDate);
                     command.ExecuteNonQuery();
                 }
             }
@@ -795,8 +788,33 @@ namespace CareTech
         }
 
 
-        //////////////////////////// New Member //////////////////////
-        public void AddMember(string position, string name, string email, string phoneNumber, string password, string gender)
+        //////////////////////////// RECEPTIONIST //////////////////////
+
+        public void InsertReceptionist(Receptionist r)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Your SQL query to insert data into the receptionist table
+                string query = "INSERT INTO receptionist (receptionistName, gender, phoneNumber, email, receptionistPassword) " +
+                               "VALUES (@ReceptionistName, @Gender, @PhoneNumber, @Email, @ReceptionistPassword)";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ReceptionistName", r.ReceptionistName);
+                    command.Parameters.AddWithValue("@Gender", r.Gender);
+                    command.Parameters.AddWithValue("@PhoneNumber", r.PhoneNumber);
+                    command.Parameters.AddWithValue("@Email", r.Email);
+                    command.Parameters.AddWithValue("@ReceptionistPassword", r.ReceptionistPassword);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+        /*public void AddMember(string position, string name, string email, string phoneNumber, string password, string gender)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -851,7 +869,7 @@ namespace CareTech
 
 
     }
-
+*/
 
 
 

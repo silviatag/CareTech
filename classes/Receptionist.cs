@@ -24,11 +24,9 @@ namespace CareTech.classes
         }
 
         // Parameterized constructor
-        public Receptionist(string name, string nationalID, int age, string gender, string phoneNumber, string email, string password)
+        public Receptionist(string name, string gender, string phoneNumber, string email, string password)
         {
             ReceptionistName = name;
-            NationalID = nationalID;
-            Age = age;
             Gender = gender;
             PhoneNumber = phoneNumber;
             Email = email;

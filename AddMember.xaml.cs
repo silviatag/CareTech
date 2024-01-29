@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CareTech.classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,17 +27,30 @@ namespace CareTech
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-                string position = cmbPosition.Text;
+               // string position = cmbPosition.Text;
                 string name = txtname.Text;
                 string email = txtEmail.Text;
                 string phoneNumber = txtPhoneNumber.Text;
                 string password = txtPassword.Text;
-                string gender = cmbGender.Text;
+                //string gender = cmbGender.Text;
 
 
-                DB AM = new DB();
-                AM.AddMember(position, name, email, phoneNumber, password, gender);
-                
+                DB db = new DB();
+            ComboBoxItem PositionSelectedComboBoxItem = cmbPosition.SelectedItem as ComboBoxItem;
+            string Position= PositionSelectedComboBoxItem.Content?.ToString();
+            ComboBoxItem genderSelectedComboBoxItem = cmbGender.SelectedItem as ComboBoxItem;
+            string gender= genderSelectedComboBoxItem.Content?.ToString();
+
+            if (Position == "Doctor")
+            {
+                Doctor d = new Doctor(name, gender, phoneNumber, email, password);
+                db.InsertDoctor(d);
+            }
+            else if (Position == "Receptionist")
+            {
+                Receptionist r = new Receptionist(name, gender, phoneNumber, email, password);
+                db.InsertReceptionist(r);
+            } 
 
         }
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
