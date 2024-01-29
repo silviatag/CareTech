@@ -54,11 +54,26 @@ namespace CareTech
                 StackPanel horizontalStackPanel = new StackPanel
                 {
                     Orientation = Orientation.Horizontal,
-                    Height = 40
+                    Height = 60
                 };
+                Grid imageGrid = new Grid
+                {
+                    Width = 116
+                };
+
+                Image imageFill = new Image();
+                imageFill.Source = new BitmapImage(new Uri("/images/profile.jpg", UriKind.Relative));
+
+
+                // Add the TextBlock to the Grid
+                imageGrid.Children.Add(imageFill);
+
+                // Add the Grid to the StackPanel
+                horizontalStackPanel.Children.Add(imageGrid);
+
                 Grid nameGrid = new Grid
                 {
-                    Width = 350
+                    Width = 233
                 };
 
                 TextBlock nametxt = new TextBlock
@@ -67,7 +82,8 @@ namespace CareTech
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     TextAlignment = TextAlignment.Center,
-                    FontSize = 15
+                    FontSize = 20,
+                    FontWeight = FontWeights.SemiBold
                 };
 
                 // Add the TextBlock to the Grid
@@ -83,11 +99,12 @@ namespace CareTech
 
                 TextBlock idtxt = new TextBlock
                 {
-                    Text = p.PatientID.ToString(),
+                    Text = "#"+p.PatientID.ToString(),
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     TextAlignment = TextAlignment.Center,
-                    FontSize = 15
+                    FontSize = 15,
+                    FontWeight = FontWeights.Medium
                 };
 
                 // Add the TextBlock to the Grid
@@ -107,11 +124,12 @@ namespace CareTech
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     TextAlignment = TextAlignment.Center,
-                    FontSize = 15
+                    FontSize = 20,
+                    FontWeight = FontWeights.Medium
                 };
 
                 // Add the TextBlock to the Grid
-                nameGrid.Children.Add(phonetxt);
+                phoneGrid.Children.Add(phonetxt);
 
                 // Add the Grid to the StackPanel
                 horizontalStackPanel.Children.Add(phoneGrid);
