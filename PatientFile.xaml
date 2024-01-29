@@ -275,7 +275,7 @@
 								<Button BorderThickness="0" Background="White" Content="Appointments and Fees" Visibility="Visible" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="248" Click="Button_Click"></Button>
 							</StackPanel>
 						</Grid>
-						<Grid x:Name="Prescriptions" Visibility="Visible" Height="680" Background="#F0F0F0">
+						<Grid x:Name="Prescriptions" Visibility="Collapsed" Height="680" Background="#F0F0F0">
 							<Grid Width="1000" Height="580">
 								<ScrollViewer VerticalScrollBarVisibility="Visible">
 									<StackPanel Name="prescmain" Orientation="Vertical">
@@ -297,7 +297,7 @@
 
 
 
-						<Grid x:Name="Labs" Visibility="Collapsed" Height="680" Background="#F0F0F0">
+						<Grid x:Name="Labs" Visibility="Visible" Height="680" Background="#F0F0F0">
 							<Grid Width="1000" Height="580">
 								<ScrollViewer VerticalScrollBarVisibility="Visible">
 									<StackPanel Orientation="Vertical">
@@ -398,7 +398,7 @@
 								</ScrollViewer>
 							</Grid>
 							<Grid Height="40" VerticalAlignment="Bottom">
-								<Button  Content="Add" Width="130" Background="#7163ba" BorderBrush="Gray" Foreground="White" FontFamily="Inter" FontWeight="Medium" FontSize="15" Click="AddPrescriptionBtn_Click"></Button>
+								<Button  Content="Add" Width="130" Background="#7163ba" BorderBrush="Gray" Foreground="White" FontFamily="Inter" FontWeight="Medium" FontSize="15" ></Button>
 							</Grid>
 							<Grid>
 
