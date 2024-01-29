@@ -232,7 +232,7 @@ namespace CareTech
 
         private void settings_Click(object sender, RoutedEventArgs e)
         {
-            Window1 ap = new Window1();
+            Settings ap = new Settings();
             ap.Show();
             this.Close();
         }
