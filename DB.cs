@@ -9,6 +9,9 @@ using MySql.Data.MySqlClient;
 using CareTech.classes;
 using System.Data.SqlClient;
 using System.Windows.Controls;
+using System.Collections.ObjectModel;
+using System.Data;
+
 namespace CareTech
 {
     internal class DB
@@ -16,8 +19,8 @@ namespace CareTech
         static public string connectionString = "server=localhost;database=caretech;user=root;password=caretech;";
         static public MySqlConnection connection;
 
-        public DB() 
-        { 
+        public DB()
+        {
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
         }
@@ -28,7 +31,7 @@ namespace CareTech
             string insertSql = @"INSERT INTO Patient 
                              (nationalID, name, DOB, age, address, phoneNumber, gender, maritalStatus, height, weight, bloodGroup, patientID) 
                              VALUES (@NationalID, @Name, @DOB, @Age, @Address, @PhoneNumber, @Gender, @MaritalStatus, @Height, @Weight, @BloodGroup, @PatientID)";
-            try 
+            try
             {
                 connection = new MySqlConnection(connectionString);
                 using (connection)
@@ -37,7 +40,8 @@ namespace CareTech
                     connection.Open();
 
                     using (MySqlCommand command = new MySqlCommand(insertSql, connection))
-                    {;
+                    {
+                        ;
                         command.Parameters.AddWithValue("@NationalID", patient.NationalID);
                         command.Parameters.AddWithValue("@Name", patient.Name);
                         command.Parameters.AddWithValue("@DOB", patient.DOB);
@@ -135,7 +139,7 @@ namespace CareTech
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
-            
+
             return patients;
         }
 
@@ -206,7 +210,7 @@ namespace CareTech
                         command.Parameters.AddWithValue("@PatientID", emergencyContact.PatientID);
                         command.Parameters.AddWithValue("@Name", emergencyContact.Name);
                         command.Parameters.AddWithValue("@PhoneNumber", emergencyContact.PhoneNumber);
-                        command.Parameters.AddWithValue("@Relationship", emergencyContact.Relationship); 
+                        command.Parameters.AddWithValue("@Relationship", emergencyContact.Relationship);
                         command.ExecuteNonQuery();
                     }
                 }
@@ -307,7 +311,7 @@ namespace CareTech
                     command.Parameters.AddWithValue("@Email", doctor.Email);
                     command.Parameters.AddWithValue("@DocPassword", doctor.DocPassword);
                     command.Parameters.AddWithValue("@Specialization", doctor.Specialization);
-                    command.Parameters.AddWithValue("@JointDate", doctor.JointDate); 
+                    command.Parameters.AddWithValue("@JointDate", doctor.JointDate);
                     command.ExecuteNonQuery();
                 }
             }
@@ -725,8 +729,62 @@ namespace CareTech
 
             return labs;
         }
+
+        //////////////////////////// New Member //////////////////////
+        public void AddMember(string position, string name, string email, string phoneNumber, string password, string gender)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string insertQuery = "";
+
+                    // Choose the table based on the selected position
+                    switch (position.ToLower())
+                    {
+                        case "receptionist":
+                            insertQuery = "INSERT INTO receptionist (receptionistName, email, phoneNumber, receptionistPassword, gender) VALUES (@Name, @Email, @PhoneNumber, @Password, @Gender)";
+                            break;
+
+                        case "doctor":
+                            insertQuery = "INSERT INTO doctor (doctorName, email, phoneNumber, docPassword, gender) VALUES (@Name, @Email, @PhoneNumber, @Password, @Gender)";
+                            break;
+
+                        default:
+                            throw new Exception("Invalid position");
+                    }
+
+                    MySqlCommand cmd = new MySqlCommand(insertQuery, connection);
+                    cmd.Parameters.AddWithValue("@Name", name);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+                    cmd.Parameters.AddWithValue("@Password", password);
+                    cmd.Parameters.AddWithValue("@Gender", gender);
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Error: {ex.Message}");
+                }
+                finally
+                {
+                    if (connection.State == ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+
+
+
+
+
+        }
+
+
     }
-
-
 
 }

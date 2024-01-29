@@ -52,6 +52,10 @@ namespace CareTech
             this.Close();
         }
 
+
+
+
+
         private void LoadAppointments()
         {
             DB db = new DB();
@@ -264,7 +268,7 @@ namespace CareTech
         
         private void OCR_Click(object sender, RoutedEventArgs e)
         {
-            OCR ap = new OCR();
+            AddMember ap = new AddMember();
             ap.Show();
             this.Close();
         }
@@ -275,6 +279,10 @@ namespace CareTech
             eq.Show();
             this.Close();
         }
+
+
+
+
 
         
     }
