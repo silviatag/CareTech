@@ -806,7 +806,6 @@ namespace CareTech
 
                     string insertQuery = "";
 
-                    // Choose the table based on the selected position
                     switch (position.ToLower())
                     {
                         case "receptionist":
@@ -844,28 +843,7 @@ namespace CareTech
             }
 
 
-                    MySqlCommand cmd = new MySqlCommand(insertQuery, connection);
-                    cmd.Parameters.AddWithValue("@FirstName", name);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
-                    cmd.Parameters.AddWithValue("@Password", password);
-                    cmd.Parameters.AddWithValue("@Gender", gender);
-
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Error: {ex.Message}");
-                }
-                finally
-                {
-                    if (connection.State == ConnectionState.Open)
-                    {
-                        connection.Close();
-                    }
-                }
-        }
-
+  
 
 
 
