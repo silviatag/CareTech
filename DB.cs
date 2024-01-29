@@ -9,8 +9,7 @@ using MySql.Data.MySqlClient;
 using CareTech.classes;
 using System.Data.SqlClient;
 using System.Windows.Controls;
-using System.Collections.ObjectModel;
-using System.Data;
+using System.Configuration;
 
 namespace CareTech
 {
@@ -730,53 +729,73 @@ namespace CareTech
             return labs;
         }
 
-        //////////////////////////// New Member //////////////////////
-        public void AddMember(string position, string name, string email, string phoneNumber, string password, string gender)
+
+        //////////////// EQUIPMENT ////////////////
+        public void InsertEquipment(Equipment equipment)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                try
+                connection.Open();
+
+                // Your SQL query to insert data into the Equipment table
+                string query = "INSERT INTO Equipment (EquipmentName, EquipmentType, Vendor, AcquisitionCost, ExpectedLifespan, MaintenanceDate) " +
+                               "VALUES (@EquipmentName, @EquipmentType, @Vendor, @AcquisitionCost, @ExpectedLifespan, @MaintenanceDate)";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    connection.Open();
+                    command.Parameters.AddWithValue("@EquipmentName", equipment.EquipmentName);
+                    command.Parameters.AddWithValue("@EquipmentType", equipment.EquipmentType);
+                    command.Parameters.AddWithValue("@Vendor", equipment.Vendor);
+                    command.Parameters.AddWithValue("@AcquisitionCost", equipment.AcquisitionCost);
+                    command.Parameters.AddWithValue("@ExpectedLifespan", equipment.ExpectedLifespan);
+                    command.Parameters.AddWithValue("@MaintenanceDate", equipment.MaintenanceDate);
 
-                    string insertQuery = "";
-
-                    // Choose the table based on the selected position
-                    switch (position.ToLower())
-                    {
-                        case "receptionist":
-                            insertQuery = "INSERT INTO receptionist (receptionistName, email, phoneNumber, receptionistPassword, gender) VALUES (@Name, @Email, @PhoneNumber, @Password, @Gender)";
-                            break;
-
-                        case "doctor":
-                            insertQuery = "INSERT INTO doctor (doctorName, email, phoneNumber, docPassword, gender) VALUES (@Name, @Email, @PhoneNumber, @Password, @Gender)";
-                            break;
-
-                        default:
-                            throw new Exception("Invalid position");
-                    }
-
-                    MySqlCommand cmd = new MySqlCommand(insertQuery, connection);
-                    cmd.Parameters.AddWithValue("@Name", name);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
-                    cmd.Parameters.AddWithValue("@Password", password);
-                    cmd.Parameters.AddWithValue("@Gender", gender);
-
-                    cmd.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
                 }
-                catch (Exception ex)
+            }
+        }
+
+        public List<Equipment> GetAllEquipment()
+        {
+            List<Equipment> equipmentList = new List<Equipment>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Your SQL query to select all equipment from the Equipment table
+                string query = "SELECT * FROM Equipment";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    throw new Exception($"Error: {ex.Message}");
-                }
-                finally
-                {
-                    if (connection.State == ConnectionState.Open)
+                    using (MySqlDataReader reader = command.ExecuteReader())
                     {
-                        connection.Close();
+                        while (reader.Read())
+                        {
+                            // Map database fields to Equipment properties
+                            Equipment equipment = new Equipment
+                            {
+                                EquipmentID = Convert.ToInt32(reader["EquipmentID"]),
+                                EquipmentName = reader["EquipmentName"].ToString(),
+                                EquipmentType = reader["EquipmentType"].ToString(),
+                                Vendor = reader["Vendor"].ToString(),
+                                AcquisitionCost = Convert.ToDecimal(reader["AcquisitionCost"]),
+                                ExpectedLifespan = Convert.ToInt32(reader["ExpectedLifespan"]),
+                                MaintenanceDate = Convert.ToDateTime(reader["MaintenanceDate"])
+                            };
+
+                            equipmentList.Add(equipment);
+                        }
                     }
                 }
             }
+
+            return equipmentList;
+        }
+
+
+
+    }
 
 
 

@@ -184,7 +184,7 @@
 										<Grid Width="50" HorizontalAlignment="Right">
 											<Image Source="/images/add.jpg" Width="30" Height="20" HorizontalAlignment="Left"></Image>
 										</Grid>
-										<Button x:Name="zeft" Background="Transparent" BorderThickness="0" Width="120" Height="40" Click="zeft_Click"></Button>
+										<Button x:Name="zeft" Background="Transparent" BorderThickness="0" Width="120" Height="40" ></Button>
 									</Grid>
 								</StackPanel>
 							</Grid>
@@ -213,7 +213,7 @@
 								<Grid Width="50" HorizontalAlignment="Right">
 									<Image Source="/images/add.jpg" Width="30" Height="20" HorizontalAlignment="Left"></Image>
 								</Grid>
-								<Button Background="Transparent" BorderThickness="0" Width="120" Height="40"></Button>
+								<Button Background="Transparent" BorderThickness="0" Width="120" Margin="15,0,15,0"/>
 							</Grid>
 						</StackPanel>
 					</Grid>
@@ -267,19 +267,19 @@
 							<Rectangle Fill="White"></Rectangle>
 							<StackPanel Orientation="Horizontal">
 								<Button BorderThickness="0" Background="White" Content="Prescriptions" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="Labs" Visibility="Collapsed" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="ECG/Imaging" Visibility="Collapsed" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button Visibility="Collapsed" BorderThickness="0" Background="White" Content="Analysis" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="History" Visibility="Collapsed" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="Comments" Visibility="Collapsed" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
-								<Button BorderThickness="0" Background="White" Content="Appointments and Fees" Visibility="Collapsed" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="248" Click="Button_Click"></Button>
+								<Button BorderThickness="0" Background="White" Content="Labs" Visibility="Visible" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
+								<Button BorderThickness="0" Background="White" Content="ECG/Imaging" Visibility="Visible" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
+								<Button Visibility="Visible" BorderThickness="0" Background="White" Content="Analysis" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
+								<Button BorderThickness="0" Background="White" Content="History" Visibility="Visible" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
+								<Button BorderThickness="0" Background="White" Content="Discussion" Visibility="Visible" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="124" Click="Button_Click"></Button>
+								<Button BorderThickness="0" Background="White" Content="Appointments and Fees" Visibility="Visible" Foreground="Black" Opacity="0.7" FontFamily="Inter" FontWeight="SemiBold" FontSize="20" Width="248" Click="Button_Click"></Button>
 							</StackPanel>
 						</Grid>
 						<Grid x:Name="Prescriptions" Visibility="Visible" Height="680" Background="#F0F0F0">
 							<Grid Width="1000" Height="580">
 								<ScrollViewer VerticalScrollBarVisibility="Visible">
 									<StackPanel Name="prescmain" Orientation="Vertical">
-										
+
 									</StackPanel>
 								</ScrollViewer>
 							</Grid>
@@ -981,7 +981,7 @@ LegendLocation="Right" InnerRadius="80" Margin="34,42,20,29" Loaded="Chart_Loade
 														</Grid>
 													</Grid>
 												</StackPanel>
-												
+
 											</Grid>
 										</StackPanel>
 									</StackPanel>
@@ -1421,7 +1421,7 @@ Width="230">
 
 		</Grid>
 
-	
+
 
 
 

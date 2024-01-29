@@ -5,232 +5,174 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CareTech"
         mc:Ignorable="d"
-        Title="EquipmentList" Height="820" Width="1550" WindowState="Maximized">
-	<Window.Resources>
-		<Style x:Key="CustomButtonStyle" TargetType="Button">
-			<Setter Property="Background" Value="#30646B"/>
-			<Setter Property="Foreground" Value="White"/>
-			<Setter Property="BorderThickness" Value="0"/>
-			<Setter Property="FontSize" Value="16"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="Button">
-						<Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-						</Border>
-						<ControlTemplate.Triggers>
-							<Trigger Property="IsPressed" Value="True">
-								<Setter Property="Background" Value="#FFFFFF"/>
-								<Setter Property="Opacity" Value="0.2"/>
-							</Trigger>
-						</ControlTemplate.Triggers>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<!--// Toggle Button Style Template //-->
+        Title="EquipmentList" Height="820" Width="1570" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="CustomButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#30646B"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FFFFFF"/>
+                                <Setter Property="Opacity" Value="0.2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--// Toggle Button Style Template //-->
 
-		<ImageBrush x:Key="tb_mouse_over"
+        <ImageBrush x:Key="tb_mouse_over"
                 ImageSource="/images/menu.png"/>
 
-		<!--// Text font style //-->
+        <!--// Text font style //-->
 
-		<Style x:Key="font_style" TargetType="TextBlock">
+        <Style x:Key="font_style" TargetType="TextBlock">
 
-			<Setter Property="FontFamily"
+            <Setter Property="FontFamily"
                 Value="Fonts/Roboto-Light.ttf #Roboto"/>
 
-			<Setter Property="VerticalAlignment"
+            <Setter Property="VerticalAlignment"
                 Value="Center"/>
 
-			<Setter Property="HorizontalAlignment"
+            <Setter Property="HorizontalAlignment"
                 Value="Left"/>
 
-			<Setter Property="Foreground"
+            <Setter Property="Foreground"
                 Value="White"/>
 
-			<Setter Property="FontSize"
+            <Setter Property="FontSize"
                 Value="20"/>
 
-		</Style>
+        </Style>
 
-		<!--// Tooltip Style Template //-->
+        <!--// Tooltip Style Template //-->
 
-		<Style TargetType="ToolTip" x:Key="tt_style">
+        <Style TargetType="ToolTip" x:Key="tt_style">
 
-			<Setter Property="Placement" Value="Right"/>
-			<Setter Property="Height" Value="40"/>
-			<Setter Property="Width" Value="100"/>
-			<Setter Property="Margin" Value="20,0,0,0"/>
-			<Setter Property="Background" Value="#FF30646B"/>
-			<Setter Property="BorderBrush" Value="Transparent"/>
-			<Setter Property="Foreground" Value="White"/>
-			<Setter Property="FontFamily" Value="Fonts/Roboto-Light.ttf #Roboto"/>
-			<Setter Property="FontSize" Value="16"/>
-			<Setter Property="PlacementRectangle" Value="60,0,0,0"/>
-			<Setter Property="HorizontalOffset" Value="15"/>
-			<Setter Property="VerticalOffset" Value="6"/>
-			<Setter Property="HasDropShadow" Value="True"/>
-			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Placement" Value="Right"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
+            <Setter Property="Background" Value="#FF30646B"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Fonts/Roboto-Light.ttf #Roboto"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="PlacementRectangle" Value="60,0,0,0"/>
+            <Setter Property="HorizontalOffset" Value="15"/>
+            <Setter Property="VerticalOffset" Value="6"/>
+            <Setter Property="HasDropShadow" Value="True"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
 
-		</Style>
+        </Style>
 
-		<Style x:Key="tb_style" TargetType="{x:Type ToggleButton}">
+        <Style x:Key="tb_style" TargetType="{x:Type ToggleButton}">
 
-			<Setter Property="Template">
+            <Setter Property="Template">
 
-				<Setter.Value>
+                <Setter.Value>
 
-					<ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
 
-						<Border  x:Name="border"
+                        <Border  x:Name="border"
                              BorderThickness="{TemplateBinding BorderThickness}"
                              Background="{TemplateBinding Background}"
                              SnapsToDevicePixels="True">
 
-						</Border>
+                        </Border>
 
-						<ControlTemplate.Triggers>
+                        <ControlTemplate.Triggers>
 
-							<Trigger Property="IsMouseOver" Value="true">
+                            <Trigger Property="IsMouseOver" Value="true">
 
-								<Setter Property="Background"
+                                <Setter Property="Background"
                                     TargetName="border"
                                     Value="{StaticResource tb_mouse_over}"/>
 
-								<Setter Property="BorderBrush"
+                                <Setter Property="BorderBrush"
                                     TargetName="border"
                                     Value="{StaticResource tb_mouse_over}"/>
 
-							</Trigger>
+                            </Trigger>
 
-							<Trigger Property="IsChecked" Value="true">
+                            <Trigger Property="IsChecked" Value="true">
 
-								<Setter Property="Background"
+                                <Setter Property="Background"
                                     TargetName="border"
                                     Value="{StaticResource tb_mouse_over}"/>
 
-								<Setter Property="BorderBrush"
+                                <Setter Property="BorderBrush"
                                     TargetName="border"
                                     Value="{StaticResource tb_mouse_over}"/>
 
-							</Trigger>
+                            </Trigger>
 
-						</ControlTemplate.Triggers>
+                        </ControlTemplate.Triggers>
 
-					</ControlTemplate>
+                    </ControlTemplate>
 
-				</Setter.Value>
+                </Setter.Value>
 
-			</Setter>
+            </Setter>
 
-		</Style>
+        </Style>
 
-	</Window.Resources>
+    </Window.Resources>
 
-	<Grid>
-		<Grid.Background>
-			<LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-				<GradientStop Color="#FFFFFF" Offset="0"/>
-				<GradientStop Color="LightGray" Offset="1"/>
-			</LinearGradientBrush>
-		</Grid.Background>
-		<Grid x:Name="MainGrid" Width="1440" Height="750" HorizontalAlignment="Right">
-			<StackPanel Orientation="Vertical" Width="1440">
-				<Grid Height="100" VerticalAlignment="Top">
-					<TextBlock Text="Equpment" FontSize="30" FontWeight="Bold" Foreground="Black" FontFamily="Inter" Height="40" ></TextBlock>
-					<Line X1="0" Y1="70" X2="300" Y2="70" Fill="Black" Stroke="Black" StrokeThickness="1"></Line>
-				</Grid>
-				<StackPanel Orientation="Horizontal"  Height="40">
-					<Grid Width="40">
-						<Button x:Name="add" Width="30" Height="30" BorderThickness="0" Click="add_Click">
-							<Button.Background>
-								<ImageBrush ImageSource="/images/add.jpg"></ImageBrush>
-							</Button.Background>
-						</Button>
-					</Grid>
-					<Grid Width="1350" HorizontalAlignment="Center">
-						<Rectangle Fill="#F0F0F0" Stroke="Gray" RadiusX="20" RadiusY="20"></Rectangle>
-						<Image Source="/images/search.png" Width="20" Height="20" Opacity="0.5" HorizontalAlignment="Left" Margin="17,0,0,0" ></Image>
-						<TextBlock Text="search..." FontSize="18" Width="1250" VerticalAlignment="Center" FontWeight="SemiBold" FontFamily="Inter" Foreground="gray"></TextBlock>
-					</Grid>
-				</StackPanel>
-				<Grid Height="100" VerticalAlignment="Top">
-					<TextBlock Text="Recently Added Equipment" FontSize="30" FontWeight="Bold" Foreground="Black" FontFamily="Inter" Height="40" ></TextBlock>
-					<Line X1="0" Y1="70" X2="1300" Y2="70" Fill="Black" Stroke="Black" StrokeThickness="1"></Line>
-				</Grid>
-				<Grid Height="102">
-					<Rectangle Fill="#F0F0F0" Stroke="Gray" Height="95" Width="1400" RadiusX="20" RadiusY="20"></Rectangle>
-					<StackPanel Orientation="Horizontal" Width="1350" Height="90">
-						<Grid Width="100" Height="80" >
-							<Grid Width="80" Background="#FFD2D5EE">
-								<Image Source="/images/settings.png"  Width="80" Height="70"></Image>
-							</Grid>
-						</Grid>
-						<TextBlock Text="ECG" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock  FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<Button x:Name="view"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium" Click="view_Click"></Button>
-					</StackPanel>
-				</Grid>
-				<Grid Height="102">
-					<Rectangle Fill="#F0F0F0" Stroke="Gray" Height="95" Width="1400" RadiusX="20" RadiusY="20"></Rectangle>
-					<StackPanel Orientation="Horizontal" Width="1350" Height="90">
-						<Grid Width="100" Height="80" >
-							<Grid Width="80" Background="#FFD2D5EE">
-								<Image Source="/images/settings.png"  Width="80" Height="70"></Image>
-							</Grid>
-						</Grid>
-						<TextBlock Text="EEG" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<Button Click="view_Click"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium"></Button>
-					</StackPanel>
-				</Grid>
-				<Grid Height="102">
-					<Rectangle Fill="#F0F0F0" Stroke="Gray" Height="95" Width="1400" RadiusX="20" RadiusY="20"></Rectangle>
-					<StackPanel Orientation="Horizontal" Width="1350" Height="90">
-						<Grid Width="100" Height="80" >
-							<Grid Width="80" Background="#FFD2D5EE">
-								<Image Source="/images/settings.png"  Width="80" Height="70"></Image>
-							</Grid>
-						</Grid>
-						<TextBlock Text="MRI" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<Button Click="view_Click"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium"></Button>
-					</StackPanel>
-				</Grid>
-				<Grid Height="102">
-					<Rectangle Fill="#F0F0F0" Stroke="Gray" Height="95" Width="1400" RadiusX="20" RadiusY="20"></Rectangle>
-					<StackPanel Orientation="Horizontal" Width="1350" Height="90">
-						<Grid Width="100" Height="80" >
-							<Grid Width="80" Background="#FFD2D5EE">
-								<Image Source="/images/settings.png"  Width="80" Height="70"></Image>
-							</Grid>
-						</Grid>
-						<TextBlock Text="CT" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<Button Click="view_Click"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium"></Button>
-					</StackPanel>
-				</Grid>
-				<Grid Height="102">
-					<Rectangle Fill="#F0F0F0" Stroke="Gray" Height="95" Width="1400" RadiusX="20" RadiusY="20"></Rectangle>
-					<StackPanel Orientation="Horizontal" Width="1350" Height="90">
-						<Grid Width="100" Height="80" >
-							<Grid Width="80" Background="#FFD2D5EE">
-								<Image Source="/images/settings.png"  Width="80" Height="70"></Image>
-							</Grid>
-						</Grid>
-						<TextBlock Text="PET" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<TextBlock Text="" FontSize="25" FontWeight="SemiBold" FontFamily="Inter" Height="50" Width="300" VerticalAlignment="Center"></TextBlock>
-						<Button Click="view_Click"  HorizontalAlignment="Right" VerticalAlignment="Center" Background="#7163ba" Foreground="White"  Height="40" Width="116" Content="View" FontFamily="Inter" FontSize="20" FontWeight="Medium"></Button>
-					</StackPanel>
-				</Grid>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                <GradientStop Color="#FFFFFF" Offset="0"/>
+                <GradientStop Color="LightGray" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid x:Name="MainGrid" Width="1440" Height="750" HorizontalAlignment="Right">
+            <StackPanel Orientation="Vertical" Width="1440">
+                <Grid Height="100" VerticalAlignment="Top">
+                    <TextBlock Text="Equpment" FontSize="30" FontWeight="Bold" Foreground="Black" FontFamily="Inter" Height="40" ></TextBlock>
+                    <Line X1="0" Y1="70" X2="300" Y2="70" Fill="Black" Stroke="Black" StrokeThickness="1"></Line>
+                </Grid>
+                <StackPanel Orientation="Horizontal"  Height="40">
+                    <Grid Width="40">
+                        <Button x:Name="add" Width="30" Height="30" BorderThickness="0" Click="add_Click">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/images/add.jpg"></ImageBrush>
+                            </Button.Background>
+                        </Button>
+                    </Grid>
+                    <Grid Width="1350" HorizontalAlignment="Center">
+                        <Rectangle Fill="#F0F0F0" Stroke="Gray" RadiusX="20" RadiusY="20"></Rectangle>
+                        <Image Source="/images/search.png" Width="20" Height="20" Opacity="0.5" HorizontalAlignment="Left" Margin="17,0,0,0" ></Image>
+                        <TextBlock Text="search..." FontSize="18" Width="1250" VerticalAlignment="Center" FontWeight="SemiBold" FontFamily="Inter" Foreground="gray"></TextBlock>
+                    </Grid>
+                </StackPanel>
+                <Grid Height="100" VerticalAlignment="Top">
+                    <TextBlock Text="Recently Added Equipment" FontSize="30" FontWeight="Bold" Foreground="Black" FontFamily="Inter" Height="40" ></TextBlock>
+                    <Line X1="0" Y1="70" X2="1300" Y2="70" Fill="Black" Stroke="Black" StrokeThickness="1"></Line>
+                </Grid>
+
+				<DataGrid Name="EquipmentDataGrid" HorizontalAlignment="Left" Height="490"  VerticalAlignment="Top" Width="1400">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Equipment Name" Binding="{Binding EquipmentName}" Width="235" />
+						<DataGridTextColumn Header="Equipment Type" Binding="{Binding EquipmentType}" Width="235" />
+						<DataGridTextColumn Header="Vendor" Binding="{Binding Vendor}" Width="235" />
+						<DataGridTextColumn Header="Acquisition Cost" Binding="{Binding AcquisitionCost}" Width="235" />
+						<DataGridTextColumn Header="Expected Lifespan" Binding="{Binding ExpectedLifespan}" Width="235" />
+						<DataGridTextColumn Header="Maintenance Date" Binding="{Binding MaintenanceDate}" Width="235" />
+
+					</DataGrid.Columns>
+				</DataGrid>
 			</StackPanel>
-		</Grid>
+        </Grid>
 
 
 
@@ -244,18 +186,18 @@
 
 
 
-		<Grid   x:Name="nav_pnl" HorizontalAlignment="Left" Width="65" Margin="10,10,0,10"
+        <Grid   x:Name="nav_pnl" HorizontalAlignment="Left" Width="65" Margin="10,10,0,10"
 >
-			<Rectangle Fill="#7163ba" RadiusX="30" RadiusY="30"></Rectangle>
-			<StackPanel x:Name="st_pnl">
+            <Rectangle Fill="#7163ba" RadiusX="30" RadiusY="30"></Rectangle>
+            <StackPanel x:Name="st_pnl">
 
-				<!--// Grid for the Menu Toggle Button //-->
+                <!--// Grid for the Menu Toggle Button //-->
 
-				<Grid Height="90">
+                <Grid Height="90">
 
-					<!--// Menu title text //-->
+                    <!--// Menu title text //-->
 
-					<TextBlock  Grid.Row="1"
+                    <TextBlock  Grid.Row="1"
                 Grid.Column="0"
                 Margin="73,-20,0,0"
                 Text="LIFE CLINIC"
@@ -268,20 +210,20 @@
         
         <!--// Shadow Effect //-->
 
-						<TextBlock.Effect>
+                        <TextBlock.Effect>
 
-							<DropShadowEffect  BlurRadius="10"
+                            <DropShadowEffect  BlurRadius="10"
                                ShadowDepth="1"
                                Direction="-90"
                                Color="White"/>
 
-						</TextBlock.Effect>
+                        </TextBlock.Effect>
 
-					</TextBlock>
+                    </TextBlock>
 
-					<!--// Toggle Button //-->
+                    <!--// Toggle Button //-->
 
-					<ToggleButton x:Name="Tg_Btn"
+                    <ToggleButton x:Name="Tg_Btn"
                   Grid.Column="0"
                   VerticalAlignment="Center"
                   HorizontalAlignment="Left"
@@ -291,26 +233,26 @@
                   BorderThickness="0"
                   Style="{StaticResource tb_style}">
 
-						<!--// Toggle button default background image //-->
+                        <!--// Toggle button default background image //-->
 
-						<ToggleButton.Background>
+                        <ToggleButton.Background>
 
-							<ImageBrush ImageSource="/images/menu.png"
+                            <ImageBrush ImageSource="/images/menu.png"
                         Stretch="None"/>
 
-						</ToggleButton.Background>
+                        </ToggleButton.Background>
 
-						<!--// Toggle Button - Checked, Unchecked events //-->
+                        <!--// Toggle Button - Checked, Unchecked events //-->
 
-						<ToggleButton.Triggers>
+                        <ToggleButton.Triggers>
 
-							<EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
 
-								<BeginStoryboard>
+                                <BeginStoryboard>
 
-									<Storyboard x:Name="HideStackPanel">
+                                    <Storyboard x:Name="HideStackPanel">
 
-										<DoubleAnimation    
+                                        <DoubleAnimation    
                             
                             Storyboard.TargetName="nav_pnl"
                             Storyboard.TargetProperty="Width"
@@ -318,21 +260,21 @@
                             From="230" To="65"
                             Duration="0:0:0.2">
 
-										</DoubleAnimation>
+                                        </DoubleAnimation>
 
-									</Storyboard>
+                                    </Storyboard>
 
-								</BeginStoryboard>
+                                </BeginStoryboard>
 
-							</EventTrigger>
+                            </EventTrigger>
 
-							<EventTrigger RoutedEvent="ToggleButton.Checked">
+                            <EventTrigger RoutedEvent="ToggleButton.Checked">
 
-								<BeginStoryboard>
+                                <BeginStoryboard>
 
-									<Storyboard x:Name="ShowStackPanel">
+                                    <Storyboard x:Name="ShowStackPanel">
 
-										<DoubleAnimation
+                                        <DoubleAnimation
                             
                             Storyboard.TargetName="nav_pnl"
                             Storyboard.TargetProperty="Width"
@@ -340,243 +282,243 @@
                             From="65" To="230"
                             Duration="0:0:0.3">
 
-										</DoubleAnimation>
+                                        </DoubleAnimation>
 
-									</Storyboard>
+                                    </Storyboard>
 
-								</BeginStoryboard>
+                                </BeginStoryboard>
 
-							</EventTrigger>
+                            </EventTrigger>
 
-						</ToggleButton.Triggers>
+                        </ToggleButton.Triggers>
 
 
-					</ToggleButton>
+                    </ToggleButton>
 
-				</Grid>
+                </Grid>
 
-				<!--// ListView with menu list items //-->
+                <!--// ListView with menu list items //-->
 
-				<ListView  x:Name="LV"
+                <ListView  x:Name="LV"
            Background="Transparent"
            BorderBrush="Transparent"
            ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="647">
 
-					<!--// Home //-->
+                    <!--// Home //-->
 
-					<ListViewItem HorizontalAlignment="Left"
+                    <ListViewItem HorizontalAlignment="Left"
                   Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                   >
 
-						<Grid Width="230">
-							<StackPanel Orientation="Horizontal"
+                        <Grid Width="230">
+                            <StackPanel Orientation="Horizontal"
 Width="230">
 
-								<Image Source="/images/home.png"
+                                <Image Source="/images/home.png"
                    Stretch="None"
                    Margin="12,0,0,0"/>
 
-								<TextBlock Text="Home"
+                                <TextBlock Text="Home"
                        Margin="25,0,0,0"
                        Style="{StaticResource font_style}"/>
 
-							</StackPanel>
-							<Button x:Name="home" Background="Transparent" BorderBrush="Transparent" Click="home_Click"></Button>
-						</Grid>
+                            </StackPanel>
+                            <Button x:Name="home" Background="Transparent" BorderBrush="Transparent" Click="home_Click"></Button>
+                        </Grid>
 
-						<!--// Tooltip //-->
+                        <!--// Tooltip //-->
 
-						<ListViewItem.ToolTip>
+                        <ListViewItem.ToolTip>
 
-							<ToolTip x:Name="tt_home"
+                            <ToolTip x:Name="tt_home"
                      Content="Home"
                      Style="{StaticResource tt_style}"/>
 
-						</ListViewItem.ToolTip>
+                        </ListViewItem.ToolTip>
 
-					</ListViewItem>
+                    </ListViewItem>
 
-					<!--// Contacts //-->
+                    <!--// Contacts //-->
 
-					<ListViewItem HorizontalAlignment="Left"
+                    <ListViewItem HorizontalAlignment="Left"
                   Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                   >
 
-						<Grid Width="230">
-							<StackPanel Orientation="Horizontal"
+                        <Grid Width="230">
+                            <StackPanel Orientation="Horizontal"
 Width="230">
 
-								<Image Source="/images/calendar.png"
+                                <Image Source="/images/calendar.png"
                    Stretch="None"
                    Margin="12,0,0,0" Width="36" RenderTransformOrigin="0.328,0.488"/>
 
-								<TextBlock Text="Appointments"
+                                <TextBlock Text="Appointments"
                        Margin="25,0,0,0"
                        Style="{StaticResource font_style}"/>
 
-							</StackPanel>
-							<Button x:Name="appointments" Background="Transparent" BorderBrush="Transparent" Click="appointments_Click"></Button>
-						</Grid>
+                            </StackPanel>
+                            <Button x:Name="appointments" Background="Transparent" BorderBrush="Transparent" Click="appointments_Click"></Button>
+                        </Grid>
 
-						<!--// Tooltip //-->
+                        <!--// Tooltip //-->
 
-						<ListViewItem.ToolTip>
+                        <ListViewItem.ToolTip>
 
-							<ToolTip x:Name="tt_appointements"
+                            <ToolTip x:Name="tt_appointements"
                      Content="Appointments"
                      Style="{StaticResource tt_style}"/>
 
-						</ListViewItem.ToolTip>
+                        </ListViewItem.ToolTip>
 
-					</ListViewItem>
+                    </ListViewItem>
 
-					<!--// Messages //-->
+                    <!--// Messages //-->
 
-					<ListViewItem HorizontalAlignment="Left"
+                    <ListViewItem HorizontalAlignment="Left"
                   Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                   >
 
-						<Grid Width="230">
-							<StackPanel Orientation="Horizontal"
+                        <Grid Width="230">
+                            <StackPanel Orientation="Horizontal"
 Width="230">
 
-								<Image Source="/images/patientt.png"
+                                <Image Source="/images/patientt.png"
                    Stretch="None"
                    Margin="12,0,0,0"/>
 
-								<TextBlock Text="Patients"
+                                <TextBlock Text="Patients"
                        Margin="25,0,0,0"
                        Style="{StaticResource font_style}"/>
 
-							</StackPanel>
-							<Button x:Name="patients" Background="Transparent" BorderBrush="Transparent" Click="patients_Click"></Button>
-						</Grid>
+                            </StackPanel>
+                            <Button x:Name="patients" Background="Transparent" BorderBrush="Transparent" Click="patients_Click"></Button>
+                        </Grid>
 
-						<!--// Tooltip //-->
+                        <!--// Tooltip //-->
 
-						<ListViewItem.ToolTip>
+                        <ListViewItem.ToolTip>
 
-							<ToolTip x:Name="tt_patients"
+                            <ToolTip x:Name="tt_patients"
                      Content="Patients"
                      Style="{StaticResource tt_style}"/>
 
-						</ListViewItem.ToolTip>
+                        </ListViewItem.ToolTip>
 
-					</ListViewItem>
+                    </ListViewItem>
 
-					<!--// Maps //-->
+                    <!--// Maps //-->
 
-					<ListViewItem HorizontalAlignment="Left"
+                    <ListViewItem HorizontalAlignment="Left"
                   Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                   Height="50">
 
-						<Grid Width="230">
-							<StackPanel Orientation="Horizontal" Width="230">
+                        <Grid Width="230">
+                            <StackPanel Orientation="Horizontal" Width="230">
 
-								<Image Source="/images/chart.png"
+                                <Image Source="/images/chart.png"
                    Stretch="None"
                    Margin="12,0,0,0"/>
 
-								<TextBlock Text="Analytics"
+                                <TextBlock Text="Analytics"
                        Margin="25,0,0,0"
                        Style="{StaticResource font_style}"/>
 
-							</StackPanel>
-							<Button x:Name="analysis" Background="Transparent" BorderBrush="Transparent" Click="analysis_Click"></Button>
-						</Grid>
+                            </StackPanel>
+                            <Button x:Name="analysis" Background="Transparent" BorderBrush="Transparent" Click="analysis_Click"></Button>
+                        </Grid>
 
-						<!--// Tooltip //-->
+                        <!--// Tooltip //-->
 
-						<ListViewItem.ToolTip>
+                        <ListViewItem.ToolTip>
 
-							<ToolTip x:Name="tt_analytics"
+                            <ToolTip x:Name="tt_analytics"
                      Content="Analytics"
                      Style="{StaticResource tt_style}"/>
 
-						</ListViewItem.ToolTip>
+                        </ListViewItem.ToolTip>
 
-					</ListViewItem>
+                    </ListViewItem>
 
-					<!--// Settings //-->
+                    <!--// Settings //-->
 
-					<ListViewItem HorizontalAlignment="Left"
+                    <ListViewItem HorizontalAlignment="Left"
                   Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                   >
 
-						<Grid Width="230">
-							<StackPanel Orientation="Horizontal"
+                        <Grid Width="230">
+                            <StackPanel Orientation="Horizontal"
 Width="230">
-								<Image Source="/images/money.png"
+                                <Image Source="/images/money.png"
                    Stretch="None"
                    Margin="12,0,0,0"/>
 
-								<TextBlock Text="Finance"
+                                <TextBlock Text="Finance"
                        Margin="25,0,0,0"
                        Style="{StaticResource font_style}"/>
 
-							</StackPanel>
-							<Button x:Name="finance" Background="Transparent" BorderBrush="Transparent" Click="finance_Click"></Button>
-						</Grid>
+                            </StackPanel>
+                            <Button x:Name="finance" Background="Transparent" BorderBrush="Transparent" Click="finance_Click"></Button>
+                        </Grid>
 
-						<!--// Tooltip //-->
+                        <!--// Tooltip //-->
 
-						<ListViewItem.ToolTip>
+                        <ListViewItem.ToolTip>
 
-							<ToolTip x:Name="tt_finance"
+                            <ToolTip x:Name="tt_finance"
                      Content="Finance"
                      Style="{StaticResource tt_style}"/>
 
-						</ListViewItem.ToolTip>
+                        </ListViewItem.ToolTip>
 
-					</ListViewItem>
+                    </ListViewItem>
 
-					<!--// Sign Out //-->
+                    <!--// Sign Out //-->
 
-					<ListViewItem HorizontalAlignment="Left"
+                    <ListViewItem HorizontalAlignment="Left"
                   Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                   >
 
-						<Grid Width="230">
-							<StackPanel Orientation="Horizontal"
+                        <Grid Width="230">
+                            <StackPanel Orientation="Horizontal"
 Width="230">
 
-								<Image Source="/images/settings.png"
+                                <Image Source="/images/settings.png"
                    Stretch="None"
                    Margin="12,0,0,0"/>
 
-								<TextBlock Text="Settings"
+                                <TextBlock Text="Settings"
                        Margin="25,0,0,0"
                        Style="{StaticResource font_style}"/>
 
-							</StackPanel>
-							<Button x:Name="settings" Background="Transparent" BorderBrush="Transparent" Click="settings_Click"></Button>
-						</Grid>
+                            </StackPanel>
+                            <Button x:Name="settings" Background="Transparent" BorderBrush="Transparent" Click="settings_Click"></Button>
+                        </Grid>
 
-						<!--// Tooltip //-->
+                        <!--// Tooltip //-->
 
-						<ListViewItem.ToolTip>
+                        <ListViewItem.ToolTip>
 
-							<ToolTip x:Name="tt_settings"
+                            <ToolTip x:Name="tt_settings"
                      Content="Settings"
                      Style="{StaticResource tt_style}"/>
 
-						</ListViewItem.ToolTip>
+                        </ListViewItem.ToolTip>
 
-					</ListViewItem>
+                    </ListViewItem>
 
-					<!--// Listview items style template //-->
+                    <!--// Listview items style template //-->
 
-					<ListView.ItemContainerStyle>
+                    <ListView.ItemContainerStyle>
 
-						<Style TargetType="ListViewItem">
+                        <Style TargetType="ListViewItem">
 
-							<Setter Property="Template">
+                            <Setter Property="Template">
 
-								<Setter.Value>
+                                <Setter.Value>
 
-									<ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
 
-										<Border x:Name="Bd"
+                                        <Border x:Name="Bd"
                                 Height="50"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -584,74 +526,80 @@ Width="230">
                                 Padding="{TemplateBinding Padding}"
                                 SnapsToDevicePixels="True">
 
-											<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
 
-										</Border>
+                                        </Border>
 
-										<ControlTemplate.Triggers>
+                                        <ControlTemplate.Triggers>
 
-											<MultiTrigger>
+                                            <MultiTrigger>
 
-												<MultiTrigger.Conditions>
+                                                <MultiTrigger.Conditions>
 
-													<Condition Property="IsMouseOver" Value="True"/>
+                                                    <Condition Property="IsMouseOver" Value="True"/>
 
-												</MultiTrigger.Conditions>
+                                                </MultiTrigger.Conditions>
 
-												<Setter Property="Background"
+                                                <Setter Property="Background"
                                         TargetName="Bd"
                                         Value="#FF30646B"/>
 
-												<Setter Property="BorderBrush"
+                                                <Setter Property="BorderBrush"
                                         TargetName="Bd"
                                         Value="#FF30646B"/>
 
-											</MultiTrigger>
+                                            </MultiTrigger>
 
-										</ControlTemplate.Triggers>
+                                        </ControlTemplate.Triggers>
 
-									</ControlTemplate>
+                                    </ControlTemplate>
 
-								</Setter.Value>
+                                </Setter.Value>
 
-							</Setter>
+                            </Setter>
 
-						</Style>
+                        </Style>
 
-					</ListView.ItemContainerStyle>
+                    </ListView.ItemContainerStyle>
 
-				</ListView>
+                </ListView>
 
-			</StackPanel>
-			<Grid Margin="0,510,0,47">
-				<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"
+            </StackPanel>
+            <Grid Margin="0,510,0,47">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"
                     Width="230">
 
-					<Image Source="/images/signout.png"
+                    <Image Source="/images/signout.png"
                    Stretch="None"
                    Margin="12,0,0,0"/>
 
-					<TextBlock Text="Signout"
+                    <TextBlock Text="Signout"
                        Margin="25,0,0,0"
                        Style="{StaticResource font_style}"/>
 
-				</StackPanel>
+                </StackPanel>
 
-				<!--// Tooltip //-->
+                <!--// Tooltip //-->
 
-				<Grid.ToolTip>
+                <Grid.ToolTip>
 
-					<ToolTip x:Name="tt_signout"
+                    <ToolTip x:Name="tt_signout"
                      Content="Signout"
                      Style="{StaticResource tt_style}"/>
 
-				</Grid.ToolTip>
-			</Grid>
+                </Grid.ToolTip>
 
-		</Grid>
-	</Grid>
+
+            </Grid>
+
+
+        </Grid>
+       
+
+
+    </Grid>
 </Window>
 
 	

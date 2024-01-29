@@ -1,5 +1,10 @@
-﻿using System;
+﻿using CareTech.classes;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +24,34 @@ namespace CareTech
     /// </summary>
     public partial class EquipmentList : Window
     {
+
+        private ObservableCollection<Equipment> equipmentList;
+
         public EquipmentList()
         {
             InitializeComponent();
+
+            LoadEquipmentData();
         }
+
+        private void LoadEquipmentData()
+        {
+            try
+            {
+
+                 DB db = new DB();
+
+
+                // Set the ObservableCollection as the data source for your ListView or DataGrid
+                EquipmentDataGrid.ItemsSource = db.GetAllEquipment();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
             // Set tooltip visibility
@@ -120,5 +149,12 @@ namespace CareTech
             AddEquipment eq= new AddEquipment();
             eq.Show();
         }
+
+
+
+
+
     }
+
+
 }
